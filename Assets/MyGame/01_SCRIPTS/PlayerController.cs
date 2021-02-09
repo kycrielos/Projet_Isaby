@@ -12,10 +12,21 @@ public class PlayerController : MonoBehaviour
     private float Movementx;
     private float Movementy;
     public float Speed = 1;
+    public float Inetie;
     Vector3 MoveDirection;
 
     //Jump
     Vector3 JumpDirection;
+    private float JumpInput = 1;
+    private float JumpMovement;
+    public float JumpForce = 1;
+    public float JumpAcceleration = 1;
+    public float JumpDuration = 1;
+    public float JumpMinimumDuration = 1;
+    public float JumpDelay = 0.5f;
+    public float JumpCD = 0.1f;
+    public float GravityScale = 1;
+    private bool CanJump;
 
     //Rotate
     float turnSmoothVelocity;
@@ -35,6 +46,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Jump();
         Move();
     }
 
@@ -55,19 +67,115 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            controller.Move(moveDir * Speed * Time.deltaTime + JumpDirection);
+            controller.Move((moveDir * Speed  + JumpDirection) * Time.deltaTime);
         }
         else
         {
-            controller.Move(JumpDirection);
+            controller.Move(JumpDirection * Time.deltaTime);
         }
     }
 
+    void Jump()
+    {
+        if (Input.GetButtonDown("Jump") && !CanJump && PlayerPhysics.TimeSinceGrounded <= JumpDelay)
+        {
+            CanJump = true;
+            PlayerPhysics.TimeSinceGrounded = 0;
+        }
+
+        if (CanJump)
+        {
+            if (Input.GetButton("Jump") && PlayerPhysics.TimeSinceGrounded <= JumpDuration || PlayerPhysics.TimeSinceGrounded <= JumpMinimumDuration)
+            {
+                if (JumpInput > 0)
+                {
+                    JumpInput -= Time.deltaTime * JumpAcceleration;
+                }
+                
+                if (JumpInput <= 0)
+                {
+                    JumpInput = 0;
+                }
+
+                JumpMovement = (1 - Mathf.Pow(Mathf.Abs(1 - JumpInput), 5)) * JumpForce;
+            }
+            else
+            {
+                CanJump = false;
+                JumpInput = 1;
+            }
+        }
+        else
+        {
+            if (JumpMovement > -GravityScale)
+            {
+                JumpMovement -= Time.deltaTime * GravityScale;
+            }
+            else
+            {
+                JumpMovement = -GravityScale;
+            }
+        }
+
+        JumpDirection = new Vector3(0, JumpMovement , 0);
+    }
+
+
     void GetInput()
     {
-        //Recupere les Input
-        Inputx = Input.GetAxis("Horizontal");
-        Inputy = Input.GetAxis("Vertical");
+        if (PlayerPhysics.IsGrounded)
+        {
+            Inputx = Input.GetAxis("Horizontal");
+            Inputy = Input.GetAxis("Vertical");
+        }
+        else
+        {
+            if (Inputx != 0)
+            {
+                if (Input.GetAxisRaw("Horizontal") == 0)
+                {
+                    Inputx -= (Time.deltaTime * Inetie) * (Inputx/Mathf.Abs(Inputx));
+                }
+                else
+                {
+                    Inputx = Input.GetAxis("Horizontal");
+                }
+            }
+            else
+            {
+                if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1)
+                {
+                    Inputx += (Time.deltaTime * Inetie) * (Inputx / Mathf.Abs(Inputx));
+                }
+                else
+                {
+                    Inputx = 0;
+                }
+            }
+
+            if (Inputy != 0)
+            {
+                if (Input.GetAxisRaw("Vertical") == 0)
+                {
+                    Inputy -= (Time.deltaTime * Inetie) * (Inputy / Mathf.Abs(Inputy));
+                }
+                else
+                {
+                    Inputy = Input.GetAxis("Vertical");
+                }
+            }
+            else
+            {
+                if (Input.GetAxisRaw("Vertical") == 1)
+                {
+                    Inputy += (Time.deltaTime * Inetie) * (Inputy / Mathf.Abs(Inputy));
+                }
+                else
+                {
+                    Inputy = 0;
+                }
+            }
+        }
     }
 
     //Mets en place la courbe de easing
@@ -75,7 +183,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Inputx != 0)
         {
-            Movementx = (1 - Mathf.Pow(Mathf.Abs(Inputx ) - 1, 5)) * Inputx / Mathf.Abs(Inputx);
+            Movementx = (1 - Mathf.Pow(1 - Mathf.Abs(Inputx), 5)) * Inputx / Mathf.Abs(Inputx);
         }
         else
         {
@@ -83,12 +191,11 @@ public class PlayerController : MonoBehaviour
         }
         if (Inputy != 0)
         {
-            Movementy = (1 - Mathf.Pow(Mathf.Abs(Inputy) - 1, 5)) * Inputy / Mathf.Abs(Inputy);
+            Movementy = (1 - Mathf.Pow(1 - Mathf.Abs(Inputy), 5)) * Inputy / Mathf.Abs(Inputy);
         }
         else
         {
             Movementy = 0;
         }
-        Debug.Log(Movementx);
     }
 }
