@@ -166,7 +166,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                if (Input.GetAxisRaw("Vertical") == 1)
+                if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1)
                 {
                     Inputy += (Time.deltaTime * Inetie) * (Inputy / Mathf.Abs(Inputy));
                 }
