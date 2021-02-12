@@ -2370,11 +2370,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  inetie: 0.2
-  jumpForce: 6
-  jumpAcceleration: 1
+  inetie: 0.1
+  jumpForce: 8
+  jumpAcceleration: 2
+  jumpSmoothAcceleration: 5
   jumpDuration: 0.2
-  jumpMinimumDuration: -1
   jumpDelay: 0.1
   jumpCD: 0.1
   turnSmoothTime: 0.1

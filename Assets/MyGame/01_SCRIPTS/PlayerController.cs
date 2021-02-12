@@ -133,18 +133,13 @@ public class PlayerController : MonoBehaviour
 
     void GetInput()
     {
-        if (PlayerPhysics.isGrounded)
-        {
-            inputx = Input.GetAxis("Horizontal");
-            inputy = Input.GetAxis("Vertical");
-        }
-        else
+        if (currentState == PlayerState.Falling || currentState == PlayerState.Jumping)
         {
             if (inputx != 0)
             {
                 if (Input.GetAxisRaw("Horizontal") == 0)
                 {
-                    inputx -= (Time.deltaTime * inetie) * (inputx/Mathf.Abs(inputx));
+                    inputx -= (Time.deltaTime * inetie) * (inputx / Mathf.Abs(inputx));
                 }
                 else
                 {
@@ -185,6 +180,11 @@ public class PlayerController : MonoBehaviour
                     inputy = 0;
                 }
             }
+        }
+        else
+        {
+            inputx = Input.GetAxis("Horizontal");
+            inputy = Input.GetAxis("Vertical");
         }
     }
 
