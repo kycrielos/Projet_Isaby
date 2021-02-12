@@ -5,8 +5,10 @@ using UnityEngine;
 public class PlayerPhysics : MonoBehaviour
 {
     private static CharacterController controller;
-    public static float TimeSinceGrounded;
-    public static bool IsGrounded;
+    public static float timeSinceGrounded;
+    public static bool isGrounded;
+    public float gravityScale;
+    public static float gravityForce;
 
     // Start is called before the first frame update
     void Start()
@@ -17,20 +19,42 @@ public class PlayerPhysics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TimeSinceGrounded += Time.deltaTime;
+        timeSinceGrounded += Time.deltaTime;
         IsGroundedCheck();
+        Gravity();
     }
 
     public static void IsGroundedCheck()
     {
         if (controller.isGrounded)
         {
-            IsGrounded = true;
-            TimeSinceGrounded = 0;
+            isGrounded = true;
+            timeSinceGrounded = 0;
         }
         else
         {
-            IsGrounded = false;
+            isGrounded = false;
+        }
+    }
+
+    void Gravity()
+    {
+        if (PlayerController.currentState != PlayerController.PlayerState.Jumping && !isGrounded)
+        {
+            if (gravityForce > -gravityScale)
+            {
+                gravityForce -= Time.deltaTime * gravityScale;
+            }
+            else
+            {
+                gravityForce = -gravityScale;
+            }
+            if (timeSinceGrounded >= 0.1f)
+            PlayerController.currentState = PlayerController.PlayerState.Falling;
+        }
+        else 
+        {
+            gravityForce = 0;
         }
     }
 

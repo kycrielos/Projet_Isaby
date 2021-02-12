@@ -5,28 +5,26 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     //Input
-    private float Inputx;
-    private float Inputy;
+    private float inputx;
+    private float inputy;
 
     //Movement
-    private float Movementx;
-    private float Movementy;
-    public float Speed = 1;
-    public float Inetie;
-    Vector3 MoveDirection;
+    private float movementx;
+    private float movementy;
+    public float speed = 1;
+    public float inetie;
+    Vector3 moveDirection;
 
     //Jump
-    Vector3 JumpDirection;
-    private float JumpInput = 1;
-    private float JumpMovement;
-    public float JumpForce = 1;
-    public float JumpAcceleration = 1;
-    public float JumpDuration = 1;
-    public float JumpMinimumDuration = 1;
-    public float JumpDelay = 0.5f;
-    public float JumpCD = 0.1f;
-    public float GravityScale = 1;
-    private bool CanJump;
+    Vector3 jumpDirection;
+    private float jumpInput;
+    private float jumpMovement;
+    public float jumpForce = 1;
+    public float jumpAcceleration = 1;
+    public float jumpSmoothAcceleration = 1;
+    public float jumpDuration = 1;
+    public float jumpDelay = 0.5f;
+    public float jumpCD = 0.1f;
 
     //Rotate
     float turnSmoothVelocity;
@@ -34,8 +32,18 @@ public class PlayerController : MonoBehaviour
 
     //Component
     private CharacterController controller;
-    public GameObject Cam;
+    public GameObject cam;
 
+    public enum PlayerState
+    {
+        Idle,
+        Walking,
+        Running,
+        Jumping,
+        Falling,
+    }
+
+    public static PlayerState currentState = PlayerState.Idle;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +56,7 @@ public class PlayerController : MonoBehaviour
     {
         Jump();
         Move();
+        Debug.Log(currentState);
     }
 
     //Deplace Le joueur
@@ -56,123 +65,124 @@ public class PlayerController : MonoBehaviour
         GetInput();
         MovementCalcul();
 
-        MoveDirection = new Vector3(Movementx, 0, Movementy);
-        Vector3.Normalize(MoveDirection);
+        moveDirection = new Vector3(movementx, 0, movementy);
+        Vector3.Normalize(moveDirection);
 
         //Deplace Le Joueur
-        if (MoveDirection.magnitude >= 0.1f)
+        if (moveDirection.magnitude >= 0.1f)
         {
-            float targetAngle = Mathf.Atan2(MoveDirection.x, MoveDirection.z) * Mathf.Rad2Deg + Cam.transform.eulerAngles.y;
+            if (PlayerPhysics.isGrounded && currentState != PlayerState.Jumping)
+            {
+                currentState = PlayerState.Walking;
+            }
+            float targetAngle = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            controller.Move((moveDir * Speed  + JumpDirection) * Time.deltaTime);
+            controller.Move((moveDir * speed  + jumpDirection) * Time.deltaTime);
+        }
+        else if (PlayerPhysics.isGrounded && currentState != PlayerState.Jumping)
+        {
+            currentState = PlayerState.Idle;
         }
         else
         {
-            controller.Move(JumpDirection * Time.deltaTime);
+            controller.Move(jumpDirection * Time.deltaTime);
         }
     }
 
     void Jump()
     {
-        if (Input.GetButtonDown("Jump") && !CanJump && PlayerPhysics.TimeSinceGrounded <= JumpDelay)
+        if (Input.GetButtonDown("Jump") && currentState != PlayerState.Jumping && PlayerPhysics.timeSinceGrounded <= jumpDelay)
         {
-            CanJump = true;
-            PlayerPhysics.TimeSinceGrounded = 0;
+            currentState = PlayerState.Jumping;
+            jumpInput = 1;
+            PlayerPhysics.timeSinceGrounded = 0;
         }
 
-        if (CanJump)
+        if (currentState == PlayerState.Jumping)
         {
-            if (Input.GetButton("Jump") && PlayerPhysics.TimeSinceGrounded <= JumpDuration || PlayerPhysics.TimeSinceGrounded <= JumpMinimumDuration)
+            if (Input.GetButton("Jump") && PlayerPhysics.timeSinceGrounded <= jumpDuration)
             {
-                if (JumpInput > 0)
+                if (jumpInput > 0)
                 {
-                    JumpInput -= Time.deltaTime * JumpAcceleration;
+                    jumpInput -= Time.deltaTime * jumpAcceleration;
                 }
                 
-                if (JumpInput <= 0)
+                if (jumpInput <= 0)
                 {
-                    JumpInput = 0;
+                    jumpInput = 0;
                 }
 
-                JumpMovement = (1 - Mathf.Pow(Mathf.Abs(1 - JumpInput), 5)) * JumpForce;
+            }
+            else if (jumpInput > 0)
+            {
+                jumpInput -= Time.deltaTime * jumpAcceleration * jumpSmoothAcceleration;
             }
             else
             {
-                CanJump = false;
-                JumpInput = 1;
+                currentState = PlayerState.Falling;
+                jumpInput = 0;
             }
         }
-        else
-        {
-            if (JumpMovement > -GravityScale)
-            {
-                JumpMovement -= Time.deltaTime * GravityScale;
-            }
-            else
-            {
-                JumpMovement = -GravityScale;
-            }
-        }
-
-        JumpDirection = new Vector3(0, JumpMovement , 0);
+        jumpMovement = jumpInput * jumpInput * jumpForce + PlayerPhysics.gravityForce;
+        jumpDirection = new Vector3(0, jumpMovement, 0);
     }
 
 
     void GetInput()
     {
-        if (PlayerPhysics.IsGrounded)
+        if (PlayerPhysics.isGrounded)
         {
-            Inputx = Input.GetAxis("Horizontal");
-            Inputy = Input.GetAxis("Vertical");
+            inputx = Input.GetAxis("Horizontal");
+            inputy = Input.GetAxis("Vertical");
         }
         else
         {
-            if (Inputx != 0)
+            if (inputx != 0)
             {
                 if (Input.GetAxisRaw("Horizontal") == 0)
                 {
-                    Inputx -= (Time.deltaTime * Inetie) * (Inputx/Mathf.Abs(Inputx));
+                    inputx -= (Time.deltaTime * inetie) * (inputx/Mathf.Abs(inputx));
                 }
                 else
                 {
-                    Inputx = Input.GetAxis("Horizontal");
+                    inputx = Input.GetAxis("Horizontal");
                 }
             }
             else
             {
                 if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1)
                 {
-                    Inputx += (Time.deltaTime * Inetie) * (Inputx / Mathf.Abs(Inputx));
+                    inputx += (Time.deltaTime * inetie) * (inputx / Mathf.Abs(inputx));
                 }
                 else
                 {
-                    Inputx = 0;
+                    inputx = 0;
                 }
             }
 
-            if (Inputy != 0)
+            if (inputy != 0)
             {
                 if (Input.GetAxisRaw("Vertical") == 0)
                 {
-                    Inputy -= (Time.deltaTime * Inetie) * (Inputy / Mathf.Abs(Inputy));
+                    inputy -= (Time.deltaTime * inetie) * (inputy / Mathf.Abs(inputy));
                 }
                 else
                 {
-                    Inputy = Input.GetAxis("Vertical");
+                    inputy = Input.GetAxis("Vertical");
                 }
             }
             else
             {
                 if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1)
                 {
-                    Inputy += (Time.deltaTime * Inetie) * (Inputy / Mathf.Abs(Inputy));
+                    inputy += (Time.deltaTime * inetie) * (inputy / Mathf.Abs(inputy));
                 }
                 else
                 {
-                    Inputy = 0;
+                    inputy = 0;
                 }
             }
         }
@@ -181,21 +191,21 @@ public class PlayerController : MonoBehaviour
     //Mets en place la courbe de easing
     void MovementCalcul()
     {
-        if (Inputx != 0)
+        if (inputx != 0)
         {
-            Movementx = (1 - Mathf.Pow(1 - Mathf.Abs(Inputx), 5)) * Inputx / Mathf.Abs(Inputx);
+            movementx = (1 - Mathf.Pow(1 - Mathf.Abs(inputx), 5)) * inputx / Mathf.Abs(inputx);
         }
         else
         {
-            Movementx = 0;
+            movementx = 0;
         }
-        if (Inputy != 0)
+        if (inputy != 0)
         {
-            Movementy = (1 - Mathf.Pow(1 - Mathf.Abs(Inputy), 5)) * Inputy / Mathf.Abs(Inputy);
+            movementy = (1 - Mathf.Pow(1 - Mathf.Abs(inputy), 5)) * inputy / Mathf.Abs(inputy);
         }
         else
         {
-            Movementy = 0;
+            movementy = 0;
         }
     }
 }
