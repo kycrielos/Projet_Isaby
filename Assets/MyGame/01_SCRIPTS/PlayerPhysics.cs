@@ -10,6 +10,10 @@ public class PlayerPhysics : MonoBehaviour
     public float gravityScale;
     public static float gravityForce;
 
+    public TriggerManager triggerManager;
+    private string triggerName;
+    private bool isInTrigger;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +26,7 @@ public class PlayerPhysics : MonoBehaviour
         timeSinceGrounded += Time.deltaTime;
         IsGroundedCheck();
         Gravity();
+        IsIntriggerCheck();
     }
 
     public static void IsGroundedCheck()
@@ -56,6 +61,24 @@ public class PlayerPhysics : MonoBehaviour
         {
             gravityForce = 0;
         }
+    }
+
+    void IsIntriggerCheck()
+    {
+        if (Input.GetButtonDown("Interaction") && isInTrigger)
+        {
+            triggerManager.SetActive(triggerName);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        isInTrigger = true;
+        triggerName = other.name;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        isInTrigger = false;
     }
 
 }

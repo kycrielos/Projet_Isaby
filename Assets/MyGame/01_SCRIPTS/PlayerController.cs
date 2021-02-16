@@ -56,7 +56,6 @@ public class PlayerController : MonoBehaviour
     {
         Jump();
         Move();
-        Debug.Log(currentState);
     }
 
     //Deplace Le joueur

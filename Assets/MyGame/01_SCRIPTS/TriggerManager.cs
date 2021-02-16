@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class TriggerManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public delegate void ActivateEvent(string triggerName);
+
+    public static event ActivateEvent Activation;
+
+    public void SetActive(string triggerName)
     {
-        
+        ActivationEventHandler(triggerName);
     }
 
-    // Update is called once per frame
-    void Update()
+    protected virtual void ActivationEventHandler(string triggerName)
     {
-        
+        Activation?.Invoke(triggerName);
     }
 }
