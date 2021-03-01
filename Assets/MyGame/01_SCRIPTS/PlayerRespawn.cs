@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class PlayerRespawn : MonoBehaviour
 {
+    private Vector3 spawnPoint;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        spawnPoint = transform.position;
+        TriggerManager.Activation += UpdateSpawnPoint;
+        PlayerDamage.PlayerDie += RespawnThePlayer;
     }
 
-    // Update is called once per frame
-    void Update()
+    void UpdateSpawnPoint(GameObject triggerObj)
     {
-        
+        if (triggerObj.name == "SpawnPointTrigger")
+        {
+            spawnPoint = triggerObj.GetComponentInChildren<Transform>().transform.position;
+        }
+    }
+    void RespawnThePlayer()
+    {
+        transform.position = spawnPoint;
+    }
+
+    ~PlayerRespawn()
+    {
+        TriggerManager.Activation -= UpdateSpawnPoint;
+        PlayerDamage.PlayerDie -= RespawnThePlayer;
     }
 }

@@ -5,14 +5,16 @@ using UnityEngine;
 public class LockedDoor : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        TriggerManager.Activation += ActivateDoor;
     }
 
-    // Update is called once per frame
-    void Update()
+    void ActivateDoor(GameObject triggerObj)
     {
-        
+        if (triggerObj.name == gameObject.name + "Trigger")
+        {
+            Debug.Log("Let's go");
+        }
     }
 }

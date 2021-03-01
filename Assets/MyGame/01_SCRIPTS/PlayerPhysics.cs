@@ -9,15 +9,18 @@ public class PlayerPhysics : MonoBehaviour
     public static bool isGrounded;
     public float gravityScale;
     public static float gravityForce;
+    public float FallingDamage;
 
+    private PlayerDamage playerDamage;
     public TriggerManager triggerManager;
-    private string triggerName;
+    private GameObject triggerObj;
     private bool isInTrigger;
 
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        playerDamage = GetComponent<PlayerDamage>();
     }
 
     // Update is called once per frame
@@ -29,11 +32,15 @@ public class PlayerPhysics : MonoBehaviour
         IsIntriggerCheck();
     }
 
-    public static void IsGroundedCheck()
+    public void IsGroundedCheck()
     {
         if (controller.isGrounded)
         {
             isGrounded = true;
+            if (timeSinceGrounded > 0.1f)
+            {
+                playerDamage.Damaged(timeSinceGrounded * FallingDamage);
+            }
             timeSinceGrounded = 0;
         }
         else
@@ -67,17 +74,33 @@ public class PlayerPhysics : MonoBehaviour
     {
         if (Input.GetButtonDown("Interaction") && isInTrigger)
         {
-            triggerManager.SetActive(triggerName);
+            triggerManager.SetActive(triggerObj);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        isInTrigger = true;
-        triggerName = other.name;
+        if (other.CompareTag("TriggerAuto"))
+        {
+            triggerObj = other.gameObject;
+            triggerManager.SetActive(triggerObj);
+        }
+        else if (other.CompareTag("PlatformTrigger"))
+        {
+            transform.parent = other.transform;
+        }
+        else
+        {
+            isInTrigger = true;
+            triggerObj = other.gameObject;
+        }
     }
     private void OnTriggerExit(Collider other)
     {
+        if (other.CompareTag("PlatformTrigger"))
+        {
+            transform.parent = null;
+        }
         isInTrigger = false;
     }
 

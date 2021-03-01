@@ -559,10 +559,11 @@ GameObject:
   - component: {fileID: 1348426143}
   - component: {fileID: 1348426142}
   - component: {fileID: 1348426141}
+  - component: {fileID: 1348426144}
   - component: {fileID: 1348426140}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: TriggerAuto
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -643,6 +644,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1348426144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348426139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a031a0f1a086b634d99c86c9f75adb00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1684903926
 GameObject:
   m_ObjectHideFlags: 3
@@ -839,6 +852,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
+  sprintSpeed: 6
+  walkSpeed: 4
   inetie: 0.1
   jumpForce: 8
   jumpAcceleration: 2

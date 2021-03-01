@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class PlayerDamage : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public int maxplayerHP;
+    public int playerHP;
+
+    public delegate void PlayerDieEvent();
+
+    public static event PlayerDieEvent PlayerDie;
+    private void Start()
     {
-        
+        playerHP = maxplayerHP;
+    }
+    public void Damaged(float damage)
+    {
+        playerHP -= (int)Mathf.Floor(damage);
+        if (playerHP <= 0)
+        {
+            PlayerDieEventHandler();
+            playerHP = maxplayerHP;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    protected virtual void PlayerDieEventHandler()
     {
-        
+        PlayerDie?.Invoke();
     }
 }

@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class TriggerManager : MonoBehaviour
 {
-    public delegate void ActivateEvent(string triggerName);
+    public delegate void ActivateEvent(GameObject triggerObj);
 
     public static event ActivateEvent Activation;
 
-    public void SetActive(string triggerName)
+    public void SetActive(GameObject triggerObj)
     {
-        ActivationEventHandler(triggerName);
+        ActivationEventHandler(triggerObj);
     }
 
-    protected virtual void ActivationEventHandler(string triggerName)
+    protected virtual void ActivationEventHandler(GameObject triggerObj)
     {
-        Activation?.Invoke(triggerName);
+        Activation?.Invoke(triggerObj);
     }
 }
