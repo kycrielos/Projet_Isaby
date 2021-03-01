@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     private float movementx;
     private float movementy;
     public float speed = 1;
+    public float sprintSpeed;
+    public float walkSpeed;
     public float inetie;
     Vector3 moveDirection;
 
@@ -184,6 +186,15 @@ public class PlayerController : MonoBehaviour
         {
             inputx = Input.GetAxis("Horizontal");
             inputy = Input.GetAxis("Vertical");
+        }
+
+        if (Input.GetButton("Sprint"))
+        {
+            speed = sprintSpeed;
+        }
+        else
+        {
+            speed = walkSpeed;
         }
     }
 
