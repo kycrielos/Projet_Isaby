@@ -10,6 +10,9 @@ public class PlatformBehaviour : MonoBehaviour
     public float speed = 1;
     public float distanceTo;
 
+    public bool activated;
+    public bool autoMovement;
+
     // Update is called once per frame
     void Update()
     {
@@ -25,9 +28,14 @@ public class PlatformBehaviour : MonoBehaviour
             float step = speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, position2.position, step);
         }
-        if (distanceTo <= 0.05f)
+
+        if (distanceTo <= 0.05f && activated)
         {
             goPosition1 = !goPosition1;
+        }
+        else if (activated && !autoMovement)
+        {
+            activated = false;
         }
     }
 }
