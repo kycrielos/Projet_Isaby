@@ -10,7 +10,15 @@ public class TriggerManager : MonoBehaviour
 
     public void SetActive(GameObject triggerObj)
     {
-        ActivationEventHandler(triggerObj);
+        if (triggerObj.name.Contains("DeathZone"))
+        {
+            GameManager.Instance.playerHP = 0;
+            PlayerDamage.Damaged(0);
+        }
+        else
+        {
+            ActivationEventHandler(triggerObj);
+        }
     }
 
     protected virtual void ActivationEventHandler(GameObject triggerObj)

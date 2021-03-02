@@ -4,27 +4,21 @@ using UnityEngine;
 
 public class PlayerDamage : MonoBehaviour
 {
-    public int maxplayerHP;
-    public int playerHP;
-
     public delegate void PlayerDieEvent();
+    public static event PlayerDieEvent PlayerDie; 
 
-    public static event PlayerDieEvent PlayerDie;
-    private void Start()
+    public static void Damaged(float damage)
     {
-        playerHP = maxplayerHP;
-    }
-    public void Damaged(float damage)
-    {
-        playerHP -= (int)Mathf.Floor(damage);
-        if (playerHP <= 0)
+        GameManager.Instance.playerHP -= (int)Mathf.Floor(damage);
+        if (GameManager.Instance.playerHP <= 0)
         {
+            GameManager.Instance.currentState = GameManager.PlayerState.Die;
             PlayerDieEventHandler();
-            playerHP = maxplayerHP;
+            GameManager.Instance.playerHP = GameManager.Instance.maxPlayerHp;
         }
     }
 
-    protected virtual void PlayerDieEventHandler()
+    protected static void PlayerDieEventHandler()
     {
         PlayerDie?.Invoke();
     }

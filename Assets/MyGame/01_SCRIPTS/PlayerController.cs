@@ -35,29 +35,23 @@ public class PlayerController : MonoBehaviour
     //Component
     private CharacterController controller;
     public GameObject cam;
-
-    public enum PlayerState
-    {
-        Idle,
-        Walking,
-        Running,
-        Jumping,
-        Falling,
-    }
-
-    public static PlayerState currentState = PlayerState.Idle;
+    private PlayerPhysics physics;
 
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        physics = GetComponent<PlayerPhysics>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Jump();
-        Move();
+        if (GameManager.Instance.currentState != GameManager.PlayerState.Die)
+        {
+            Jump();
+            Move();
+        }
     }
 
     //Deplace Le joueur
@@ -72,9 +66,18 @@ public class PlayerController : MonoBehaviour
         //Deplace Le Joueur
         if (moveDirection.magnitude >= 0.1f)
         {
-            if (PlayerPhysics.isGrounded && currentState != PlayerState.Jumping)
+            if (physics.isGrounded && GameManager.Instance.currentState != GameManager.PlayerState.Jumping)
             {
-                currentState = PlayerState.Walking;
+                if (Input.GetButton("Sprint"))
+                {
+                    speed = sprintSpeed;
+                    GameManager.Instance.currentState = GameManager.PlayerState.Running;
+                }
+                else
+                {
+                    speed = walkSpeed;
+                    GameManager.Instance.currentState = GameManager.PlayerState.Walking;
+                }
             }
             float targetAngle = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
@@ -83,9 +86,9 @@ public class PlayerController : MonoBehaviour
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             controller.Move((moveDir * speed  + jumpDirection) * Time.deltaTime);
         }
-        else if (PlayerPhysics.isGrounded && currentState != PlayerState.Jumping)
+        else if (physics.isGrounded && GameManager.Instance.currentState != GameManager.PlayerState.Jumping)
         {
-            currentState = PlayerState.Idle;
+            GameManager.Instance.currentState = GameManager.PlayerState.Idle;
         }
         else
         {
@@ -95,16 +98,16 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetButtonDown("Jump") && currentState != PlayerState.Jumping && PlayerPhysics.timeSinceGrounded <= jumpDelay)
+        if (Input.GetButtonDown("Jump") && GameManager.Instance.currentState != GameManager.PlayerState.Jumping && physics.timeSinceGrounded <= jumpDelay)
         {
-            currentState = PlayerState.Jumping;
+            GameManager.Instance.currentState = GameManager.PlayerState.Jumping;
             jumpInput = 1;
-            PlayerPhysics.timeSinceGrounded = 0;
+            physics.timeSinceGrounded = 0;
         }
 
-        if (currentState == PlayerState.Jumping)
+        if (GameManager.Instance.currentState == GameManager.PlayerState.Jumping)
         {
-            if (Input.GetButton("Jump") && PlayerPhysics.timeSinceGrounded <= jumpDuration)
+            if (Input.GetButton("Jump") && physics.timeSinceGrounded <= jumpDuration)
             {
                 if (jumpInput > 0)
                 {
@@ -123,18 +126,18 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                currentState = PlayerState.Falling;
+                GameManager.Instance.currentState = GameManager.PlayerState.Falling;
                 jumpInput = 0;
             }
         }
-        jumpMovement = jumpInput * jumpInput * jumpForce + PlayerPhysics.gravityForce;
+        jumpMovement = jumpInput * jumpInput * jumpForce + physics.gravityForce;
         jumpDirection = new Vector3(0, jumpMovement, 0);
     }
 
 
     void GetInput()
     {
-        if (currentState == PlayerState.Falling || currentState == PlayerState.Jumping)
+        if (GameManager.Instance.currentState == GameManager.PlayerState.Falling || GameManager.Instance.currentState == GameManager.PlayerState.Jumping)
         {
             if (inputx != 0)
             {
@@ -186,15 +189,6 @@ public class PlayerController : MonoBehaviour
         {
             inputx = Input.GetAxis("Horizontal");
             inputy = Input.GetAxis("Vertical");
-        }
-
-        if (Input.GetButton("Sprint"))
-        {
-            speed = sprintSpeed;
-        }
-        else
-        {
-            speed = walkSpeed;
         }
     }
 

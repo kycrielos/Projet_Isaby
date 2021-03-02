@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class PlayerPhysics : MonoBehaviour
 {
-    private static CharacterController controller;
-    public static float timeSinceGrounded;
-    public static bool isGrounded;
+    private CharacterController controller;
+    public float timeSinceGrounded;
+    public bool isGrounded;
     public float gravityScale;
-    public static float gravityForce;
+    public float gravityForce;
     public float FallingDamage;
 
-    private PlayerDamage playerDamage;
     public TriggerManager triggerManager;
     private GameObject triggerObj;
     private bool isInTrigger;
@@ -20,16 +19,18 @@ public class PlayerPhysics : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        playerDamage = GetComponent<PlayerDamage>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        timeSinceGrounded += Time.deltaTime;
-        IsGroundedCheck();
-        Gravity();
-        IsIntriggerCheck();
+        if (GameManager.Instance.currentState != GameManager.PlayerState.Die)
+        {
+            timeSinceGrounded += Time.deltaTime;
+            IsGroundedCheck();
+            Gravity();
+            IsIntriggerCheck();
+        }
     }
 
     public void IsGroundedCheck()
@@ -39,7 +40,7 @@ public class PlayerPhysics : MonoBehaviour
             isGrounded = true;
             if (timeSinceGrounded > 0.1f)
             {
-                playerDamage.Damaged(timeSinceGrounded * FallingDamage);
+                PlayerDamage.Damaged(timeSinceGrounded * FallingDamage);
             }
             timeSinceGrounded = 0;
         }
@@ -51,7 +52,7 @@ public class PlayerPhysics : MonoBehaviour
 
     void Gravity()
     {
-        if (PlayerController.currentState != PlayerController.PlayerState.Jumping && !isGrounded)
+        if (GameManager.Instance.currentState != GameManager.PlayerState.Jumping && !isGrounded)
         {
             if (gravityForce > -gravityScale)
             {
@@ -62,7 +63,7 @@ public class PlayerPhysics : MonoBehaviour
                 gravityForce = -gravityScale;
             }
             if (timeSinceGrounded >= 0.1f)
-            PlayerController.currentState = PlayerController.PlayerState.Falling;
+                GameManager.Instance.currentState = GameManager.PlayerState.Falling;
         }
         else 
         {

@@ -1,18 +1,37 @@
 ﻿using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private static readonly Lazy<T> LazyInstance = new Lazy<T>(CreateSingleton);
+
+    public static T Instance => LazyInstance.Value;
+
+    private static T CreateSingleton()
     {
-        
+        var ownerObject = new GameObject($"{typeof(T).Name} (singleton)");
+        var instance = ownerObject.AddComponent<T>();
+        DontDestroyOnLoad(ownerObject);
+        return instance;
+    }
+}
+
+//usage:
+public class GameManager : Singleton<GameManager>
+{
+    public int maxPlayerHp = 3;
+    public int playerHP = 3;
+    public enum PlayerState
+    {
+        Idle,
+        Walking,
+        Running,
+        Jumping,
+        Falling,
+        Die,
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public PlayerState currentState = PlayerState.Idle;
 }
