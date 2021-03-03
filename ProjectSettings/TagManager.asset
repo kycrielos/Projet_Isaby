@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TriggerAuto
   - PlatformTrigger
+  - Crystal
   layers:
   - Default
   - TransparentFX
