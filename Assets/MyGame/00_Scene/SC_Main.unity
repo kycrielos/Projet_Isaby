@@ -14745,7 +14745,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95e58d562d353e4e921cfaa11580942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeSinceGrounded: 0
+  isGrounded: 0
   gravityScale: 40
+  gravityForce: 0
   FallingDamage: 0
   triggerManager: {fileID: 0}
 --- !u!143 &1326644015
@@ -14879,8 +14882,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caa48b5c7cff2f746b0e45d20f998ed6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxplayerHP: 0
-  playerHP: 0
 --- !u!1001 &1347224246
 PrefabInstance:
   m_ObjectHideFlags: 0
