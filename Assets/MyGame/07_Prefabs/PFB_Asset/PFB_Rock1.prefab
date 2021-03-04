@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4408376688424591679}
   m_Layer: 0
-  m_Name: SM_Rock1
+  m_Name: PFB_Rock1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

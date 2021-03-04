@@ -16,7 +16,7 @@ public class LineRendererController : MonoBehaviour
     {
         diagline = GetComponent<LineRenderer>();
         crystalTransform = GetComponentInParent<Transform>();
-        spawnPosition = crystalTransform.position + new Vector3(0, 0.2f, 0);
+        spawnPosition = crystalTransform.position;
         diagline.SetPosition(0, spawnPosition);
     }
 
@@ -40,6 +40,11 @@ public class LineRendererController : MonoBehaviour
                     nextCrystalRayon.IsActive = false;
                     nextCrystalRayon.diagline.enabled = false;
                     nextCrystalRayon = null;
+                }
+
+                if (hit.collider.tag == "DoorKey")
+                {
+                    hit.collider.gameObject.SetActive(false);
                 }
             }
         }
