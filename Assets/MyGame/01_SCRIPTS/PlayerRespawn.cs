@@ -7,9 +7,12 @@ public class PlayerRespawn : MonoBehaviour
     private Vector3 spawnPoint;
     public float TimeBeforeRespawn;
     public float DelayAfterRespawn;
+    private PlayerUI playerUI;
+
     // Start is called before the first frame update
     private void Start()
     {
+        playerUI = GameObject.Find("PlayerUI").GetComponent<PlayerUI>();
         spawnPoint = transform.position;
         TriggerManager.Activation += UpdateSpawnPoint;
         PlayerDamage.PlayerDie += RespawnThePlayer;
@@ -32,6 +35,8 @@ public class PlayerRespawn : MonoBehaviour
     {
         yield return new WaitForSeconds(TimeBeforeRespawn);
         transform.position = spawnPoint;
+        GameManager.Instance.playerHP = GameManager.Instance.maxPlayerHp;
+        playerUI.UpdateInterface();
         yield return new WaitForSeconds(DelayAfterRespawn);
         GameManager.Instance.currentState = GameManager.PlayerState.Idle;
     }

@@ -4,15 +4,45 @@ using UnityEngine;
 
 public class PlayerUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject[] heartSprite;
+    public GameObject[] heartEmptySprite;
+    public void UpdateInterface()
     {
-        
-    }
+        switch (GameManager.Instance.playerHP)
+        {
+            case 3:
+                foreach (GameObject heartEmpty in heartEmptySprite)
+                {
+                    heartEmpty.SetActive(false);
+                }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+                foreach (GameObject heart in heartSprite)
+                {
+                    heart.SetActive(true);
+                }
+                break;
+
+            case 2:
+                heartEmptySprite[2].SetActive(true);
+                heartSprite[2].SetActive(false);
+                break;
+
+            case 1:
+                heartEmptySprite[1].SetActive(true);
+                heartSprite[1].SetActive(false);
+                break;
+
+            case 0:
+                foreach (GameObject heart in heartSprite)
+                {
+                    heart.SetActive(false);
+                }
+
+                foreach (GameObject heartEmpty in heartEmptySprite)
+                {
+                    heartEmpty.SetActive(true);
+                }
+                break;
+        }
     }
 }

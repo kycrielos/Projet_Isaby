@@ -15,10 +15,13 @@ public class PlayerPhysics : MonoBehaviour
     private GameObject triggerObj;
     private bool isInTrigger;
 
+    private PlayerDamage playerDamage;
+
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        playerDamage = GetComponent<PlayerDamage>();
     }
 
     // Update is called once per frame
@@ -40,7 +43,7 @@ public class PlayerPhysics : MonoBehaviour
             isGrounded = true;
             if (timeSinceGrounded > 0.1f)
             {
-                PlayerDamage.Damaged(timeSinceGrounded * FallingDamage);
+                playerDamage.Damaged(timeSinceGrounded * FallingDamage);
             }
             timeSinceGrounded = 0;
         }

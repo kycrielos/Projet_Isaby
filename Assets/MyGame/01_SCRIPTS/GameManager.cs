@@ -23,6 +23,10 @@ public class GameManager : Singleton<GameManager>
 {
     public int maxPlayerHp = 3;
     public int playerHP = 3;
+
+    public int coinNumbers;
+    public int teddyPartsNumbers;
+
     public enum PlayerState
     {
         Idle,
