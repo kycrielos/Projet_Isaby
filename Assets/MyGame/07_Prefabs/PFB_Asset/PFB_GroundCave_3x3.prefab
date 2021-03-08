@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 1908509251125828226}
   - component: {fileID: 1908509251125828227}
   m_Layer: 0
-  m_Name: Ground3x3 (6)
+  m_Name: PFB_GroundCave_3x3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &1908509251125828224
 Transform:

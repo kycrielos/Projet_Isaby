@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 6609388664565994578}
   - component: {fileID: 6609388664565994579}
   m_Layer: 0
-  m_Name: PFB_GroundBasement
+  m_Name: PFB_GroundBasement_4x4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &6609388664565994576
 Transform:

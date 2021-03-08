@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 7176680270316027671}
   - component: {fileID: 7176680270316027670}
   m_Layer: 0
-  m_Name: Ground5x5 (15)
+  m_Name: PFB_GroundCave_5x5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &7176680270316027669
 Transform:
