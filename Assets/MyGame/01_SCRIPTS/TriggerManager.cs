@@ -7,21 +7,15 @@ public class TriggerManager : MonoBehaviour
     public delegate void ActivateEvent(GameObject triggerObj);
 
     public static event ActivateEvent Activation;
+    public PlayerDamage playerDamage;
 
-    private PlayerUI playerUI;
-    private PlayerDamage playerDamage;
-    private void Start()
-    {
-        playerUI = GameObject.Find("PlayerUI").GetComponent<PlayerUI>();
-        playerDamage = GameObject.Find("Player").GetComponent<PlayerDamage>();
-    }
     public void SetActive(GameObject triggerObj)
     {
         if (triggerObj.name.Contains("DeathZone"))
         {
             GameManager.Instance.playerHP = 0;
             playerDamage.Damaged(0);
-            playerUI.UpdateInterface();
+            GameManager.Instance.RefreshUIActivation();
         }
         else if(triggerObj.name.Contains("TeddyPart"))
         {

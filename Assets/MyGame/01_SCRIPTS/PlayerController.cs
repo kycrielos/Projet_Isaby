@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         physics = GetComponent<PlayerPhysics>();
+        GameManager.Instance.player = gameObject;
     }
 
     // Update is called once per frame

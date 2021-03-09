@@ -6,6 +6,10 @@ public class PlayerUI : MonoBehaviour
 {
     public GameObject[] heartSprite;
     public GameObject[] heartEmptySprite;
+    private void Start()
+    {
+        GameManager.RefreshUI += UpdateInterface;
+    }
     public void UpdateInterface()
     {
         switch (GameManager.Instance.playerHP)
@@ -44,5 +48,10 @@ public class PlayerUI : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    ~PlayerUI()
+    {
+        GameManager.RefreshUI -= UpdateInterface;
     }
 }

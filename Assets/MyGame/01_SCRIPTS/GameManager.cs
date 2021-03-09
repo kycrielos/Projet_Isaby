@@ -37,5 +37,19 @@ public class GameManager : Singleton<GameManager>
         Die,
     }
 
+    public delegate void RefreshUIEvent();
+    public static event RefreshUIEvent RefreshUI;
+
+    public GameObject player;
+
+    public void RefreshUIActivation()
+    {
+        RefreshUIEventHandler();
+    }
+    protected virtual void RefreshUIEventHandler()
+    {
+        RefreshUI?.Invoke();
+    }
+
     public PlayerState currentState = PlayerState.Idle;
 }
