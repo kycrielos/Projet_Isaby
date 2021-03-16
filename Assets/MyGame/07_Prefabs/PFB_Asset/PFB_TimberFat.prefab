@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 6625257019331666229}
   - component: {fileID: 7808819255392235152}
   - component: {fileID: 5456824482263112282}
+  - component: {fileID: 5731032897994641306}
   m_Layer: 0
-  m_Name: SM_Timber (1)
+  m_Name: PFB_TimberFat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5731032897994641306
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5817089982012930959}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1721206, y: 2.0753837, z: 0.17166154}
+  m_Center: {x: -0.00016029924, y: 1.0392735, z: 0.0000014975667}

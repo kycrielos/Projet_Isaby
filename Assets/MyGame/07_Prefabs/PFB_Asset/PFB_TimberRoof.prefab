@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 911841111173364739}
   - component: {fileID: 4253747969080882086}
   - component: {fileID: 2084232542936500076}
+  - component: {fileID: 3751661335924058771}
   m_Layer: 0
-  m_Name: SM_Timber (17)
+  m_Name: PFB_TimberRoof
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3751661335924058771
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570921431138150073}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.17212088, y: 2.0753844, z: 0.17166178}
+  m_Center: {x: -0.00016019472, y: 1.0392739, z: 0.0000014138809}
