@@ -414,6 +414,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4920517010929540884}
+  - component: {fileID: 5342263050908384877}
   m_Layer: 0
   m_Name: PFB_Dresser
   m_TagString: Untagged
@@ -428,7 +429,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5693359763753567662}
-  m_LocalRotation: {x: -0, y: -0.54651517, z: -0, w: 0.83744925}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -16.636198, y: -2.5, z: 15.165347}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -444,7 +445,20 @@ Transform:
   - {fileID: 8009647101736663550}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -66.257, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5342263050908384877
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5693359763753567662}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.4581919, y: 1.2978246, z: 2.1638079}
+  m_Center: {x: -0.013745785, y: 0.64375985, z: 0.0045819283}
 --- !u!1 &5854400202811965828
 GameObject:
   m_ObjectHideFlags: 0
