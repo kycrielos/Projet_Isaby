@@ -523,7 +523,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7390519165651174812}
   m_Layer: 0
-  m_Name: CrystalTable
+  m_Name: PFB_MainCrystal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1114,7 +1114,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 41232bce8a6a8b3499116b9e4168d578, type: 2}
+  - {fileID: 2100000, guid: 6787774d99e4c634a824d9c54fa067ad, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

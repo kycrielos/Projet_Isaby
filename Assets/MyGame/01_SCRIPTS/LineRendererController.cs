@@ -44,7 +44,7 @@ public class LineRendererController : MonoBehaviour
 
                 if (hit.collider.tag == "DoorKey")
                 {
-                    hit.collider.gameObject.SetActive(false);
+                    hit.collider.gameObject.GetComponent<DoorKeyScript>().Activation();
                 }
             }
         }
