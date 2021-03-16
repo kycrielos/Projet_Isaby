@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 714780637601149393}
   - component: {fileID: 3319045697329415451}
   m_Layer: 0
-  m_Name: SM_CircleSpiderWeb
+  m_Name: PFB_SpiderWebAngle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fec3c47a415204d41a40f6b141e490b0, type: 2}
+  - {fileID: 2100000, guid: 176de46875f5c434782823fe69863333, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
