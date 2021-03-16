@@ -18,9 +18,9 @@ public class PlayerRespawn : MonoBehaviour
 
     void UpdateSpawnPoint(GameObject triggerObj)
     {
-        if (triggerObj.name == "SpawnPointTrigger")
+        if (triggerObj.name.Contains("SpawnPointTrigger"))
         {
-            spawnPoint = triggerObj.GetComponentInChildren<Transform>().transform.position;
+            spawnPoint = triggerObj.transform.position;
         }
     }
 

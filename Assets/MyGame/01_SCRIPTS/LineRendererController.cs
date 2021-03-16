@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class LineRendererController : MonoBehaviour
 {
-    private Transform crystalTransform;
     private LineRenderer diagline;
     private LineRendererController nextCrystalRayon;
 
@@ -15,9 +14,7 @@ public class LineRendererController : MonoBehaviour
     void Start()
     {
         diagline = GetComponent<LineRenderer>();
-        crystalTransform = GetComponentInParent<Transform>();
-        spawnPosition = crystalTransform.position;
-        diagline.SetPosition(0, spawnPosition);
+        diagline.SetPosition(0, GetComponentInParent<Transform>().position + new Vector3(0, 0.1f, 0));
     }
 
     // Update is called once per frame
@@ -27,8 +24,9 @@ public class LineRendererController : MonoBehaviour
         {
             diagline.enabled = true;
             RaycastHit hit;
-            if (Physics.Raycast(spawnPosition, crystalTransform.forward * -1 + new Vector3(0, 0.1f, 0), out hit, Mathf.Infinity))
+            if (Physics.Raycast(GetComponentInParent<Transform>().position + new Vector3(0, 0.1f, 0), GetComponentInParent<Transform>().forward * -1 + new Vector3(0, 0.1f, 0), out hit, Mathf.Infinity))
             {
+                diagline.SetPosition(0, GetComponentInParent<Transform>().position + new Vector3(0, 0.1f, 0));
                 diagline.SetPosition(1, hit.point);
                 if (hit.collider.tag == "Crystal")
                 {
