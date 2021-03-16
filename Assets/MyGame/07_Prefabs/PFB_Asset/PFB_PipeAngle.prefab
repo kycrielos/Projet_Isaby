@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5780587195405569666}
+  - component: {fileID: 2815529828628710272}
   m_Layer: 0
   m_Name: PFB_PipeAngle
   m_TagString: Untagged
@@ -31,6 +32,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2815529828628710272
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6589634602705507384}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.21412323, y: 0.39917678, z: 0.39677417}
+  m_Center: {x: -0.003604906, y: 0.088921875, z: 0.0012015767}
 --- !u!1 &9090505256709472120
 GameObject:
   m_ObjectHideFlags: 0

@@ -90,8 +90,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8304786417661936349}
+  - component: {fileID: 1840063672071369898}
   m_Layer: 0
-  m_Name: SM_PipesT
+  m_Name: PFB_PipeT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,3 +113,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1840063672071369898
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8650103800625551463}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2186904, y: 0.39281082, z: 0.5736282}
+  m_Center: {x: -0.0022323132, y: 0.089292526, z: 0.0011161566}

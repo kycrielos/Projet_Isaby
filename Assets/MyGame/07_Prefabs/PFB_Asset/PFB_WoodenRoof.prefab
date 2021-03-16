@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 7201552064298925203}
   - component: {fileID: 6079532835529274166}
   - component: {fileID: 8339014694930696188}
+  - component: {fileID: 8977765500934970890}
   m_Layer: 0
-  m_Name: SM_GroundBasement
+  m_Name: PFB_WoodenRoof
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8977765500934970890
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7546588075102889513}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 9.5568e-13, z: 1}
+  m_Center: {x: 0.000000059604645, y: 0, z: 0}
