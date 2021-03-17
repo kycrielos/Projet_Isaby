@@ -11,8 +11,13 @@ public class PlayerDamage : MonoBehaviour
     public void Damaged(float damage)
     {
         GameManager.Instance.playerHP -= (int)Mathf.Floor(damage);
+        if (GameManager.Instance.playerHP < 0)
+        {
+            GameManager.Instance.playerHP = 0;
+        }
         GameManager.Instance.RefreshUIActivation();
-        if (GameManager.Instance.playerHP <= 0)
+
+        if (GameManager.Instance.playerHP == 0)
         {
             GameManager.Instance.currentState = GameManager.PlayerState.Die;
             PlayerDieEventHandler();

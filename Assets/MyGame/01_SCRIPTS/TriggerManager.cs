@@ -8,6 +8,7 @@ public class TriggerManager : MonoBehaviour
 
     public static event ActivateEvent Activation;
     public PlayerDamage playerDamage;
+    public GameObject Snake;
 
     public void SetActive(GameObject triggerObj)
     {
@@ -21,11 +22,18 @@ public class TriggerManager : MonoBehaviour
         {
             Destroy(triggerObj);
             GameManager.Instance.teddyPartsNumbers += 1;
+            GameManager.Instance.playerHP = 3;
+            GameManager.Instance.RefreshUIActivation();
         }
         else if (triggerObj.name.Contains("Coin"))
         {
             Destroy(triggerObj);
             GameManager.Instance.coinNumbers += 1;
+        }
+        else if (triggerObj.name.Contains("SnakeSpawner"))
+        {
+            Destroy(triggerObj);
+            Snake.SetActive(true);
         }
         else
         {

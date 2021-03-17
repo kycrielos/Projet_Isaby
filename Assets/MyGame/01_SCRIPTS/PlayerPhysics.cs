@@ -16,6 +16,7 @@ public class PlayerPhysics : MonoBehaviour
     private bool isInTrigger;
 
     private PlayerDamage playerDamage;
+    private float fallingDuration;
 
     // Start is called before the first frame update
     void Start()
@@ -41,15 +42,20 @@ public class PlayerPhysics : MonoBehaviour
         if (controller.isGrounded)
         {
             isGrounded = true;
-            if (timeSinceGrounded > 0.1f)
+            if (fallingDuration > 0.1f)
             {
-                playerDamage.Damaged(timeSinceGrounded * FallingDamage);
+                playerDamage.Damaged(Mathf.Exp(fallingDuration * 10) * FallingDamage);
             }
+            fallingDuration = 0;
             timeSinceGrounded = 0;
         }
         else
         {
             isGrounded = false;
+            if (GameManager.Instance.currentState == GameManager.PlayerState.Falling)
+            {
+                fallingDuration += Time.deltaTime;
+            }
         }
     }
 
@@ -66,7 +72,9 @@ public class PlayerPhysics : MonoBehaviour
                 gravityForce = -gravityScale;
             }
             if (timeSinceGrounded >= 0.1f)
+            {
                 GameManager.Instance.currentState = GameManager.PlayerState.Falling;
+            }
         }
         else 
         {

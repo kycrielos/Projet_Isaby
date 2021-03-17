@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerUI : MonoBehaviour
 {
     public GameObject[] heartSprite;
-    public GameObject[] heartEmptySprite;
+    public GameObject[] teddyPartSprite;
+    public GameObject[] teddyPartShadowSprite;
     private void Start()
     {
         GameManager.RefreshUI += UpdateInterface;
@@ -15,10 +16,6 @@ public class PlayerUI : MonoBehaviour
         switch (GameManager.Instance.playerHP)
         {
             case 3:
-                foreach (GameObject heartEmpty in heartEmptySprite)
-                {
-                    heartEmpty.SetActive(false);
-                }
 
                 foreach (GameObject heart in heartSprite)
                 {
@@ -27,12 +24,11 @@ public class PlayerUI : MonoBehaviour
                 break;
 
             case 2:
-                heartEmptySprite[2].SetActive(true);
                 heartSprite[2].SetActive(false);
                 break;
 
             case 1:
-                heartEmptySprite[1].SetActive(true);
+                heartSprite[2].SetActive(false);
                 heartSprite[1].SetActive(false);
                 break;
 
@@ -41,11 +37,30 @@ public class PlayerUI : MonoBehaviour
                 {
                     heart.SetActive(false);
                 }
+                break;
+        }
 
-                foreach (GameObject heartEmpty in heartEmptySprite)
-                {
-                    heartEmpty.SetActive(true);
-                }
+        switch (GameManager.Instance.teddyPartsNumbers)
+        {
+            case 1:
+                teddyPartSprite[0].SetActive(true);
+                teddyPartShadowSprite[0].SetActive(false);
+                break;
+            case 2:
+                teddyPartSprite[1].SetActive(true);
+                teddyPartShadowSprite[1].SetActive(false);
+                break;
+            case 3:
+                teddyPartSprite[2].SetActive(true);
+                teddyPartShadowSprite[2].SetActive(false);
+                break;
+            case 4:
+                teddyPartSprite[3].SetActive(true);
+                teddyPartShadowSprite[3].SetActive(false);
+                break;
+            case 5:
+                teddyPartSprite[4].SetActive(true);
+                teddyPartShadowSprite[4].SetActive(false);
                 break;
         }
     }

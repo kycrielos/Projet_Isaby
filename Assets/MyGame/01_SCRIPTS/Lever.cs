@@ -8,6 +8,10 @@ public class Lever : MonoBehaviour
     public GameObject[] doors;
     public PlatformBehaviour[] platforms;
 
+    private bool isActive;
+    public GameObject activeOnObj;
+    public GameObject activeOffObj;
+
     private void Start()
     {
         TriggerManager.Activation += ActivateDoor;
@@ -17,7 +21,8 @@ public class Lever : MonoBehaviour
     {
         if (triggerObj.name == gameObject.name + "Trigger")
         {
-            foreach(GameObject door in doors)
+            isActive = !isActive;
+            foreach (GameObject door in doors)
             {
                 door.SetActive(!door.activeSelf);
             }
@@ -25,7 +30,19 @@ public class Lever : MonoBehaviour
             {
                 platform.activated = !platform.activated;
             }
+
+            if (isActive)
+            {
+                activeOnObj.SetActive(true);
+                activeOffObj.SetActive(false);
+            }
+            else
+            {
+                activeOnObj.SetActive(false);
+                activeOffObj.SetActive(true);
+            }
         }
+
     }
     ~Lever()
     {

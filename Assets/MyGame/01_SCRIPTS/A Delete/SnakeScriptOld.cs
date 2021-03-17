@@ -50,12 +50,10 @@ public class SnakeScriptOld : MonoBehaviour
     }
     public void AI()
     {
-        Debug.DrawLine(Head.position, player.position, Color.white);
         if (!AspirationOn)
         {
             CdTimer += Time.deltaTime;
-            Debug.DrawLine(Head.position, player.position + new Vector3(0, 1, 0), Color.white);
-            if (CdTimer > Cooldown && Physics.Linecast(Head.position, player.position + new Vector3(0,1,0), out RaycastHit hitinfo))
+            if (CdTimer > Cooldown && Physics.Linecast(Head.position, player.transform.position + new Vector3(0,1,0), out RaycastHit hitinfo))
             {
                 if (hitinfo.collider.tag == "Player")
                 {
@@ -76,7 +74,7 @@ public class SnakeScriptOld : MonoBehaviour
 
     public void FollowPlayer()
     {
-        Vector3 targetDirection = new Vector3(player.position.x, transform.position.y, player.position.z) - transform.position;
+        Vector3 targetDirection = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z) - transform.position;
         float singleStep = speed * Time.deltaTime;
         transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0));
     }
