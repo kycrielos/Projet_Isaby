@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 6568250515402197910}
   - component: {fileID: 6568250515402197904}
   - component: {fileID: 6568250515402197905}
+  - component: {fileID: 7607606681639684177}
   m_Layer: 0
-  m_Name: stalactite4_lp (1)
+  m_Name: PFB_StalactiteSeul
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7607606681639684177
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6568250515402197911}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.24933968, y: 0.8017016, z: 0.25192538}
+  m_Center: {x: 0.0014161489, y: 0.05736551, z: 0.003541221}

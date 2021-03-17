@@ -39,7 +39,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 729250707170730983}
-  m_Mesh: {fileID: -5329593439916891794, guid: 2567c03dfd36aed4fbb76f97a31f2ae7, type: 3}
+  m_Mesh: {fileID: -5329593439916891794, guid: f8289a55ae33449448541a9a5ea3ee2f, type: 3}
 --- !u!23 &3393817051293667028
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 7693062120931374617}
   - component: {fileID: 4487634422417795455}
   m_Layer: 0
-  m_Name: SM_Door
+  m_Name: PFB_RedDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,5 +124,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.879091, y: 2.9583192, z: 0.39609125}
-  m_Center: {x: 0.0029331585, y: 1.4319074, z: -0.014980178}
+  m_Size: {x: 3.396732, y: 4.089165, z: 0.39609125}
+  m_Center: {x: 0.014878468, y: 1.7823107, z: -0.014980178}
