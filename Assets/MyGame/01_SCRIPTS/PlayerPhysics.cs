@@ -18,6 +18,8 @@ public class PlayerPhysics : MonoBehaviour
     private PlayerDamage playerDamage;
     private float fallingDuration;
 
+    public ParticleSystem dust;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +47,7 @@ public class PlayerPhysics : MonoBehaviour
             if (fallingDuration > 0.1f)
             {
                 playerDamage.Damaged(Mathf.Exp(fallingDuration * 10) * FallingDamage);
+                dust.Play();
             }
             fallingDuration = 0;
             timeSinceGrounded = 0;

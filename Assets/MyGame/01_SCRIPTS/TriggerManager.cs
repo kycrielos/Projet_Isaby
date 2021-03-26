@@ -9,6 +9,7 @@ public class TriggerManager : MonoBehaviour
     public static event ActivateEvent Activation;
     public PlayerDamage playerDamage;
     public GameObject Snake;
+    public CameraController cam;
 
     public void SetActive(GameObject triggerObj)
     {
@@ -33,6 +34,7 @@ public class TriggerManager : MonoBehaviour
         else if (triggerObj.name.Contains("SnakeSpawner"))
         {
             Destroy(triggerObj);
+            cam.ShakeCamera();
             Snake.SetActive(true);
         }
         else

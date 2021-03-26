@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class CameraController : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class CameraController : MonoBehaviour
     private float Mousey;
     public float AngularVelocity = 4f;
     public GameObject Player;
+    public CinemachineVirtualCamera cmVCam;
+
+    public float shakeIntensity;
+    public float shakeDuration;
 
     // Start is called before the first frame update
     void Start()
@@ -45,5 +50,16 @@ public class CameraController : MonoBehaviour
 
         //Gere la rotation
         transform.eulerAngles = new Vector3(Mousey, Mousex, 0);
+    }
+    public void ShakeCamera()
+    {
+        StartCoroutine(CameraShakeCoroutine());
+    }
+
+    IEnumerator CameraShakeCoroutine()
+    {
+        cmVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = shakeIntensity;
+        yield return new WaitForSeconds(shakeDuration);
+        cmVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0;
     }
 }
