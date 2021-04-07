@@ -10,6 +10,8 @@ public class LineRendererController : MonoBehaviour
     private Vector3 spawnPosition;
 
     public bool IsActive;
+    public bool isFirst;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +22,7 @@ public class LineRendererController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (IsActive)
+        if (IsActive || isFirst)
         {
             diagline.enabled = true;
             RaycastHit hit;
