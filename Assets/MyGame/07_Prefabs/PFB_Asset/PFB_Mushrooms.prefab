@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5913923999466262545}
   m_Layer: 0
-  m_Name: Champignons
+  m_Name: PFB_Mushrooms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5913923999466262545
 Transform:
@@ -98,6 +98,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8675641884298125812, guid: 6825f8d511011704c80790e74b225b4e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: -8624612415288862081, guid: 6825f8d511011704c80790e74b225b4e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: -8469419384492004704, guid: 6825f8d511011704c80790e74b225b4e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: -5066368973109066051, guid: 6825f8d511011704c80790e74b225b4e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -4791903712629419091, guid: 6825f8d511011704c80790e74b225b4e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -110,18 +126,42 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: dd58540b47fd33f419482c9eca85daa6, type: 2}
+    - target: {fileID: -2214726576368266994, guid: 6825f8d511011704c80790e74b225b4e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: -1064364668625447116, guid: 6825f8d511011704c80790e74b225b4e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -468636941180413166, guid: 6825f8d511011704c80790e74b225b4e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: dd58540b47fd33f419482c9eca85daa6, type: 2}
+    - target: {fileID: 708612964619132342, guid: 6825f8d511011704c80790e74b225b4e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6825f8d511011704c80790e74b225b4e, type: 3}
       propertyPath: m_Name
       value: Mushrooms_LP
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6825f8d511011704c80790e74b225b4e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 3805858309460389079, guid: 6825f8d511011704c80790e74b225b4e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4376510109209293768, guid: 6825f8d511011704c80790e74b225b4e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: dd58540b47fd33f419482c9eca85daa6, type: 2}
+    - target: {fileID: 4500344201859485175, guid: 6825f8d511011704c80790e74b225b4e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4726612649484175103, guid: 6825f8d511011704c80790e74b225b4e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -130,6 +170,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: dd58540b47fd33f419482c9eca85daa6, type: 2}
+    - target: {fileID: 6664946239660949786, guid: 6825f8d511011704c80790e74b225b4e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 8152602019680620830, guid: 6825f8d511011704c80790e74b225b4e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

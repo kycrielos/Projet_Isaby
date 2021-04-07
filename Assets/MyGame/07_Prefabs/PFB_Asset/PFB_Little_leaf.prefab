@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5839994532393543619}
   m_Layer: 0
-  m_Name: Little_leaf
+  m_Name: PFB_Little_leaf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5839994532393543619
 Transform:
@@ -89,6 +89,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d24ede49581d66244bb5fadb0375ab4f, type: 3}
       propertyPath: m_Name
       value: Little_leaf
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d24ede49581d66244bb5fadb0375ab4f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 955646323901874871, guid: d24ede49581d66244bb5fadb0375ab4f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d24ede49581d66244bb5fadb0375ab4f, type: 3}

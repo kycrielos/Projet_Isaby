@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 5305446577859244391}
   - component: {fileID: 7945560049199105453}
   m_Layer: 0
-  m_Name: SM_CircleSpiderWeb
+  m_Name: PFB_SpiderWebCircle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &9083584633350897346
 Transform:

@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1897343019063659285}
   m_Layer: 0
-  m_Name: Lianes
+  m_Name: PFB_Lianes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1897343019063659285
 Transform:
@@ -82,6 +82,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8564555157564251528, guid: cd58c87071395e34a945c80332a3a417, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -8133821691921548777, guid: cd58c87071395e34a945c80332a3a417, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -102,6 +106,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[4]
       value: 
       objectReference: {fileID: 2100000, guid: a0f21488136b566449979b1ce6126fe2, type: 2}
+    - target: {fileID: -8073486111980087902, guid: cd58c87071395e34a945c80332a3a417, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -7663481596405587636, guid: cd58c87071395e34a945c80332a3a417, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -114,10 +122,30 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 252dfef78b5938b469c9e8d71777837d, type: 2}
+    - target: {fileID: -6366432625790032470, guid: cd58c87071395e34a945c80332a3a417, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: -6191424781500318036, guid: cd58c87071395e34a945c80332a3a417, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -6117384768762693049, guid: cd58c87071395e34a945c80332a3a417, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 252dfef78b5938b469c9e8d71777837d, type: 2}
+    - target: {fileID: -5545145232094059559, guid: cd58c87071395e34a945c80332a3a417, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: -5288064288039283459, guid: cd58c87071395e34a945c80332a3a417, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: -5223803518281339240, guid: cd58c87071395e34a945c80332a3a417, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -3424549729471901793, guid: cd58c87071395e34a945c80332a3a417, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -126,6 +154,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 252dfef78b5938b469c9e8d71777837d, type: 2}
+    - target: {fileID: -566415488909602901, guid: cd58c87071395e34a945c80332a3a417, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -259391431490307701, guid: cd58c87071395e34a945c80332a3a417, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -146,14 +178,38 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[4]
       value: 
       objectReference: {fileID: 2100000, guid: 3da6c23a37218404c90b0955a5164067, type: 2}
+    - target: {fileID: -83471721495203414, guid: cd58c87071395e34a945c80332a3a417, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 92906336167232005, guid: cd58c87071395e34a945c80332a3a417, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: cd58c87071395e34a945c80332a3a417, type: 3}
       propertyPath: m_Name
       value: Lianes
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cd58c87071395e34a945c80332a3a417, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265418805685700400, guid: cd58c87071395e34a945c80332a3a417, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362198635832463722, guid: cd58c87071395e34a945c80332a3a417, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5501626826220484396, guid: cd58c87071395e34a945c80332a3a417, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 252dfef78b5938b469c9e8d71777837d, type: 2}
+    - target: {fileID: 5539514369462248848, guid: cd58c87071395e34a945c80332a3a417, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5813164390646816203, guid: cd58c87071395e34a945c80332a3a417, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -174,6 +230,18 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[4]
       value: 
       objectReference: {fileID: 2100000, guid: a0f21488136b566449979b1ce6126fe2, type: 2}
+    - target: {fileID: 8365353355602884861, guid: cd58c87071395e34a945c80332a3a417, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8400215598069582182, guid: cd58c87071395e34a945c80332a3a417, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8642595106883545558, guid: cd58c87071395e34a945c80332a3a417, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd58c87071395e34a945c80332a3a417, type: 3}
 --- !u!4 &8774687169144220158 stripped
