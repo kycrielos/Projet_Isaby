@@ -7,6 +7,9 @@ public class PlayerUI : MonoBehaviour
     public GameObject[] heartSprite;
     public GameObject[] teddyPartSprite;
     public GameObject[] teddyPartShadowSprite;
+
+    public GameObject winnSprite;
+
     private void Start()
     {
         GameManager.RefreshUI += UpdateInterface;
@@ -61,6 +64,7 @@ public class PlayerUI : MonoBehaviour
             case 5:
                 teddyPartSprite[4].SetActive(true);
                 teddyPartShadowSprite[4].SetActive(false);
+                winnSprite.SetActive(true);
                 break;
         }
     }
