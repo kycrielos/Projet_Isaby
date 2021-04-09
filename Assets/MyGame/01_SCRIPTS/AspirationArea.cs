@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class AspirationArea : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
+    public Transform head;
 
-    }
+    public float force;
 
-    // Update is called once per frame
-    void Update()
+
+    private void OnTriggerStay(Collider other)
     {
-        
+        if (Physics.Linecast(head.position, GameManager.Instance.player.transform.position + new Vector3(0, 1, 0), out RaycastHit hitinfo) && other.CompareTag("Player"))
+        {
+            if (hitinfo.collider.CompareTag("Player"))
+            {
+                GameManager.Instance.player.transform.GetComponent<CharacterController>().Move(-head.forward * force * Time.deltaTime);
+            }
+        }
     }
 
 }
