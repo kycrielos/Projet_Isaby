@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: StylisedWater2
-  m_Shader: {fileID: -6465566751694194690, guid: 5479e20bc4dc0594a8a1744f4c37f94c, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 6075bc3f93010d442b9c3a3de8f5ec5b, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
