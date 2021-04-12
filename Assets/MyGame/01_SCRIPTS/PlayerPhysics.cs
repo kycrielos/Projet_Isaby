@@ -7,6 +7,7 @@ public class PlayerPhysics : MonoBehaviour
     private CharacterController controller;
     public float timeSinceGrounded;
     public bool isGrounded;
+    public bool contactWithGround;
     public float gravityScale;
     public float gravityForce;
     public float FallingDamage;
@@ -20,11 +21,18 @@ public class PlayerPhysics : MonoBehaviour
 
     public ParticleSystem dust;
 
+    private int layerMask = 1 << 9;
+
+    public bool sliding;
+
+    public Vector3 hitNormal;
+
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
         playerDamage = GetComponent<PlayerDamage>();
+
     }
 
     // Update is called once per frame
@@ -32,7 +40,14 @@ public class PlayerPhysics : MonoBehaviour
     {
         if (GameManager.Instance.currentState != GameManager.PlayerState.Die)
         {
-            timeSinceGrounded += Time.deltaTime;
+            if (!sliding)
+            {
+                timeSinceGrounded += Time.deltaTime;
+            }
+            else
+            {
+                timeSinceGrounded += Time.deltaTime/2;
+            }
             IsGroundedCheck();
             Gravity();
             IsIntriggerCheck();
@@ -41,19 +56,31 @@ public class PlayerPhysics : MonoBehaviour
 
     public void IsGroundedCheck()
     {
+        RaycastHit hit;
         if (controller.isGrounded)
         {
-            isGrounded = true;
-            if (fallingDuration > 0.1f)
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 0.2f, layerMask))
             {
-                playerDamage.Damaged(Mathf.Exp(fallingDuration * 10) * FallingDamage);
-                dust.Play();
+                isGrounded = true;
+                if (fallingDuration > 0.1f)
+                {
+                    playerDamage.Damaged(Mathf.Exp(fallingDuration * 10) * FallingDamage);
+                    dust.Play();
+                }
+                fallingDuration = 0;
+                timeSinceGrounded = 0;
             }
-            fallingDuration = 0;
-            timeSinceGrounded = 0;
+            else
+            {
+                sliding = true;
+                isGrounded = false;
+                GameManager.Instance.currentState = GameManager.PlayerState.Sliding;
+            }
+
         }
         else
         {
+            sliding = false;
             isGrounded = false;
             if (GameManager.Instance.currentState == GameManager.PlayerState.Falling)
             {
@@ -74,7 +101,7 @@ public class PlayerPhysics : MonoBehaviour
             {
                 gravityForce = -gravityScale;
             }
-            if (timeSinceGrounded >= 0.1f)
+            if (timeSinceGrounded >= 0.1f && !sliding)
             {
                 GameManager.Instance.currentState = GameManager.PlayerState.Falling;
             }
@@ -110,6 +137,7 @@ public class PlayerPhysics : MonoBehaviour
             triggerObj = other.gameObject;
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("PlatformTrigger"))
@@ -119,4 +147,8 @@ public class PlayerPhysics : MonoBehaviour
         isInTrigger = false;
     }
 
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        hitNormal = hit.normal;
+    }
 }

@@ -415,7 +415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4920517010929540884}
   - component: {fileID: 5342263050908384877}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PFB_Dresser
   m_TagString: Untagged
   m_Icon: {fileID: 0}

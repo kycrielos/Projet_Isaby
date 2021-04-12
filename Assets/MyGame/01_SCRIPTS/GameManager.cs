@@ -35,6 +35,7 @@ public class GameManager : Singleton<GameManager>
         Jumping,
         Falling,
         Die,
+        Sliding,
     }
 
     public delegate void RefreshUIEvent();

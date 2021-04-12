@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     public float walkSpeed;
     public float inetie;
     Vector3 moveDirection;
+    public Vector3 slideDirection;
+    public float slideSpeed;
 
     //Jump
     Vector3 jumpDirection;
@@ -36,6 +38,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     public GameObject cam;
     private PlayerPhysics physics;
+
 
     // Start is called before the first frame update
     void Start()
@@ -63,9 +66,16 @@ public class PlayerController : MonoBehaviour
 
         moveDirection = new Vector3(movementx, 0, movementy);
         Vector3.Normalize(moveDirection);
+        //Debug.Log(GameManager.Instance.currentState);
 
         //Deplace Le Joueur
-        if (moveDirection.magnitude >= 0.1f)
+        if (GameManager.Instance.currentState == GameManager.PlayerState.Sliding)
+        {
+            slideDirection.x = ((1f - physics.hitNormal.y) * physics.hitNormal.x) * slideSpeed;
+            slideDirection.z = ((1f - physics.hitNormal.y) * physics.hitNormal.z) * slideSpeed;
+            controller.Move(new Vector3(slideDirection.x, 0, slideDirection.z));
+        }
+        else if (moveDirection.magnitude >= 0.1f)
         {
             if (physics.isGrounded && GameManager.Instance.currentState != GameManager.PlayerState.Jumping)
             {
@@ -125,7 +135,7 @@ public class PlayerController : MonoBehaviour
             {
                 jumpInput -= Time.deltaTime * jumpAcceleration * jumpSmoothAcceleration;
             }
-            else
+            else if (!physics.sliding)
             {
                 GameManager.Instance.currentState = GameManager.PlayerState.Falling;
                 jumpInput = 0;
