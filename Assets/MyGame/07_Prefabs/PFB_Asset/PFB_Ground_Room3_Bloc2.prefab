@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2930848361366225263}
   - component: {fileID: 2234819622560468682}
   - component: {fileID: 4100346946497739264}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PFB_Ground_Room3_Bloc2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1724090100643028766}
   - component: {fileID: 2628005100514545322}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2422010189464277085}
   - component: {fileID: 44825326368282662}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7460262575504984046}
   - component: {fileID: 2568098244489053263}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,7 +227,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3951776242527297570}
   - component: {fileID: 8541731221836899666}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
