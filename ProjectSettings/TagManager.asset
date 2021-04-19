@@ -9,6 +9,8 @@ TagManager:
   - Crystal
   - DoorKey
   - Ground
+  - Snake
+  - NotTargetable
   layers:
   - Default
   - TransparentFX
