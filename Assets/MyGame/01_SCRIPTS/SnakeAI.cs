@@ -90,6 +90,7 @@ public class SnakeAI : MonoBehaviour
                             currentState = SnakeState.PreShoot;
                         }
                     }
+                    currentState = SnakeState.PreShoot;
                     cdTimer = 0;
                     StartCoroutine(DelayAttack());
                 }
