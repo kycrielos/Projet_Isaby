@@ -7,6 +7,7 @@ public class SnakeBullet : MonoBehaviour
     public float speed;
     public int damage;
 
+    bool security;
     private Vector3 targetPosition;
 
     // Start is called before the first frame update
@@ -29,11 +30,17 @@ public class SnakeBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !security)
         {
             GameManager.Instance.player.GetComponent<PlayerDamage>().Damaged(damage);
+            security = true;
             Destroy(this.gameObject);
         }
-        Destroy(this.gameObject, 0.2f);
+
+        if (other.tag != "NotTargetable")
+        {
+            Debug.Log(other.name);
+            Destroy(this.gameObject, 0.2f);
+        }
     }
 }

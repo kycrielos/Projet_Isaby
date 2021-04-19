@@ -30,6 +30,8 @@ public class PlayerPhysics : MonoBehaviour
     private Vector3 capsulePos1;
     private Vector3 capsulePos2;
 
+    public static bool playerIsOnMovablePlatform;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -136,6 +138,7 @@ public class PlayerPhysics : MonoBehaviour
         else if (other.CompareTag("PlatformTrigger"))
         {
             transform.parent = other.transform;
+            playerIsOnMovablePlatform = true;
         }
         else
         {
@@ -149,6 +152,7 @@ public class PlayerPhysics : MonoBehaviour
         if (other.CompareTag("PlatformTrigger"))
         {
             transform.parent = null;
+            playerIsOnMovablePlatform = false;
         }
         isInTrigger = false;
     }
