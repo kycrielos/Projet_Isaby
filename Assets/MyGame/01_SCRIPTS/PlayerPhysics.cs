@@ -27,6 +27,9 @@ public class PlayerPhysics : MonoBehaviour
 
     public Vector3 hitNormal;
 
+    private Vector3 capsulePos1;
+    private Vector3 capsulePos2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,8 +62,11 @@ public class PlayerPhysics : MonoBehaviour
         RaycastHit hit;
         if (controller.isGrounded)
         {
-            /*if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 0.2f, layerMask))
-            {*/
+            capsulePos1 = transform.position + controller.center + Vector3.up * -controller.height * 0.4f;
+            capsulePos2 = capsulePos1 + Vector3.up * controller.height;
+            
+            if (Physics.CapsuleCast(capsulePos1, capsulePos2, controller.radius, Vector3.down, out hit, 0.2f, layerMask))
+            {
                 isGrounded = true;
                 if (fallingDuration > 0.1f)
                 {
@@ -69,13 +75,13 @@ public class PlayerPhysics : MonoBehaviour
                 }
                 fallingDuration = 0;
                 timeSinceGrounded = 0;
-            /*}
+            }
             else
             {
                 sliding = true;
                 isGrounded = false;
                 GameManager.Instance.currentState = GameManager.PlayerState.Sliding;
-            }*/
+            }
 
         }
         else

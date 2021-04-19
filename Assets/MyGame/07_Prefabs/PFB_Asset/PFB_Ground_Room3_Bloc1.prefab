@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2500962248010796725}
   - component: {fileID: 383303635301857919}
   - component: {fileID: 1784804760857881862}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PFB_Ground_Room3_Bloc1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
