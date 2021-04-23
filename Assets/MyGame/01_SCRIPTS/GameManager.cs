@@ -21,8 +21,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 //usage:
 public class GameManager : Singleton<GameManager>
 {
-
-    static Animator anim;
+    public Animator anim;
     public int maxPlayerHp = 3;
     public int playerHP = 3;
 
