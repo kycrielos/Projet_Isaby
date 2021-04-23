@@ -21,6 +21,8 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 //usage:
 public class GameManager : Singleton<GameManager>
 {
+
+    static Animator anim;
     public int maxPlayerHp = 3;
     public int playerHP = 3;
 
@@ -42,6 +44,7 @@ public class GameManager : Singleton<GameManager>
     public static event RefreshUIEvent RefreshUI;
 
     public GameObject player;
+    public PlayerState currentState = PlayerState.Idle;
 
     public void RefreshUIActivation()
     {
@@ -52,5 +55,65 @@ public class GameManager : Singleton<GameManager>
         RefreshUI?.Invoke();
     }
 
-    public PlayerState currentState = PlayerState.Idle;
+    public void RefreshAnimation()
+    {
+        switch (currentState)
+        {
+            case PlayerState.Idle:
+                anim.SetBool("isWalking", false);
+                anim.SetBool("isRunning", false);
+                anim.SetBool("isFalling", false);
+                anim.SetBool("isDying", false);
+                anim.SetBool("isSliding", false);
+                break;
+            case PlayerState.Walking:
+                anim.SetBool("isWalking", true);
+                anim.SetBool("isRunning", false);
+                anim.SetBool("isFalling", false);
+                anim.SetBool("isDying", false);
+                anim.SetBool("isSliding", false);
+                break;
+            case PlayerState.Running:
+                anim.SetBool("isWalking", false);
+                anim.SetBool("isRunning", true);
+                anim.SetBool("isFalling", false);
+                anim.SetBool("isDying", false);
+                anim.SetBool("isSliding", false);
+                break;
+            case PlayerState.Jumping:
+                anim.SetTrigger("isJumping");
+                anim.SetBool("isWalking", false);
+                anim.SetBool("isRunning", false);
+                anim.SetBool("isFalling", false);
+                anim.SetBool("isDying", false);
+                anim.SetBool("isSliding", false);
+                break;
+            case PlayerState.Falling:
+                anim.SetBool("isWalking", false);
+                anim.SetBool("isRunning", false);
+                anim.SetBool("isFalling", true);
+                anim.SetBool("isDying", false);
+                anim.SetBool("isSliding", false);
+                break;
+            case PlayerState.Die:
+                anim.SetBool("isWalking", false);
+                anim.SetBool("isRunning", false);
+                anim.SetBool("isFalling", false);
+                anim.SetBool("isDying", true);
+                anim.SetBool("isSliding", false);
+                break;
+            case PlayerState.Sliding:
+                anim.SetBool("isWalking", false);
+                anim.SetBool("isRunning", false);
+                anim.SetBool("isFalling", false);
+                anim.SetBool("isDying", false);
+                anim.SetBool("isSliding", true);
+                break;
+        }
+        anim.SetTrigger("isWalking");
+        anim.SetTrigger("isRunning");
+        anim.SetTrigger("isFalling");
+        anim.SetTrigger("isDying");
+        anim.SetTrigger("isSliding");
+    }
 }

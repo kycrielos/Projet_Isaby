@@ -37,6 +37,7 @@ public class PlayerRespawn : MonoBehaviour
         GameManager.Instance.RefreshUIActivation();
         yield return new WaitForSeconds(DelayAfterRespawn);
         GameManager.Instance.currentState = GameManager.PlayerState.Idle;
+        GameManager.Instance.RefreshAnimation();
     }
 
     ~PlayerRespawn()

@@ -83,6 +83,7 @@ public class PlayerPhysics : MonoBehaviour
                 sliding = true;
                 isGrounded = false;
                 GameManager.Instance.currentState = GameManager.PlayerState.Sliding;
+                GameManager.Instance.RefreshAnimation();
             }
 
         }
@@ -112,6 +113,7 @@ public class PlayerPhysics : MonoBehaviour
             if (timeSinceGrounded >= 0.1f && !sliding)
             {
                 GameManager.Instance.currentState = GameManager.PlayerState.Falling;
+                GameManager.Instance.RefreshAnimation();
             }
         }
         else 
