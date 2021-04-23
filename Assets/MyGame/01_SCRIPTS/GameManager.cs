@@ -109,10 +109,5 @@ public class GameManager : Singleton<GameManager>
                 anim.SetBool("isSliding", true);
                 break;
         }
-        anim.SetTrigger("isWalking");
-        anim.SetTrigger("isRunning");
-        anim.SetTrigger("isFalling");
-        anim.SetTrigger("isDying");
-        anim.SetTrigger("isSliding");
     }
 }
