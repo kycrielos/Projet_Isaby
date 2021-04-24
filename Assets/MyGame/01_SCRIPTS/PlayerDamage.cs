@@ -7,7 +7,6 @@ public class PlayerDamage : MonoBehaviour
     public delegate void PlayerDieEvent();
     public static event PlayerDieEvent PlayerDie;
 
-
     public void Damaged(float damage)
     {
         GameManager.Instance.playerHP -= (int)Mathf.Floor(damage);

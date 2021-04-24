@@ -17,7 +17,7 @@ public class PlayerPhysics : MonoBehaviour
     private bool isInTrigger;
 
     private PlayerDamage playerDamage;
-    private float fallingDuration;
+    public float fallingDuration;
 
     public ParticleSystem dust;
 
@@ -51,7 +51,7 @@ public class PlayerPhysics : MonoBehaviour
             }
             else
             {
-                timeSinceGrounded += Time.deltaTime/2;
+                timeSinceGrounded += Time.deltaTime * 0.75f;
             }
             IsGroundedCheck();
             Gravity();
@@ -64,9 +64,10 @@ public class PlayerPhysics : MonoBehaviour
         RaycastHit hit;
         if (controller.isGrounded)
         {
-            capsulePos1 = transform.position + controller.center + Vector3.up * -controller.height * 0.4f;
+            capsulePos1 = transform.position + controller.center + Vector3.up * -controller.height * 0.3f;
             capsulePos2 = capsulePos1 + Vector3.up * controller.height;
-            
+
+
             if (Physics.CapsuleCast(capsulePos1, capsulePos2, controller.radius, Vector3.down, out hit, 0.2f, layerMask))
             {
                 isGrounded = true;
@@ -116,7 +117,7 @@ public class PlayerPhysics : MonoBehaviour
                 GameManager.Instance.RefreshAnimation();
             }
         }
-        else 
+        else
         {
             gravityForce = 0;
         }

@@ -8,12 +8,17 @@ public class PlayerRespawn : MonoBehaviour
     public float TimeBeforeRespawn;
     public float DelayAfterRespawn;
 
+    private CharacterController controller;
+    private PlayerPhysics physics;
+
     // Start is called before the first frame update
     private void Start()
     {
         spawnPoint = transform.position;
         TriggerManager.Activation += UpdateSpawnPoint;
         PlayerDamage.PlayerDie += RespawnThePlayer;
+        controller = GetComponent<CharacterController>();
+        physics = GetComponent<PlayerPhysics>();
     }
 
     void UpdateSpawnPoint(GameObject triggerObj)
@@ -31,11 +36,15 @@ public class PlayerRespawn : MonoBehaviour
 
     IEnumerator PlayerRespawner()
     {
+        controller.enabled = false;
         yield return new WaitForSeconds(TimeBeforeRespawn);
         transform.position = spawnPoint;
         GameManager.Instance.playerHP = GameManager.Instance.maxPlayerHp;
         GameManager.Instance.RefreshUIActivation();
         yield return new WaitForSeconds(DelayAfterRespawn);
+        controller.enabled = true;
+        physics.timeSinceGrounded = 0;
+        physics.fallingDuration = 0;
         GameManager.Instance.currentState = GameManager.PlayerState.Idle;
         GameManager.Instance.RefreshAnimation();
     }
