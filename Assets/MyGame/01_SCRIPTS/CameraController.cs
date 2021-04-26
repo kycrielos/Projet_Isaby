@@ -25,8 +25,11 @@ public class CameraController : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.position = Player.transform.position;
-        Rotate();
+        if (!GameManager.Instance.pause)
+        {
+            transform.position = Player.transform.position;
+            Rotate();
+        }
     }
 
     void GetInput()

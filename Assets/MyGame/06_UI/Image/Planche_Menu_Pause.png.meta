@@ -1,7 +1,67 @@
 fileFormatVersion: 2
 guid: de9624391db61f54aac4228d35c2b71b
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -1092404204512905416
+    second: Planche_Menu_Pause_0
+  - first:
+      213: -5540630267588031747
+    second: Planche_Menu_Pause_1
+  - first:
+      213: 6727994730710427722
+    second: Planche_Menu_Pause_2
+  - first:
+      213: -1505181747147580312
+    second: Planche_Menu_Pause_3
+  - first:
+      213: 2600046287722509980
+    second: Planche_Menu_Pause_4
+  - first:
+      213: -5331117995766901836
+    second: Planche_Menu_Pause_5
+  - first:
+      213: -641186854461135205
+    second: Planche_Menu_Pause_6
+  - first:
+      213: -115517059026032877
+    second: Planche_Menu_Pause_7
+  - first:
+      213: -4417922597052250989
+    second: Planche_Menu_Pause_15
+  - first:
+      213: 2656854392972830343
+    second: Planche_Menu_Pause_16
+  - first:
+      213: 4104780838859024658
+    second: Planche_Menu_Pause_17
+  - first:
+      213: 3623698622897562462
+    second: Planche_Menu_Pause_26
+  - first:
+      213: 5446289524149975934
+    second: Planche_Menu_Pause_30
+  - first:
+      213: 8364500813749303652
+    second: Planche_Menu_Pause_31
+  - first:
+      213: 358686892829986777
+    second: Planche_Menu_Pause_37
+  - first:
+      213: -7927509410717663532
+    second: Planche_Menu_Pause_41
+  - first:
+      213: 7548187984163557917
+    second: Planche_Menu_Pause_42
+  - first:
+      213: 3285891305540302568
+    second: Planche_Menu_Pause_53
+  - first:
+      213: 5304721608184039904
+    second: Planche_Menu_Pause_59
+  - first:
+      213: 3962129427808723947
+    second: Planche_Menu_Pause_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -41,7 +101,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -135,7 +195,406 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Planche_Menu_Pause_0
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 288
+        width: 1297
+        height: 774
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8377ddee92007d0f0800000000000000
+      internalID: -1092404204512905416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Planche_Menu_Pause_1
+      rect:
+        serializedVersion: 2
+        x: 1486
+        y: 697
+        width: 315
+        height: 362
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfa43ac802abb13b0800000000000000
+      internalID: -5540630267588031747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Planche_Menu_Pause_2
+      rect:
+        serializedVersion: 2
+        x: 1367
+        y: 539
+        width: 144
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a48e1b6af83ae5d50800000000000000
+      internalID: 6727994730710427722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Planche_Menu_Pause_3
+      rect:
+        serializedVersion: 2
+        x: 1567
+        y: 551
+        width: 118
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86cdddefc258c1be0800000000000000
+      internalID: -1505181747147580312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Planche_Menu_Pause_4
+      rect:
+        serializedVersion: 2
+        x: 1766
+        y: 552
+        width: 95
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c96f543b258351420800000000000000
+      internalID: 2600046287722509980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Planche_Menu_Pause_5
+      rect:
+        serializedVersion: 2
+        x: 1406
+        y: 382
+        width: 116
+        height: 129
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b31f96ad601406b0800000000000000
+      internalID: -5331117995766901836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Planche_Menu_Pause_6
+      rect:
+        serializedVersion: 2
+        x: 1590
+        y: 413
+        width: 108
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b96a139f3fb0a17f0800000000000000
+      internalID: -641186854461135205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Planche_Menu_Pause_7
+      rect:
+        serializedVersion: 2
+        x: 1761
+        y: 414
+        width: 93
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 317614bc8d9956ef0800000000000000
+      internalID: -115517059026032877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Planche_Menu_Pause_15
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 177
+        width: 140
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 394878d1ec260b2c0800000000000000
+      internalID: -4417922597052250989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Planche_Menu_Pause_16
+      rect:
+        serializedVersion: 2
+        x: 1569
+        y: 187
+        width: 114
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 786e4196efa0fd420800000000000000
+      internalID: 2656854392972830343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Planche_Menu_Pause_17
+      rect:
+        serializedVersion: 2
+        x: 1767
+        y: 183
+        width: 93
+        height: 99
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 219a505cc6c17f830800000000000000
+      internalID: 4104780838859024658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Planche_Menu_Pause_30
+      rect:
+        serializedVersion: 2
+        x: 563
+        y: 150
+        width: 376
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7bf3ee677b159b40800000000000000
+      internalID: 5446289524149975934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Planche_Menu_Pause_31
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 170
+        width: 324
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4693efe4c2da41470800000000000000
+      internalID: 8364500813749303652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Planche_Menu_Pause_37
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 35
+        width: 525
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9df48b024df4af400800000000000000
+      internalID: 358686892829986777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Planche_Menu_Pause_41
+      rect:
+        serializedVersion: 2
+        x: 1590
+        y: 51
+        width: 107
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4de7b945134dbf190800000000000000
+      internalID: -7927509410717663532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Planche_Menu_Pause_42
+      rect:
+        serializedVersion: 2
+        x: 1761
+        y: 49
+        width: 93
+        height: 83
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d12d0f5cafc80c860800000000000000
+      internalID: 7548187984163557917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Planche_Menu_Pause_53
+      rect:
+        serializedVersion: 2
+        x: 563
+        y: 25
+        width: 376
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e63645abb4d99d20800000000000000
+      internalID: 3285891305540302568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Planche_Menu_Pause_59
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 45
+        width: 324
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e9062072382e9940800000000000000
+      internalID: 5304721608184039904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Planche_Menu_Pause_8
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 160
+        width: 525
+        height: 94
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be329aae8bf4cf630800000000000000
+      internalID: 3962129427808723947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

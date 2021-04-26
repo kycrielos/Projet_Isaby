@@ -52,7 +52,21 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.currentState != GameManager.PlayerState.Die)
+        if (Input.GetButtonDown("PauseButton") /*&& GameManager.Instance.pauseSecurity*/)
+        {
+            GameManager.Instance.pause = !GameManager.Instance.pause;
+            if (GameManager.Instance.pause)
+            {
+                Time.timeScale = 0f;
+                GameManager.Instance.RefreshUIActivation();
+            }
+            else
+            {
+                Time.timeScale = 1f;
+                GameManager.Instance.RefreshUIActivation();
+            }
+        }
+        if (GameManager.Instance.currentState != GameManager.PlayerState.Die && !GameManager.Instance.pause)
         {
             Jump();
             Move();
