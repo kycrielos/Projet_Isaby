@@ -10,6 +10,8 @@ public class PlayerUI : MonoBehaviour
 
     public GameObject winnSprite;
 
+    public GameObject pressESprite;
+
     private void Start()
     {
         GameManager.RefreshUI += UpdateInterface;
@@ -66,6 +68,15 @@ public class PlayerUI : MonoBehaviour
                 teddyPartShadowSprite[4].SetActive(false);
                 winnSprite.SetActive(true);
                 break;
+        }
+
+        if (GameManager.Instance.playerIsInActivableObject)
+        {
+            pressESprite.SetActive(true);
+        }
+        else
+        {
+            pressESprite.SetActive(false);
         }
     }
 

@@ -37,6 +37,7 @@ public class PlayerRespawn : MonoBehaviour
     IEnumerator PlayerRespawner()
     {
         controller.enabled = false;
+        transform.position += new Vector3(0, -0.5f, 0);
         yield return new WaitForSeconds(TimeBeforeRespawn);
         transform.position = spawnPoint;
         GameManager.Instance.playerHP = GameManager.Instance.maxPlayerHp;

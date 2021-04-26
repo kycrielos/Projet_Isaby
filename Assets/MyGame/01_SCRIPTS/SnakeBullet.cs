@@ -9,6 +9,7 @@ public class SnakeBullet : MonoBehaviour
 
     bool security;
     private Vector3 targetPositionFocus;
+   
     private Vector3 predictedPosition(Vector3 targetPosition, Vector3 shooterPosition, Vector3 targetVelocity, float projectileSpeed)
     {
         Vector3 displacement = targetPosition - shooterPosition;
@@ -29,6 +30,7 @@ public class SnakeBullet : MonoBehaviour
     {
         float x = Random.Range(1f, 1.5f);
         targetPositionFocus = predictedPosition(GameManager.Instance.player.transform.position, transform.position, GameManager.Instance.player.GetComponent<CharacterController>().velocity, speed * x);
+        Destroy(this.gameObject, 4);
     }
 
     // Update is called once per frame

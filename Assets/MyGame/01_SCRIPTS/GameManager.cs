@@ -27,6 +27,7 @@ public class GameManager : Singleton<GameManager>
 
     public int coinNumbers;
     public int teddyPartsNumbers;
+    public bool playerIsInActivableObject;
 
     public enum PlayerState
     {
