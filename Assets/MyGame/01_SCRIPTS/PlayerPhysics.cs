@@ -148,6 +148,12 @@ public class PlayerPhysics : MonoBehaviour
             isInTrigger = true;
             triggerObj = other.gameObject;
         }
+
+        if (other.CompareTag("ActivableObject"))
+        {
+            GameManager.Instance.playerIsInActivableObject = true;
+            GameManager.Instance.RefreshUIActivation();
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -156,6 +162,12 @@ public class PlayerPhysics : MonoBehaviour
         {
             transform.parent = null;
             playerIsOnMovablePlatform = false;
+        }
+
+        if (other.CompareTag("ActivableObject"))
+        { 
+            GameManager.Instance.playerIsInActivableObject = false;
+            GameManager.Instance.RefreshUIActivation();
         }
         isInTrigger = false;
     }
