@@ -11,6 +11,7 @@ TagManager:
   - Ground
   - Snake
   - NotTargetable
+  - ActivableObject
   layers:
   - Default
   - TransparentFX

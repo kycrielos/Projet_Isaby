@@ -29,6 +29,9 @@ public class GameManager : Singleton<GameManager>
     public int teddyPartsNumbers;
     public bool playerIsInActivableObject;
 
+    public bool pause;
+    public bool pauseSecurity;
+
     public enum PlayerState
     {
         Idle,
