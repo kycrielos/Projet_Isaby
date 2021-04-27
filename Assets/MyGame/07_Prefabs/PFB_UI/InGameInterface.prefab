@@ -1396,7 +1396,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: You Won !
+  m_Text: You Win !
 --- !u!1 &4686146641785081739
 GameObject:
   m_ObjectHideFlags: 0
