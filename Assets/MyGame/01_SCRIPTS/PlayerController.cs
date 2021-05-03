@@ -136,10 +136,12 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.Instance.currentState = GameManager.PlayerState.Idle;
             GameManager.Instance.RefreshAnimation();
+            speed = walkSpeed;
         }
         else
         {
             controller.Move(jumpDirection * Time.deltaTime);
+            speed = walkSpeed;
         }
     }
 
