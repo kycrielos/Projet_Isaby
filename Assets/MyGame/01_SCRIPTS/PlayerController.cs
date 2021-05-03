@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     Vector3 moveDirection;
     public Vector3 slideDirection;
     public float slideSpeed;
+    public float acceleration;
+    public float deceleration;
 
     //Jump
     Vector3 jumpDirection;
@@ -96,13 +98,29 @@ public class PlayerController : MonoBehaviour
             {
                 if (Input.GetButton("Sprint"))
                 {
-                    speed = sprintSpeed;
+                    if (speed < sprintSpeed)
+                    {
+                        speed += acceleration * Time.deltaTime;
+                    }
+                    else
+                    {
+                        speed = sprintSpeed;
+                    }
+                    GameManager.Instance.playerSpeedScale = (speed - walkSpeed)/(sprintSpeed - walkSpeed);
                     GameManager.Instance.currentState = GameManager.PlayerState.Running;
                     GameManager.Instance.RefreshAnimation();
                 }
                 else
                 {
-                    speed = walkSpeed;
+                    if (speed > walkSpeed)
+                    {
+                        speed -= deceleration * Time.deltaTime;
+                    }
+                    else
+                    {
+                        speed = walkSpeed;
+                    }
+                    GameManager.Instance.playerSpeedScale = (speed - walkSpeed) / (sprintSpeed - walkSpeed);
                     GameManager.Instance.currentState = GameManager.PlayerState.Walking;
                     GameManager.Instance.RefreshAnimation();
                 }

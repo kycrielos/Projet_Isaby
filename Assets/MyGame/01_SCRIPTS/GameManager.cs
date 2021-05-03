@@ -34,6 +34,8 @@ public class GameManager : Singleton<GameManager>
     public bool pause;
     public bool pauseSecurity;
 
+    public float playerSpeedScale;
+
     public enum PlayerState
     {
         Idle,
@@ -62,6 +64,7 @@ public class GameManager : Singleton<GameManager>
 
     public void RefreshAnimation()
     {
+        anim.SetFloat("Speed", playerSpeedScale);
         if (isGrounded)
         {
             anim.SetBool("isGrounded", true);
