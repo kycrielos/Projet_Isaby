@@ -29,6 +29,8 @@ public class GameManager : Singleton<GameManager>
     public int teddyPartsNumbers;
     public bool playerIsInActivableObject;
 
+    public bool isGrounded;
+
     public bool pause;
     public bool pauseSecurity;
 
@@ -60,6 +62,15 @@ public class GameManager : Singleton<GameManager>
 
     public void RefreshAnimation()
     {
+        if (isGrounded)
+        {
+            anim.SetBool("isGrounded", true);
+        }
+        else
+        {
+            anim.SetBool("isGrounded", false);
+        }
+
         switch (currentState)
         {
             case PlayerState.Idle:

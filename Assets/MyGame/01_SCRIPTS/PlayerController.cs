@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (moveDirection.magnitude >= 0.1f)
         {
-            if (physics.isGrounded && GameManager.Instance.currentState != GameManager.PlayerState.Jumping)
+            if (GameManager.Instance.isGrounded && GameManager.Instance.currentState != GameManager.PlayerState.Jumping)
             {
                 if (Input.GetButton("Sprint"))
                 {
@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             controller.Move((moveDir * speed  + jumpDirection) * Time.deltaTime);
         }
-        else if (physics.isGrounded && GameManager.Instance.currentState != GameManager.PlayerState.Jumping)
+        else if (GameManager.Instance.isGrounded && GameManager.Instance.currentState != GameManager.PlayerState.Jumping)
         {
             GameManager.Instance.currentState = GameManager.PlayerState.Idle;
             GameManager.Instance.RefreshAnimation();

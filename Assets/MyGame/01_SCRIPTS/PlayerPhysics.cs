@@ -6,7 +6,6 @@ public class PlayerPhysics : MonoBehaviour
 {
     private CharacterController controller;
     public float timeSinceGrounded;
-    public bool isGrounded;
     public bool contactWithGround;
     public float gravityScale;
     public float gravityForce;
@@ -70,7 +69,7 @@ public class PlayerPhysics : MonoBehaviour
 
             if (Physics.CapsuleCast(capsulePos1, capsulePos2, controller.radius, Vector3.down, out hit, 0.2f, layerMask))
             {
-                isGrounded = true;
+                GameManager.Instance.isGrounded = true;
                 if (fallingDuration > 0.1f)
                 {
                     playerDamage.Damaged(Mathf.Exp(fallingDuration * 10) * FallingDamage);
@@ -78,11 +77,12 @@ public class PlayerPhysics : MonoBehaviour
                 }
                 fallingDuration = 0;
                 timeSinceGrounded = 0;
+                GameManager.Instance.RefreshAnimation();
             }
             else
             {
                 sliding = true;
-                isGrounded = false;
+                GameManager.Instance.isGrounded = false;
                 GameManager.Instance.currentState = GameManager.PlayerState.Sliding;
                 GameManager.Instance.RefreshAnimation();
             }
@@ -91,7 +91,8 @@ public class PlayerPhysics : MonoBehaviour
         else
         {
             sliding = false;
-            isGrounded = false;
+            GameManager.Instance.isGrounded = false;
+            GameManager.Instance.RefreshAnimation();
             if (GameManager.Instance.currentState == GameManager.PlayerState.Falling)
             {
                 fallingDuration += Time.deltaTime;
@@ -101,7 +102,7 @@ public class PlayerPhysics : MonoBehaviour
 
     void Gravity()
     {
-        if (GameManager.Instance.currentState != GameManager.PlayerState.Jumping && !isGrounded)
+        if (GameManager.Instance.currentState != GameManager.PlayerState.Jumping && !GameManager.Instance.isGrounded)
         {
             if (gravityForce > -gravityScale)
             {
