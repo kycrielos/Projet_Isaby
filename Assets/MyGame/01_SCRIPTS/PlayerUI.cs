@@ -17,11 +17,6 @@ public class PlayerUI : MonoBehaviour
 
     public GameObject pressESprite;
 
-    Ray ray;
-    RaycastHit hit;
-
-    private int layerMask = 1 << 5;
-
 
     private void Start()
     {
@@ -33,6 +28,11 @@ public class PlayerUI : MonoBehaviour
         Time.timeScale = 1f;
         GameManager.Instance.pause = false;
         GameManager.Instance.RefreshUIActivation();
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
     public void UpdateInterface()
     {
@@ -71,6 +71,21 @@ public class PlayerUI : MonoBehaviour
                     break;
             }
 
+
+            if (GameManager.Instance.playerIsInActivableObject)
+            {
+                pressESprite.SetActive(true);
+            }
+            else
+            {
+                pressESprite.SetActive(false);
+            }
+        }
+        else
+        {
+            pauseMenu.SetActive(true);
+            inGameInterface.SetActive(false);
+
             switch (GameManager.Instance.teddyPartsNumbers)
             {
                 case 1:
@@ -95,20 +110,6 @@ public class PlayerUI : MonoBehaviour
                     winnSprite.SetActive(true);
                     break;
             }
-
-            if (GameManager.Instance.playerIsInActivableObject)
-            {
-                pressESprite.SetActive(true);
-            }
-            else
-            {
-                pressESprite.SetActive(false);
-            }
-        }
-        else
-        {
-            pauseMenu.SetActive(true);
-            inGameInterface.SetActive(false);
 
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
