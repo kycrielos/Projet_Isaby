@@ -64,7 +64,7 @@ public class GameManager : Singleton<GameManager>
 
     public void RefreshAnimation()
     {
-        /*anim.SetFloat("Speed", playerSpeedScale);
+        anim.SetFloat("Speed", playerSpeedScale);
         if (isGrounded)
         {
             anim.SetBool("isGrounded", true);
@@ -126,6 +126,6 @@ public class GameManager : Singleton<GameManager>
                 anim.SetBool("isDying", false);
                 anim.SetBool("isSliding", true);
                 break;
-        }*/
+        }
     }
 }
