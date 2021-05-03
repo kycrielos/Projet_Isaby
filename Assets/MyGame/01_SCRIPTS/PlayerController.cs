@@ -73,6 +73,7 @@ public class PlayerController : MonoBehaviour
             Jump();
             Move();
         }
+        Debug.Log(GameManager.Instance.playerSpeedScale);
     }
 
     //Deplace Le joueur
