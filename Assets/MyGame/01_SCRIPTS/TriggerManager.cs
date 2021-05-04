@@ -35,6 +35,8 @@ public class TriggerManager : MonoBehaviour
                 cam.ShakeCamera();
                 Snake.SetActive(true);
                 break;
+            case string a when a.Contains("AreaChange"):
+                break;
             default:
                 ActivationEventHandler(triggerObj);
                 break;

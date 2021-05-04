@@ -82,6 +82,7 @@ public class GameManager : Singleton<GameManager>
                 anim.SetBool("isFalling", false);
                 anim.SetBool("isDying", false);
                 anim.SetBool("isSliding", false);
+                anim.SetBool("isJumping", false);
                 break;
             case PlayerState.Walking:
                 anim.SetBool("isWalking", true);
@@ -89,6 +90,7 @@ public class GameManager : Singleton<GameManager>
                 anim.SetBool("isFalling", false);
                 anim.SetBool("isDying", false);
                 anim.SetBool("isSliding", false);
+                anim.SetBool("isJumping", false);
                 break;
             case PlayerState.Running:
                 anim.SetBool("isWalking", false);
@@ -96,9 +98,10 @@ public class GameManager : Singleton<GameManager>
                 anim.SetBool("isFalling", false);
                 anim.SetBool("isDying", false);
                 anim.SetBool("isSliding", false);
+                anim.SetBool("isJumping", false);
                 break;
             case PlayerState.Jumping:
-                anim.SetTrigger("isJumping");
+                anim.SetBool("isJumping", true);
                 anim.SetBool("isWalking", false);
                 anim.SetBool("isRunning", false);
                 anim.SetBool("isFalling", false);
@@ -111,6 +114,7 @@ public class GameManager : Singleton<GameManager>
                 anim.SetBool("isFalling", true);
                 anim.SetBool("isDying", false);
                 anim.SetBool("isSliding", false);
+                anim.SetBool("isJumping", false);
                 break;
             case PlayerState.Die:
                 anim.SetBool("isWalking", false);
@@ -118,6 +122,7 @@ public class GameManager : Singleton<GameManager>
                 anim.SetBool("isFalling", false);
                 anim.SetBool("isDying", true);
                 anim.SetBool("isSliding", false);
+                anim.SetBool("isJumping", false);
                 break;
             case PlayerState.Sliding:
                 anim.SetBool("isWalking", false);
@@ -125,6 +130,7 @@ public class GameManager : Singleton<GameManager>
                 anim.SetBool("isFalling", false);
                 anim.SetBool("isDying", false);
                 anim.SetBool("isSliding", true);
+                anim.SetBool("isJumping", false);
                 break;
         }
     }
