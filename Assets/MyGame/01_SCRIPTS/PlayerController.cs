@@ -73,7 +73,6 @@ public class PlayerController : MonoBehaviour
             Jump();
             Move();
         }
-        Debug.Log(GameManager.Instance.playerSpeedScale);
     }
 
     //Deplace Le joueur
@@ -84,7 +83,7 @@ public class PlayerController : MonoBehaviour
 
         moveDirection = new Vector3(movementx, 0, movementy);
         Vector3.Normalize(moveDirection);
-        //Debug.Log(GameManager.Instance.currentState);
+        Debug.Log(GameManager.Instance.currentState);
 
         //Deplace Le Joueur
         if (GameManager.Instance.currentState == GameManager.PlayerState.Sliding)
