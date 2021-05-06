@@ -72,7 +72,7 @@ public class PlayerPhysics : MonoBehaviour
                 GameManager.Instance.isGrounded = true;
                 if (fallingDuration > 0.1f)
                 {
-                    playerDamage.Damaged(Mathf.Exp(fallingDuration * 10) * FallingDamage);
+                    playerDamage.Damaged(Mathf.Exp(fallingDuration * 9) * FallingDamage);
                     dust.Play();
                 }
                 fallingDuration = 0;
