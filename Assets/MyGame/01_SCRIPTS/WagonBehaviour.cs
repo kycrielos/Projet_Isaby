@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WagonBehaviour : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class WagonBehaviour : MonoBehaviour
 
                 if (index == keys.Length)
                 {
-                    Debug.Log("KONAMI");
+                    SceneManager.LoadScene(1);
                     timer = 0f;
                     index = 0;
                 }

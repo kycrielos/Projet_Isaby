@@ -80,8 +80,11 @@ public class GameManager : Singleton<GameManager>
 
     private void Update()
     {
-        RefreshAnimation();
-        RefreshSound();
+        if (anim != null)
+        {
+            RefreshAnimation();
+            RefreshSound();
+        }
     }
 
     public void RefreshAnimation()
