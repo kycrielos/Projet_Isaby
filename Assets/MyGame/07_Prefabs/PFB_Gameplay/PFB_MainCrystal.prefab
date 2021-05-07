@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7390519165040994936}
   - component: {fileID: 7390519165040994937}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MiddleRig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 7390519165053691056}
   - component: {fileID: 7390519165053691057}
   - component: {fileID: 7390519165053691058}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7390519165085389381}
   - component: {fileID: 7390519165085389380}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CrystalTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 7390519165296909972}
   - component: {fileID: 7390519165296909973}
   - component: {fileID: 7390519165296909974}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -381,7 +381,7 @@ GameObject:
   - component: {fileID: 7390519165590465518}
   - component: {fileID: 7390519165590465516}
   - component: {fileID: 7390519165590465517}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -523,7 +523,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7390519165651174812}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PFB_MainCrystal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -558,7 +558,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7390519165983845117}
   - component: {fileID: 7390519165983845118}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BottomRig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -634,7 +634,7 @@ GameObject:
   - component: {fileID: 7390519166203110412}
   - component: {fileID: 7390519166203110413}
   - component: {fileID: 7390519166203110414}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -760,7 +760,7 @@ GameObject:
   - component: {fileID: 7390519166293005768}
   - component: {fileID: 7390519166293005769}
   - component: {fileID: 7390519166293005770}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -854,7 +854,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7390519166359816800}
   - component: {fileID: 7390519166359816801}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CM FreeLook1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -989,7 +989,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7390519166425194330}
   - component: {fileID: 7390519166425194331}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TopRig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1066,7 +1066,7 @@ GameObject:
   - component: {fileID: 7390519166497230130}
   - component: {fileID: 7390519166497230131}
   - component: {fileID: 7390519166497230128}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Crystal
   m_TagString: Crystal
   m_Icon: {fileID: 0}
