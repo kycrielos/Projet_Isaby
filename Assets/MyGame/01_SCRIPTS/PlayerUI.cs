@@ -15,8 +15,7 @@ public class PlayerUI : MonoBehaviour
 
     public GameObject winnSprite;
 
-    public GameObject pressESprite;
-
+    public Text pressESprite;
 
     private void Start()
     {
@@ -74,11 +73,11 @@ public class PlayerUI : MonoBehaviour
 
             if (GameManager.Instance.playerIsInActivableObject)
             {
-                pressESprite.SetActive(true);
+                pressESprite.text = "Press E";
             }
             else
             {
-                pressESprite.SetActive(false);
+                pressESprite.text = "";
             }
         }
         else

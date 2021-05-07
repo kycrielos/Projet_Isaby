@@ -36,6 +36,22 @@ public class GameManager : Singleton<GameManager>
 
     public float playerSpeedScale;
 
+    private AudioSource ambientSFX;
+    private AudioSource snakeEffectsSFX;
+    private AudioSource playerEffectsSFX;
+
+    private void Awake()
+    {
+        InitializeAudioSources();
+    }
+
+    private void InitializeAudioSources()
+    {
+        ambientSFX = this.gameObject.AddComponent<AudioSource>();
+        snakeEffectsSFX = this.gameObject.AddComponent<AudioSource>();
+        playerEffectsSFX = this.gameObject.AddComponent<AudioSource>();
+    }
+
     public enum PlayerState
     {
         Idle,
@@ -62,9 +78,16 @@ public class GameManager : Singleton<GameManager>
         RefreshUI?.Invoke();
     }
 
+    private void Update()
+    {
+        RefreshAnimation();
+        RefreshSound();
+    }
+
     public void RefreshAnimation()
     {
         anim.SetFloat("Speed", playerSpeedScale);
+
         if (isGrounded)
         {
             anim.SetBool("isGrounded", true);
@@ -133,5 +156,58 @@ public class GameManager : Singleton<GameManager>
                 anim.SetBool("isJumping", false);
                 break;
         }
+    }
+
+    public void RefreshSound()
+    {
+        switch (currentState)
+        {
+            case PlayerState.Idle:
+                actualPlayerSound = SoundName.None;
+                playerEffectsSFX.Stop();
+                break;
+            case PlayerState.Walking:
+                playerEffectsSFX.Stop();
+                break;
+            case PlayerState.Running:
+                if (actualPlayerSound != SoundName.SFX_Sprint)
+                {
+                    actualPlayerSound = SoundName.SFX_Sprint;
+                    playerEffectsSFX.clip = (AudioClip)Resources.Load(GetSoundLoc(SoundName.SFX_Sprint));
+                    playerEffectsSFX.loop = true;
+                    playerEffectsSFX.volume = 1;
+                    playerEffectsSFX.Play();
+                }
+                break;
+            case PlayerState.Jumping:
+                playerEffectsSFX.Stop();
+                break;
+            case PlayerState.Falling:
+                playerEffectsSFX.Stop();
+                break;
+            case PlayerState.Die:
+                playerEffectsSFX.Stop();
+                break;
+            case PlayerState.Sliding:
+                playerEffectsSFX.Stop();
+                break;
+            default:
+                playerEffectsSFX.Stop();
+                actualPlayerSound = SoundName.None;
+                break;
+        }
+    }
+    public enum SoundName
+    {
+        None, SFX_Ambiant, SFX_Levier, SFX_Serpent_Aspiration,
+        SFX_Serpent_Crachat, SFX_Serpent_PreAspiration, SFX_Serpent_PreCrachat,
+        SFX_Sprint,
+    }
+
+    public SoundName actualPlayerSound;
+
+    public string GetSoundLoc(SoundName sl)
+    {
+        return "SoundFX/" + sl.ToString();
     }
 }

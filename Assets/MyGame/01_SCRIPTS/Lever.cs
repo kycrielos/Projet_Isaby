@@ -12,6 +12,8 @@ public class Lever : MonoBehaviour
     public GameObject activeOnObj;
     public GameObject activeOffObj;
 
+    public AudioSource LevierSFX;
+
     private void Start()
     {
         TriggerManager.Activation += ActivateDoor;
@@ -41,6 +43,8 @@ public class Lever : MonoBehaviour
                 activeOnObj.SetActive(false);
                 activeOffObj.SetActive(true);
             }
+
+            LevierSFX.Play();
         }
 
     }

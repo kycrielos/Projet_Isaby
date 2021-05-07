@@ -523,7 +523,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4352775492037798591
 RectTransform:
   m_ObjectHideFlags: 0
@@ -584,7 +584,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press E
+  m_Text: 
 --- !u!1 &3926472172818096800
 GameObject:
   m_ObjectHideFlags: 0
@@ -2123,7 +2123,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 4483334178269316903}
   inGameInterface: {fileID: 3950059028594068295}
   winnSprite: {fileID: 4528652043056677375}
-  pressESprite: {fileID: 3757605653811880517}
+  pressESprite: {fileID: 5162071887810425553}
 --- !u!1 &8695770722448924691
 GameObject:
   m_ObjectHideFlags: 0

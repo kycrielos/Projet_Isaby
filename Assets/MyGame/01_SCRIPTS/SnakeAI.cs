@@ -21,6 +21,12 @@ public class SnakeAI : MonoBehaviour
 
     public float speed;
 
+    public AudioSource CrachatSFX;
+    public AudioSource PreCrachatSFX;
+
+    public AudioSource AspirationSFX;
+    public AudioSource PreAspirationSFX;
+
     public enum SnakeState
     {
         Idle,
@@ -40,6 +46,7 @@ public class SnakeAI : MonoBehaviour
         if (currentState == SnakeState.Aspiration)
         {
             StartCoroutine(Aspiration());
+            AspirationSFX.Play();
         }
         else
         {
@@ -48,6 +55,7 @@ public class SnakeAI : MonoBehaviour
 
         if (currentState == SnakeState.Shoot)
         {
+            CrachatSFX.Play();
             Instantiate(bullet, head.position + transform.forward * spawnDistance, transform.rotation);
             currentState = SnakeState.Idle;
             cdTimer = 0;
@@ -84,13 +92,14 @@ public class SnakeAI : MonoBehaviour
                         if (randomNumber == 0)
                         {
                             currentState = SnakeState.PreAspiration;
+                            PreAspirationSFX.Play();
                         }
                         else
                         {
                             currentState = SnakeState.PreShoot;
+                            PreCrachatSFX.Play();
                         }
                     }
-                    currentState = SnakeState.PreShoot;
                     cdTimer = 0;
                     StartCoroutine(DelayAttack());
                 }

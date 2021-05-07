@@ -47,7 +47,6 @@ public class PlayerRespawn : MonoBehaviour
         physics.timeSinceGrounded = 0;
         physics.fallingDuration = 0;
         GameManager.Instance.currentState = GameManager.PlayerState.Idle;
-        GameManager.Instance.RefreshAnimation();
     }
 
     ~PlayerRespawn()

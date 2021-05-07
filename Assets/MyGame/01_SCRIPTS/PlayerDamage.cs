@@ -19,7 +19,6 @@ public class PlayerDamage : MonoBehaviour
         if (GameManager.Instance.playerHP == 0)
         {
             GameManager.Instance.currentState = GameManager.PlayerState.Die;
-            GameManager.Instance.RefreshAnimation();
             PlayerDieEventHandler();
         }
     }
