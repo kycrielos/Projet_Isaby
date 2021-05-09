@@ -28,6 +28,7 @@ public class CrystalRotate : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, camTransform.position - transform.position, step, 0));
             if (Input.GetButtonDown("Interaction") && isReady)
             {
+                GameManager.Instance.currentState = GameManager.PlayerState.Idle;
                 GameManager.Instance.player.SetActive(true);
                 camscript.Priority = 0;
                 isReady = false;
@@ -44,6 +45,7 @@ public class CrystalRotate : MonoBehaviour
         {
             camscript.Priority = 11;
             isReady = false;
+            GameManager.Instance.currentState = GameManager.PlayerState.None;
             GameManager.Instance.player.SetActive(false);
             activated = true;
             StartCoroutine(ActionDelay());

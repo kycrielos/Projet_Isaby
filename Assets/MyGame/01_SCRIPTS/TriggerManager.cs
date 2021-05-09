@@ -26,10 +26,6 @@ public class TriggerManager : MonoBehaviour
                 GameManager.Instance.playerHP = 3;
                 GameManager.Instance.RefreshUIActivation();
                 break;
-            case string a when a.Contains("Coin"):
-                Destroy(triggerObj);
-                GameManager.Instance.coinNumbers += 1;
-                break;
             case string a when a.Contains("SnakeSpawner"):
                 Destroy(triggerObj);
                 cam.ShakeCamera();

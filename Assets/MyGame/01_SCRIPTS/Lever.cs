@@ -44,7 +44,8 @@ public class Lever : MonoBehaviour
                 activeOffObj.SetActive(true);
             }
 
-            LevierSFX.Play();
+            GameManager.Instance.StopSound("Other");
+            GameManager.Instance.PlaySound(GameManager.SoundName.Levier, "Other", false);
         }
 
     }

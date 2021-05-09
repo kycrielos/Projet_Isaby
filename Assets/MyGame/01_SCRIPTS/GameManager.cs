@@ -25,7 +25,6 @@ public class GameManager : Singleton<GameManager>
     public int maxPlayerHp = 3;
     public int playerHP = 3;
 
-    public int coinNumbers;
     public int teddyPartsNumbers;
     public bool playerIsInActivableObject;
 
@@ -37,8 +36,9 @@ public class GameManager : Singleton<GameManager>
     public float playerSpeedScale;
 
     private AudioSource ambientSFX;
-    private AudioSource snakeEffectsSFX;
     private AudioSource playerEffectsSFX;
+    private AudioSource snakeEffectsSFX;
+    private AudioSource otherSFX;
 
     private void Awake()
     {
@@ -48,8 +48,9 @@ public class GameManager : Singleton<GameManager>
     private void InitializeAudioSources()
     {
         ambientSFX = this.gameObject.AddComponent<AudioSource>();
-        snakeEffectsSFX = this.gameObject.AddComponent<AudioSource>();
         playerEffectsSFX = this.gameObject.AddComponent<AudioSource>();
+        snakeEffectsSFX = this.gameObject.AddComponent<AudioSource>();
+        otherSFX = this.gameObject.AddComponent<AudioSource>();
     }
 
     public enum PlayerState
@@ -61,6 +62,7 @@ public class GameManager : Singleton<GameManager>
         Falling,
         Die,
         Sliding,
+        None,
     }
 
     public delegate void RefreshUIEvent();
@@ -68,6 +70,16 @@ public class GameManager : Singleton<GameManager>
 
     public GameObject player;
     public PlayerState currentState = PlayerState.Idle;
+
+    public enum SnakeState
+    {
+        Idle,
+        PreAspiration,
+        PreShoot,
+        Aspiration,
+        Shoot,
+    }
+    public SnakeState currentSnakeState = SnakeState.Idle;
 
     public void RefreshUIActivation()
     {
@@ -80,14 +92,113 @@ public class GameManager : Singleton<GameManager>
 
     private void Update()
     {
-        if (anim != null)
+        if (player != null)
         {
-            RefreshAnimation();
-            RefreshSound();
+            ActualisePlayerState();
+            ActualiseSnakeState();
+            ActualiseAnimation();
         }
     }
 
-    public void RefreshAnimation()
+    public void ActualisePlayerState()
+    {
+        switch (currentState)
+        {
+            case PlayerState.Idle:
+                anim.SetBool("isWalking", false);
+                anim.SetBool("isRunning", false);
+                anim.SetBool("isFalling", false);
+                anim.SetBool("isDying", false);
+                anim.SetBool("isSliding", false);
+                anim.SetBool("isJumping", false);
+                StopSound("Player");
+                break;
+            case PlayerState.Walking:
+                anim.SetBool("isWalking", true);
+                anim.SetBool("isRunning", false);
+                anim.SetBool("isFalling", false);
+                anim.SetBool("isDying", false);
+                anim.SetBool("isSliding", false);
+                anim.SetBool("isJumping", false);
+                StopSound("Player");
+                break;
+            case PlayerState.Running:
+                anim.SetBool("isWalking", false);
+                anim.SetBool("isRunning", true);
+                anim.SetBool("isFalling", false);
+                anim.SetBool("isDying", false);
+                anim.SetBool("isSliding", false);
+                anim.SetBool("isJumping", false);
+                PlaySound(SoundName.Sprint, "Player", true);
+                break;
+            case PlayerState.Jumping:
+                anim.SetBool("isJumping", true);
+                anim.SetBool("isWalking", false);
+                anim.SetBool("isRunning", false);
+                anim.SetBool("isFalling", false);
+                anim.SetBool("isDying", false);
+                anim.SetBool("isSliding", false);
+                StopSound("Player");
+                break;
+            case PlayerState.Falling:
+                anim.SetBool("isWalking", false);
+                anim.SetBool("isRunning", false);
+                anim.SetBool("isFalling", true);
+                anim.SetBool("isDying", false);
+                anim.SetBool("isSliding", false);
+                anim.SetBool("isJumping", false);
+                StopSound("Player");
+                break;
+            case PlayerState.Die:
+                anim.SetBool("isWalking", false);
+                anim.SetBool("isRunning", false);
+                anim.SetBool("isFalling", false);
+                anim.SetBool("isDying", true);
+                anim.SetBool("isSliding", false);
+                anim.SetBool("isJumping", false);
+                StopSound("Player");
+                break;
+            case PlayerState.Sliding:
+                anim.SetBool("isWalking", false);
+                anim.SetBool("isRunning", false);
+                anim.SetBool("isFalling", false);
+                anim.SetBool("isDying", false);
+                anim.SetBool("isSliding", true);
+                anim.SetBool("isJumping", false);
+                StopSound("Player");
+                break;
+            default:
+                StopSound("Player");
+                break;
+        }
+    }
+
+    public void ActualiseSnakeState()
+    {
+        switch (currentSnakeState)
+        {
+            case SnakeState.Idle:
+                StopSound("Snake");
+                break;
+            case SnakeState.PreAspiration:
+                PlaySound(SoundName.Serpent_PreAspiration, "Snake", false);
+                break;
+            case SnakeState.PreShoot:
+                PlaySound(SoundName.Serpent_PreCrachat, "Snake", false);
+                break;
+            case SnakeState.Aspiration:
+                PlaySound(SoundName.Serpent_Aspiration, "Snake", false);
+                break;
+            case SnakeState.Shoot:
+                PlaySound(SoundName.Serpent_Crachat, "Snake", false);
+                break;
+            default:
+                StopSound("Snake");
+                break;
+        }
+    }
+
+    public void ActualiseAnimation()
     {
         anim.SetFloat("Speed", playerSpeedScale);
 
@@ -99,118 +210,97 @@ public class GameManager : Singleton<GameManager>
         {
             anim.SetBool("isGrounded", false);
         }
-
-        switch (currentState)
-        {
-            case PlayerState.Idle:
-                anim.SetBool("isWalking", false);
-                anim.SetBool("isRunning", false);
-                anim.SetBool("isFalling", false);
-                anim.SetBool("isDying", false);
-                anim.SetBool("isSliding", false);
-                anim.SetBool("isJumping", false);
-                break;
-            case PlayerState.Walking:
-                anim.SetBool("isWalking", true);
-                anim.SetBool("isRunning", false);
-                anim.SetBool("isFalling", false);
-                anim.SetBool("isDying", false);
-                anim.SetBool("isSliding", false);
-                anim.SetBool("isJumping", false);
-                break;
-            case PlayerState.Running:
-                anim.SetBool("isWalking", false);
-                anim.SetBool("isRunning", true);
-                anim.SetBool("isFalling", false);
-                anim.SetBool("isDying", false);
-                anim.SetBool("isSliding", false);
-                anim.SetBool("isJumping", false);
-                break;
-            case PlayerState.Jumping:
-                anim.SetBool("isJumping", true);
-                anim.SetBool("isWalking", false);
-                anim.SetBool("isRunning", false);
-                anim.SetBool("isFalling", false);
-                anim.SetBool("isDying", false);
-                anim.SetBool("isSliding", false);
-                break;
-            case PlayerState.Falling:
-                anim.SetBool("isWalking", false);
-                anim.SetBool("isRunning", false);
-                anim.SetBool("isFalling", true);
-                anim.SetBool("isDying", false);
-                anim.SetBool("isSliding", false);
-                anim.SetBool("isJumping", false);
-                break;
-            case PlayerState.Die:
-                anim.SetBool("isWalking", false);
-                anim.SetBool("isRunning", false);
-                anim.SetBool("isFalling", false);
-                anim.SetBool("isDying", true);
-                anim.SetBool("isSliding", false);
-                anim.SetBool("isJumping", false);
-                break;
-            case PlayerState.Sliding:
-                anim.SetBool("isWalking", false);
-                anim.SetBool("isRunning", false);
-                anim.SetBool("isFalling", false);
-                anim.SetBool("isDying", false);
-                anim.SetBool("isSliding", true);
-                anim.SetBool("isJumping", false);
-                break;
-        }
     }
 
-    public void RefreshSound()
+    public void PlaySound(SoundName soundName, string soundType, bool loop)
     {
-        switch (currentState)
+        switch (soundType)
         {
-            case PlayerState.Idle:
-                actualPlayerSound = SoundName.None;
-                playerEffectsSFX.Stop();
-                break;
-            case PlayerState.Walking:
-                playerEffectsSFX.Stop();
-                break;
-            case PlayerState.Running:
-                if (actualPlayerSound != SoundName.SFX_Sprint)
+            case "Player":
+                if (actualPlayerSound != soundName)
                 {
-                    actualPlayerSound = SoundName.SFX_Sprint;
-                    playerEffectsSFX.clip = (AudioClip)Resources.Load(GetSoundLoc(SoundName.SFX_Sprint));
-                    playerEffectsSFX.loop = true;
+                    actualPlayerSound = soundName;
+                    playerEffectsSFX.clip = (AudioClip)Resources.Load(GetSoundLoc(soundName));
+                    playerEffectsSFX.loop = loop;
                     playerEffectsSFX.volume = 1;
                     playerEffectsSFX.Play();
                 }
                 break;
-            case PlayerState.Jumping:
-                playerEffectsSFX.Stop();
+            case "Snake":
+                if (actualSnakeSound != soundName)
+                {
+                    actualSnakeSound = soundName;
+                    snakeEffectsSFX.clip = (AudioClip)Resources.Load(GetSoundLoc(soundName));
+                    snakeEffectsSFX.loop = loop;
+                    snakeEffectsSFX.volume = 1;
+                    snakeEffectsSFX.Play();
+                }
                 break;
-            case PlayerState.Falling:
-                playerEffectsSFX.Stop();
+            case "Ambient":
                 break;
-            case PlayerState.Die:
-                playerEffectsSFX.Stop();
-                break;
-            case PlayerState.Sliding:
-                playerEffectsSFX.Stop();
-                break;
-            default:
-                playerEffectsSFX.Stop();
-                actualPlayerSound = SoundName.None;
+            case "Other":
+                if (actualOtherSound != soundName)
+                {
+                    actualOtherSound = soundName;
+                    otherSFX.clip = (AudioClip)Resources.Load(GetSoundLoc(soundName));
+                    otherSFX.loop = loop;
+                    otherSFX.volume = 1;
+                    otherSFX.Play();
+                }
                 break;
         }
     }
+
+    public void StopSound(string soundType)
+    {
+        switch (soundType)
+        {
+            case "Player":
+                playerEffectsSFX.Stop();
+                actualPlayerSound = SoundName.None;
+                break;
+            case "Snake":
+                snakeEffectsSFX.Stop();
+                actualSnakeSound = SoundName.None;
+                break;
+            case "Ambient":
+                break;
+            case "Other":
+                otherSFX.Stop();
+                actualOtherSound = SoundName.None;
+                break;
+        }
+    }
+
+    public void PauseSound()
+    {
+        if (pause)
+        {
+            playerEffectsSFX.Pause();
+            snakeEffectsSFX.Pause();
+            otherSFX.Pause();
+        }
+        else
+        {
+            playerEffectsSFX.Play();
+            snakeEffectsSFX.Play();
+            otherSFX.Play();
+        }
+    }
+
     public enum SoundName
     {
-        None, SFX_Ambiant, SFX_Levier, SFX_Serpent_Aspiration,
-        SFX_Serpent_Crachat, SFX_Serpent_PreAspiration, SFX_Serpent_PreCrachat,
-        SFX_Sprint,
+        None, Ambiant, Levier, Serpent_Aspiration,
+        Serpent_Crachat, Serpent_PreAspiration, Serpent_PreCrachat,
+        Sprint,
     }
 
     public SoundName actualPlayerSound;
+    public SoundName actualSnakeSound;
+    public SoundName actualOtherSound;
 
     public string GetSoundLoc(SoundName sl)
     {
-        return "SoundFX/" + sl.ToString();
+        return "SoundFX/SFX_" + sl.ToString();
     }
 }

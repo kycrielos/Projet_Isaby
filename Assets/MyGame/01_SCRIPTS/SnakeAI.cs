@@ -16,49 +16,35 @@ public class SnakeAI : MonoBehaviour
 
     private int randomNumber;
 
-    public GameObject bullet;
+    public GameObject bulletPrefab;
+    private GameObject bullet;
     public float spawnDistance;
 
     public float speed;
 
-    public AudioSource CrachatSFX;
-    public AudioSource PreCrachatSFX;
-
-    public AudioSource AspirationSFX;
-    public AudioSource PreAspirationSFX;
-
-    public enum SnakeState
-    {
-        Idle,
-        PreAspiration,
-        PreShoot,
-        Aspiration,
-        Shoot,
-    }
-
-    public SnakeState currentState = SnakeState.Idle;
-
+    
     // Update is called once per frame
     void Update()
     {
         AI(); 
 
-        if (currentState == SnakeState.Aspiration)
+        if (GameManager.Instance.currentSnakeState == GameManager.SnakeState.Aspiration)
         {
             StartCoroutine(Aspiration());
-            AspirationSFX.Play();
         }
         else
         {
             FollowPlayer();
         }
 
-        if (currentState == SnakeState.Shoot)
+        if (GameManager.Instance.currentSnakeState == GameManager.SnakeState.Shoot)
         {
-            CrachatSFX.Play();
-            Instantiate(bullet, head.position + transform.forward * spawnDistance, transform.rotation);
-            currentState = SnakeState.Idle;
-            cdTimer = 0;
+            if (bullet == null)
+            {
+                bullet = Instantiate(bulletPrefab, head.position + transform.forward * spawnDistance, transform.rotation);
+                StartCoroutine(DelayStateChange(GameManager.SnakeState.Idle, 0.8f));
+                cdTimer = 0;
+            }
         }
     }
 
@@ -71,7 +57,7 @@ public class SnakeAI : MonoBehaviour
 
     void AI()
     {
-        if (currentState == SnakeState.Idle)
+        if (GameManager.Instance.currentSnakeState == GameManager.SnakeState.Idle)
         {
             cdTimer += Time.deltaTime;
             if (cdTimer > cooldown && Physics.Linecast(head.position, GameManager.Instance.player.transform.position + new Vector3(0, 1, 0), out RaycastHit hitinfo))
@@ -80,44 +66,40 @@ public class SnakeAI : MonoBehaviour
                 {
                     if (GameManager.Instance.currentState == GameManager.PlayerState.Jumping || GameManager.Instance.currentState == GameManager.PlayerState.Falling)
                     {
-                        currentState = SnakeState.PreAspiration;
+                        GameManager.Instance.currentSnakeState = GameManager.SnakeState.PreAspiration;
+                        StartCoroutine(DelayStateChange(GameManager.SnakeState.Aspiration, delayDuration));
                     }
                     else if (PlayerPhysics.playerIsOnMovablePlatform)
                     {
-                        currentState = SnakeState.PreShoot;
+                        GameManager.Instance.currentSnakeState = GameManager.SnakeState.PreShoot;
+                        StartCoroutine(DelayStateChange(GameManager.SnakeState.Shoot, delayDuration));
                     }
                     else
                     {
                         randomNumber = Random.Range(0, 2);
                         if (randomNumber == 0)
                         {
-                            currentState = SnakeState.PreAspiration;
-                            PreAspirationSFX.Play();
+                            GameManager.Instance.currentSnakeState = GameManager.SnakeState.PreAspiration;
+                            StartCoroutine(DelayStateChange(GameManager.SnakeState.Aspiration, delayDuration));
                         }
                         else
                         {
-                            currentState = SnakeState.PreShoot;
-                            PreCrachatSFX.Play();
+                            GameManager.Instance.currentSnakeState = GameManager.SnakeState.PreShoot;
+                            StartCoroutine(DelayStateChange(GameManager.SnakeState.Shoot, delayDuration));
                         }
                     }
+                    GameManager.Instance.currentSnakeState = GameManager.SnakeState.PreShoot;
+                    StartCoroutine(DelayStateChange(GameManager.SnakeState.Shoot, delayDuration));
                     cdTimer = 0;
-                    StartCoroutine(DelayAttack());
                 }
             }
         }
     } 
 
-    IEnumerator DelayAttack()
+    IEnumerator DelayStateChange(GameManager.SnakeState state, float delay)
     {
-        yield return new WaitForSeconds(delayDuration);
-        if (currentState == SnakeState.PreAspiration)
-        {
-            currentState = SnakeState.Aspiration;
-        }
-        else if (currentState == SnakeState.PreShoot)
-        {
-            currentState = SnakeState.Shoot;
-        }
+        yield return new WaitForSeconds(delay);
+        GameManager.Instance.currentSnakeState = state;
     }
 
     IEnumerator Aspiration()
@@ -125,7 +107,7 @@ public class SnakeAI : MonoBehaviour
         aspirationArea.SetActive(true);
          yield return new WaitForSeconds(aspirationDuration);
         aspirationArea.SetActive(false);
-        currentState = SnakeState.Idle;
+        GameManager.Instance.currentSnakeState = GameManager.SnakeState.Idle;
         cdTimer = 0;
     }
 }

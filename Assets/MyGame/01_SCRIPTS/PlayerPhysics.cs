@@ -77,14 +77,12 @@ public class PlayerPhysics : MonoBehaviour
                 }
                 fallingDuration = 0;
                 timeSinceGrounded = 0;
-                GameManager.Instance.RefreshAnimation();
             }
             else
             {
                 sliding = true;
                 GameManager.Instance.isGrounded = false;
                 GameManager.Instance.currentState = GameManager.PlayerState.Sliding;
-                GameManager.Instance.RefreshAnimation();
             }
 
         }
@@ -92,7 +90,6 @@ public class PlayerPhysics : MonoBehaviour
         {
             sliding = false;
             GameManager.Instance.isGrounded = false;
-            GameManager.Instance.RefreshAnimation();
             if (GameManager.Instance.currentState == GameManager.PlayerState.Falling)
             {
                 fallingDuration += Time.deltaTime;
@@ -115,7 +112,6 @@ public class PlayerPhysics : MonoBehaviour
             if (timeSinceGrounded >= 0.1f && !sliding)
             {
                 GameManager.Instance.currentState = GameManager.PlayerState.Falling;
-                GameManager.Instance.RefreshAnimation();
             }
         }
         else

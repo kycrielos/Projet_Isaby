@@ -26,9 +26,9 @@ public class SnakeHead : MonoBehaviour
     private void FollowPlayer()
     {
         transform.position = new Vector3(snake.transform.position.x, transform.position.y, snake.transform.position.z);
-        if (snakeScript.currentState != SnakeAI.SnakeState.Aspiration)
+        if (GameManager.Instance.currentSnakeState != GameManager.SnakeState.Aspiration)
         {
-            Vector3 targetDirection = GameManager.Instance.player.transform.position - transform.position;
+            Vector3 targetDirection = GameManager.Instance.player.transform.position - transform.position + new Vector3(0, 0.6f, 0);
             float singleStep = speed * Time.deltaTime;
             transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0));
         }

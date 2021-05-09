@@ -62,11 +62,13 @@ public class PlayerController : MonoBehaviour
             if (GameManager.Instance.pause)
             {
                 Time.timeScale = 0f;
+                GameManager.Instance.PauseSound();
                 GameManager.Instance.RefreshUIActivation();
             }
             else
             {
                 Time.timeScale = 1f;
+                GameManager.Instance.PauseSound();
                 GameManager.Instance.RefreshUIActivation();
             }
         }
@@ -110,7 +112,6 @@ public class PlayerController : MonoBehaviour
                     }
                     GameManager.Instance.playerSpeedScale = (speed - walkSpeed)/(sprintSpeed - walkSpeed);
                     GameManager.Instance.currentState = GameManager.PlayerState.Running;
-                    GameManager.Instance.RefreshAnimation();
                 }
                 else
                 {
@@ -124,7 +125,6 @@ public class PlayerController : MonoBehaviour
                     }
                     GameManager.Instance.playerSpeedScale = (speed - walkSpeed) / (sprintSpeed - walkSpeed);
                     GameManager.Instance.currentState = GameManager.PlayerState.Walking;
-                    GameManager.Instance.RefreshAnimation();
                 }
             }
             float targetAngle = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
@@ -137,7 +137,6 @@ public class PlayerController : MonoBehaviour
         else if (GameManager.Instance.isGrounded && GameManager.Instance.currentState != GameManager.PlayerState.Jumping)
         {
             GameManager.Instance.currentState = GameManager.PlayerState.Idle;
-            GameManager.Instance.RefreshAnimation();
             speed = walkSpeed;
         }
         else
@@ -152,7 +151,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && GameManager.Instance.currentState != GameManager.PlayerState.Jumping && physics.timeSinceGrounded <= jumpDelay)
         {
             GameManager.Instance.currentState = GameManager.PlayerState.Jumping;
-            GameManager.Instance.RefreshAnimation();
             jumpInput = 1;
             physics.timeSinceGrounded = 0;
         }
@@ -179,7 +177,6 @@ public class PlayerController : MonoBehaviour
             else if (!physics.sliding)
             {
                 GameManager.Instance.currentState = GameManager.PlayerState.Falling;
-                GameManager.Instance.RefreshAnimation();
                 jumpInput = 0;
             }
         }

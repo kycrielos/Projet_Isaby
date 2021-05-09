@@ -29,7 +29,7 @@ public class SnakeBullet : MonoBehaviour
     void Start()
     {
         float x = Random.Range(1f, 1.5f);
-        targetPositionFocus = predictedPosition(GameManager.Instance.player.transform.position, transform.position, GameManager.Instance.player.GetComponent<CharacterController>().velocity, speed * x);
+        targetPositionFocus = predictedPosition(GameManager.Instance.player.transform.position + new Vector3(0,0.6f,0), transform.position, GameManager.Instance.player.GetComponent<CharacterController>().velocity, speed * x);
         Destroy(this.gameObject, 4);
     }
 
@@ -54,10 +54,9 @@ public class SnakeBullet : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        if (other.tag != "NotTargetable")
+        if (other.GetComponent<Collider>().isTrigger == false)
         {
-            Debug.Log(other.name);
-            Destroy(this.gameObject, 0.2f);
+            Destroy(this.gameObject);
         }
     }
 }
