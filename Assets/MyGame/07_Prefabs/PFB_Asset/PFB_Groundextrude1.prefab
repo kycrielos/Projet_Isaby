@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2803453610831329976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2291315339107048945}
+  - component: {fileID: 6059175127706559150}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &2291315339107048945
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2803453610831329976}
+  m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
+  m_LocalPosition: {x: -869, y: -39, z: 1398}
+  m_LocalScale: {x: 0.9972433, y: 0.9972433, z: 0.9972433}
+  m_Children: []
+  m_Father: {fileID: 5214191183870731145}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &6059175127706559150
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2803453610831329976}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3477811198591300482, guid: 2fb60ef5f8e496440b24dfd2689f0b48, type: 3}
 --- !u!1 &3910140437842186199
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,12 +54,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6094595566244515635}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: extrude1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6094595566244515635
 Transform:
@@ -40,12 +85,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5214191183870731145}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PFB_Groundextrude1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5214191183870731145
 Transform:
@@ -59,6 +104,7 @@ Transform:
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
   - {fileID: 6094595566244515635}
+  - {fileID: 2291315339107048945}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -73,12 +119,12 @@ GameObject:
   - component: {fileID: 866774874883806671}
   - component: {fileID: 6486280441725981665}
   - component: {fileID: 5344568691985276399}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: extrude1_lp:Group34296
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &866774874883806671
 Transform:

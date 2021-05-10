@@ -97,7 +97,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5050151852730046340}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PFB_GroundRoom2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 1509700779011962162}
   - component: {fileID: 7633468147887714088}
   - component: {fileID: 2047568677864475951}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Room2_Ground_lp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1866946795211959369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5191597628255794924}
+  - component: {fileID: 95411600151118541}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &5191597628255794924
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866946795211959369}
+  m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
+  m_LocalPosition: {x: 1049.3, y: -45.987, z: -205.03}
+  m_LocalScale: {x: 0.9979523, y: 0.9979523, z: 0.9979523}
+  m_Children: []
+  m_Father: {fileID: 6258182176039416563}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &95411600151118541
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866946795211959369}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7312418763873560859, guid: 3ab0a68f25296ea46965f7f3c29107f7, type: 3}
 --- !u!1 &2658099625071841138
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,12 +54,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1966989593429333569}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: extrude2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1966989593429333569
 Transform:
@@ -42,12 +87,12 @@ GameObject:
   - component: {fileID: 6646832825573844367}
   - component: {fileID: 7904774097889104064}
   - component: {fileID: 5285315877233690898}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: extrude2_lp:Group15177
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6646832825573844367
 Transform:
@@ -121,12 +166,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6258182176039416563}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PFB_Groundextrude2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6258182176039416563
 Transform:
@@ -140,6 +185,7 @@ Transform:
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
   - {fileID: 1966989593429333569}
+  - {fileID: 5191597628255794924}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

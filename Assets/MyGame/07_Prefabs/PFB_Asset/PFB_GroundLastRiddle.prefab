@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &963722199026251796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7618783424220421714}
+  - component: {fileID: 7343407712681472443}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &7618783424220421714
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963722199026251796}
+  m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -28, z: 0}
+  m_LocalScale: {x: 1.0040882, y: 1.0040882, z: 1.0040882}
+  m_Children: []
+  m_Father: {fileID: 8188981192676387282}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &7343407712681472443
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963722199026251796}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4732109521545328990, guid: 67b42adba1a22994eb9016a64a77f20f, type: 3}
 --- !u!1 &2719528998222697904
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,12 +56,12 @@ GameObject:
   - component: {fileID: 6924397615003613575}
   - component: {fileID: 285922035646703002}
   - component: {fileID: 6070871552341203664}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LastRiddle_lp:Group25423
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6924397615003613575
 Transform:
@@ -90,12 +135,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8188981192676387282}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PFB_GroundLastRiddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8188981192676387282
 Transform:
@@ -109,6 +154,7 @@ Transform:
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
   - {fileID: 6924397615003613575}
+  - {fileID: 7618783424220421714}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
