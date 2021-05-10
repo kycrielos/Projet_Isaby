@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3529159063959007819}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PFB_transitionGround3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 552810790987942713}
   - component: {fileID: 8384844776970242023}
   - component: {fileID: 8021168802126426851}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: transitionSol_bloc3_lp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

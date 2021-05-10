@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3056353235310158237}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PFB_Rock2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8152801181523386346}
   - component: {fileID: 1179957804385602437}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6387795096363911438}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: cailloux2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 6175491255498135036}
   - component: {fileID: 4549375788997216959}
   - component: {fileID: 2955792244608222810}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: cailloux2_lp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
