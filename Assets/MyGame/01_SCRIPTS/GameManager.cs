@@ -8,7 +8,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     private static readonly Lazy<T> LazyInstance = new Lazy<T>(CreateSingleton);
 
     public static T Instance => LazyInstance.Value;
-
+    
     private static T CreateSingleton()
     {
         var ownerObject = new GameObject($"{typeof(T).Name} (singleton)");
@@ -92,7 +92,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Update()
     {
-        if (player != null)
+        if (anim != null)
         {
             ActualisePlayerState();
             ActualiseSnakeState();
@@ -292,7 +292,7 @@ public class GameManager : Singleton<GameManager>
     {
         None, Ambiant, Levier, Serpent_Aspiration,
         Serpent_Crachat, Serpent_PreAspiration, Serpent_PreCrachat,
-        Sprint,
+        Sprint, Ouverture_Porte, Cristal_Rotation,
     }
 
     public SoundName actualPlayerSound;

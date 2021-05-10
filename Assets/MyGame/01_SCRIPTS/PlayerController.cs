@@ -8,6 +8,12 @@ public class PlayerController : MonoBehaviour
     private float inputx;
     private float inputy;
 
+    private bool maxYSpeed;
+    private bool inputYLock;
+
+    private bool maxXSpeed;
+    private bool inputXLock;
+
     //Movement
     private float movementx;
     private float movementy;
@@ -76,6 +82,7 @@ public class PlayerController : MonoBehaviour
         {
             Jump();
             Move();
+            Debug.Log(speed);
         }
     }
 
@@ -102,28 +109,10 @@ public class PlayerController : MonoBehaviour
             {
                 if (Input.GetButton("Sprint"))
                 {
-                    if (speed < sprintSpeed)
-                    {
-                        speed += acceleration * Time.deltaTime;
-                    }
-                    else
-                    {
-                        speed = sprintSpeed;
-                    }
-                    GameManager.Instance.playerSpeedScale = (speed - walkSpeed)/(sprintSpeed - walkSpeed);
                     GameManager.Instance.currentState = GameManager.PlayerState.Running;
                 }
                 else
                 {
-                    if (speed > walkSpeed)
-                    {
-                        speed -= deceleration * Time.deltaTime;
-                    }
-                    else
-                    {
-                        speed = walkSpeed;
-                    }
-                    GameManager.Instance.playerSpeedScale = (speed - walkSpeed) / (sprintSpeed - walkSpeed);
                     GameManager.Instance.currentState = GameManager.PlayerState.Walking;
                 }
             }
@@ -142,7 +131,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             controller.Move(jumpDirection * Time.deltaTime);
-            speed = walkSpeed;
         }
     }
 
@@ -237,8 +225,48 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            inputx = Input.GetAxis("Horizontal");
-            inputy = Input.GetAxis("Vertical");
+            if (inputYLock)
+            {
+                inputy = Input.GetAxisRaw("Vertical");
+            }
+            else
+            {
+                inputy = Input.GetAxis("Vertical");
+            }
+
+            if (inputXLock)
+            {
+                inputx = Input.GetAxisRaw("Horizontal");
+            }
+            else
+            {
+                inputx = Input.GetAxis("Horizontal");
+            }
+        }
+
+        if (Input.GetButton("Sprint"))
+        {
+            if (speed < sprintSpeed)
+            {
+                speed += acceleration * Time.deltaTime;
+            }
+            else
+            {
+                speed = sprintSpeed;
+            }
+            GameManager.Instance.playerSpeedScale = (speed - walkSpeed) / (sprintSpeed - walkSpeed);
+        }
+        else
+        {
+            if (speed > walkSpeed)
+            {
+                speed -= deceleration * Time.deltaTime;
+            }
+            else
+            {
+                speed = walkSpeed;
+            }
+            GameManager.Instance.playerSpeedScale = (speed - walkSpeed) / (sprintSpeed - walkSpeed);
         }
     }
 
@@ -247,7 +275,7 @@ public class PlayerController : MonoBehaviour
     {
         if (inputx != 0)
         {
-            movementx = (1 - Mathf.Pow(1 - Mathf.Abs(inputx), 5)) * inputx / Mathf.Abs(inputx);
+            movementx = (1 - Mathf.Pow(1 - Mathf.Abs(inputx), 40)) * inputx / Mathf.Abs(inputx);
         }
         else
         {
@@ -255,11 +283,33 @@ public class PlayerController : MonoBehaviour
         }
         if (inputy != 0)
         {
-            movementy = (1 - Mathf.Pow(1 - Mathf.Abs(inputy), 5)) * inputy / Mathf.Abs(inputy);
+            movementy = (1 - Mathf.Pow(1 - Mathf.Abs(inputy), 40)) * inputy / Mathf.Abs(inputy);
         }
         else
         {
             movementy = 0;
+        }
+
+        if (inputy == 1)
+        {
+            maxYSpeed = true;
+        }
+        else if (maxYSpeed)
+        {
+            maxYSpeed = false;
+            movementy = 0;
+            inputYLock = true;
+        }
+
+        if (inputx == 1)
+        {
+            maxXSpeed = true;
+        }
+        else if (maxXSpeed)
+        {
+            maxXSpeed = false;
+            movementx = 0;
+            inputXLock = true;
         }
     }
 }

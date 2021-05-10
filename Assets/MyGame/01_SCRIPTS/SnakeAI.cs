@@ -88,8 +88,6 @@ public class SnakeAI : MonoBehaviour
                             StartCoroutine(DelayStateChange(GameManager.SnakeState.Shoot, delayDuration));
                         }
                     }
-                    GameManager.Instance.currentSnakeState = GameManager.SnakeState.PreShoot;
-                    StartCoroutine(DelayStateChange(GameManager.SnakeState.Shoot, delayDuration));
                     cdTimer = 0;
                 }
             }

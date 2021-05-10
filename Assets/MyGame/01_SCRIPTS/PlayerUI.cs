@@ -92,18 +92,38 @@ public class PlayerUI : MonoBehaviour
                     teddyPartShadowSprite[0].SetActive(false);
                     break;
                 case 2:
+                    teddyPartSprite[0].SetActive(true);
+                    teddyPartShadowSprite[0].SetActive(false);
                     teddyPartSprite[1].SetActive(true);
                     teddyPartShadowSprite[1].SetActive(false);
                     break;
                 case 3:
+                    teddyPartSprite[0].SetActive(true);
+                    teddyPartShadowSprite[0].SetActive(false);
+                    teddyPartSprite[1].SetActive(true);
+                    teddyPartShadowSprite[1].SetActive(false);
                     teddyPartSprite[2].SetActive(true);
                     teddyPartShadowSprite[2].SetActive(false);
                     break;
                 case 4:
+                    teddyPartSprite[0].SetActive(true);
+                    teddyPartShadowSprite[0].SetActive(false);
+                    teddyPartSprite[1].SetActive(true);
+                    teddyPartShadowSprite[1].SetActive(false);
+                    teddyPartSprite[2].SetActive(true);
+                    teddyPartShadowSprite[2].SetActive(false);
                     teddyPartSprite[3].SetActive(true);
                     teddyPartShadowSprite[3].SetActive(false);
                     break;
                 case 5:
+                    teddyPartSprite[0].SetActive(true);
+                    teddyPartShadowSprite[0].SetActive(false);
+                    teddyPartSprite[1].SetActive(true);
+                    teddyPartShadowSprite[1].SetActive(false);
+                    teddyPartSprite[2].SetActive(true);
+                    teddyPartShadowSprite[2].SetActive(false);
+                    teddyPartSprite[3].SetActive(true);
+                    teddyPartShadowSprite[3].SetActive(false);
                     teddyPartSprite[4].SetActive(true);
                     teddyPartShadowSprite[4].SetActive(false);
                     winnSprite.SetActive(true);

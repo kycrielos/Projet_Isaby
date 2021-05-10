@@ -34,7 +34,7 @@ public class WagonBehaviour : MonoBehaviour
 
                 if (index == keys.Length)
                 {
-                    SceneManager.LoadScene(1);
+                    SceneManager.LoadScene(2);
                     timer = 0f;
                     index = 0;
                 }

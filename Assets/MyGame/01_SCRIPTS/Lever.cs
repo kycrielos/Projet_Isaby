@@ -46,8 +46,15 @@ public class Lever : MonoBehaviour
 
             GameManager.Instance.StopSound("Other");
             GameManager.Instance.PlaySound(GameManager.SoundName.Levier, "Other", false);
+            GameManager.Instance.PlaySound(GameManager.SoundName.Ouverture_Porte, "Other", false);
+            StartCoroutine(DelaySound());
         }
 
+    }
+
+    IEnumerator DelaySound()
+    {
+        yield return new WaitForSeconds(0.2f);
     }
     ~Lever()
     {
