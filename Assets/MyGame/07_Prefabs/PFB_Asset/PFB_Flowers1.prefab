@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4004344176620501741
 Transform:
@@ -47,7 +47,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &398848698555258447
 Transform:
@@ -183,9 +183,21 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d7e5b15d20250df4ca94d39d3ae15eef, type: 2}
+    - target: {fileID: -4744585375482349206, guid: e3b5dff267e54c74f8493b05fbfba5b7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e3b5dff267e54c74f8493b05fbfba5b7, type: 3}
       propertyPath: m_Name
       value: SM_Flower1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e3b5dff267e54c74f8493b05fbfba5b7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650136495314450539, guid: e3b5dff267e54c74f8493b05fbfba5b7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3b5dff267e54c74f8493b05fbfba5b7, type: 3}
