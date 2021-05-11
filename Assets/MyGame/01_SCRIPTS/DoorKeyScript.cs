@@ -29,9 +29,12 @@ public class DoorKeyScript : MonoBehaviour
             }
         }
     }
-    public void Activation()
+    public void Activation(bool activationContinue)
     {
-        isActive = !isActive;
+        if (!activationContinue)
+        {
+            isActive = !isActive;
+        }
         AudioManager.Instance.PlaySound(AudioManager.SoundName.Ouverture_Porte, "Other", false);
         if (isActive)
         {

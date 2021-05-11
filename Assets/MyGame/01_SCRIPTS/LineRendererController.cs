@@ -12,6 +12,8 @@ public class LineRendererController : MonoBehaviour
     public bool IsActive;
     public bool isFirst;
 
+    private DoorKeyScript doorScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,15 +46,31 @@ public class LineRendererController : MonoBehaviour
 
                 if (hit.collider.tag == "DoorKey")
                 {
-                    hit.collider.gameObject.GetComponent<DoorKeyScript>().Activation();
+                    doorScript = hit.collider.gameObject.GetComponentInParent<DoorKeyScript>();
+                    doorScript.isActive = true;
+                    doorScript.Activation(true);
+                }
+                else if (doorScript != null)
+                {
+                    doorScript.isActive = false;
+                    doorScript.Activation(true);
                 }
             }
         }
-        else if (nextCrystalRayon != null)
+        else
         {
-            nextCrystalRayon.IsActive = false;
-            nextCrystalRayon.diagline.enabled = false;
-            nextCrystalRayon = null;
+            if (nextCrystalRayon != null)
+            {
+                nextCrystalRayon.IsActive = false;
+                nextCrystalRayon.diagline.enabled = false;
+                nextCrystalRayon = null;
+            }
+            
+            if (doorScript != null)
+            {
+                doorScript.isActive = false;
+                doorScript.Activation(true);
+            }
         }
     }
 }

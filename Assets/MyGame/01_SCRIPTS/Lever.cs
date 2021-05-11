@@ -28,7 +28,7 @@ public class Lever : MonoBehaviour
             isActive = !isActive;
             foreach (GameObject door in doors)
             {
-                door.GetComponent<DoorKeyScript>().Activation();
+                door.GetComponent<DoorKeyScript>().Activation(false);
             }
             foreach(PlatformBehaviour platform in platforms)
             {
