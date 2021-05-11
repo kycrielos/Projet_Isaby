@@ -14,6 +14,8 @@ public class Lever : MonoBehaviour
 
     public AudioSource LevierSFX;
 
+    private bool canActive = true;
+
     private void Start()
     {
         TriggerManager.Activation += ActivateDoor;
@@ -21,12 +23,12 @@ public class Lever : MonoBehaviour
 
     void ActivateDoor(GameObject triggerObj)
     {
-        if (triggerObj.name == gameObject.name + "Trigger")
+        if (triggerObj.name == gameObject.name + "Trigger" && canActive)
         {
             isActive = !isActive;
             foreach (GameObject door in doors)
             {
-                door.SetActive(!door.activeSelf);
+                door.GetComponent<DoorKeyScript>().Activation();
             }
             foreach(PlatformBehaviour platform in platforms)
             {
@@ -46,16 +48,16 @@ public class Lever : MonoBehaviour
 
             AudioManager.Instance.StopSound("Other");
             AudioManager.Instance.PlaySound(AudioManager.SoundName.Levier, "Other", false);
-            AudioManager.Instance.PlaySound(AudioManager.SoundName.Ouverture_Porte, "Other", false);
-            StartCoroutine(DelaySound());
+            canActive = false;
+            StartCoroutine(Timer());
         }
-
     }
-
-    IEnumerator DelaySound()
+    IEnumerator Timer()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(1);
+        canActive = true;
     }
+
     ~Lever()
     {
         TriggerManager.Activation -= ActivateDoor;
