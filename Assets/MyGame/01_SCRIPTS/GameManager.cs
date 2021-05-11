@@ -35,23 +35,6 @@ public class GameManager : Singleton<GameManager>
 
     public float playerSpeedScale;
 
-    private AudioSource ambientSFX;
-    private AudioSource playerEffectsSFX;
-    private AudioSource snakeEffectsSFX;
-    private AudioSource otherSFX;
-
-    private void Awake()
-    {
-        InitializeAudioSources();
-    }
-
-    private void InitializeAudioSources()
-    {
-        ambientSFX = this.gameObject.AddComponent<AudioSource>();
-        playerEffectsSFX = this.gameObject.AddComponent<AudioSource>();
-        snakeEffectsSFX = this.gameObject.AddComponent<AudioSource>();
-        otherSFX = this.gameObject.AddComponent<AudioSource>();
-    }
 
     public enum PlayerState
     {
@@ -106,30 +89,30 @@ public class GameManager : Singleton<GameManager>
         {
             case PlayerState.Idle:
                 anim.SetBool("isWalking", false);
-                anim.SetBool("isRunning", false);
                 anim.SetBool("isFalling", false);
                 anim.SetBool("isDying", false);
                 anim.SetBool("isSliding", false);
                 anim.SetBool("isJumping", false);
-                StopSound("Player");
+                anim.SetBool("idle", true);
+                AudioManager.Instance.StopSound("Player");
                 break;
             case PlayerState.Walking:
                 anim.SetBool("isWalking", true);
-                anim.SetBool("isRunning", false);
                 anim.SetBool("isFalling", false);
                 anim.SetBool("isDying", false);
                 anim.SetBool("isSliding", false);
                 anim.SetBool("isJumping", false);
-                StopSound("Player");
+                anim.SetBool("idle", false);
+                AudioManager.Instance.StopSound("Player");
                 break;
             case PlayerState.Running:
-                anim.SetBool("isWalking", false);
-                anim.SetBool("isRunning", true);
+                anim.SetBool("isWalking", true);
                 anim.SetBool("isFalling", false);
                 anim.SetBool("isDying", false);
                 anim.SetBool("isSliding", false);
                 anim.SetBool("isJumping", false);
-                PlaySound(SoundName.Sprint, "Player", true);
+                anim.SetBool("idle", false);
+                AudioManager.Instance.PlaySound(AudioManager.SoundName.Sprint, "Player", true);
                 break;
             case PlayerState.Jumping:
                 anim.SetBool("isJumping", true);
@@ -138,7 +121,8 @@ public class GameManager : Singleton<GameManager>
                 anim.SetBool("isFalling", false);
                 anim.SetBool("isDying", false);
                 anim.SetBool("isSliding", false);
-                StopSound("Player");
+                anim.SetBool("idle", false);
+                AudioManager.Instance.StopSound("Player");
                 break;
             case PlayerState.Falling:
                 anim.SetBool("isWalking", false);
@@ -147,7 +131,8 @@ public class GameManager : Singleton<GameManager>
                 anim.SetBool("isDying", false);
                 anim.SetBool("isSliding", false);
                 anim.SetBool("isJumping", false);
-                StopSound("Player");
+                anim.SetBool("idle", false);
+                AudioManager.Instance.StopSound("Player");
                 break;
             case PlayerState.Die:
                 anim.SetBool("isWalking", false);
@@ -156,7 +141,8 @@ public class GameManager : Singleton<GameManager>
                 anim.SetBool("isDying", true);
                 anim.SetBool("isSliding", false);
                 anim.SetBool("isJumping", false);
-                StopSound("Player");
+                anim.SetBool("idle", false);
+                AudioManager.Instance.StopSound("Player");
                 break;
             case PlayerState.Sliding:
                 anim.SetBool("isWalking", false);
@@ -165,10 +151,11 @@ public class GameManager : Singleton<GameManager>
                 anim.SetBool("isDying", false);
                 anim.SetBool("isSliding", true);
                 anim.SetBool("isJumping", false);
-                StopSound("Player");
+                anim.SetBool("idle", false);
+                AudioManager.Instance.StopSound("Player");
                 break;
             default:
-                StopSound("Player");
+                AudioManager.Instance.StopSound("Player");
                 break;
         }
     }
@@ -178,22 +165,22 @@ public class GameManager : Singleton<GameManager>
         switch (currentSnakeState)
         {
             case SnakeState.Idle:
-                StopSound("Snake");
+                AudioManager.Instance.StopSound("Snake");
                 break;
             case SnakeState.PreAspiration:
-                PlaySound(SoundName.Serpent_PreAspiration, "Snake", false);
+                AudioManager.Instance.PlaySound(AudioManager.SoundName.Serpent_PreAspiration, "Snake", false);
                 break;
             case SnakeState.PreShoot:
-                PlaySound(SoundName.Serpent_PreCrachat, "Snake", false);
+                AudioManager.Instance.PlaySound(AudioManager.SoundName.Serpent_PreCrachat, "Snake", false);
                 break;
             case SnakeState.Aspiration:
-                PlaySound(SoundName.Serpent_Aspiration, "Snake", false);
+                AudioManager.Instance.PlaySound(AudioManager.SoundName.Serpent_Aspiration, "Snake", false);
                 break;
             case SnakeState.Shoot:
-                PlaySound(SoundName.Serpent_Crachat, "Snake", false);
+                AudioManager.Instance.PlaySound(AudioManager.SoundName.Serpent_Crachat, "Snake", false);
                 break;
             default:
-                StopSound("Snake");
+                AudioManager.Instance.StopSound("Snake");
                 break;
         }
     }
@@ -212,6 +199,27 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+}
+
+public class AudioManager : Singleton<AudioManager>
+{
+    private AudioSource ambientSFX;
+    private AudioSource playerEffectsSFX;
+    private AudioSource snakeEffectsSFX;
+    private AudioSource otherSFX;
+
+    private void Awake()
+    {
+        InitializeAudioSources();
+    }
+
+    private void InitializeAudioSources()
+    {
+        ambientSFX = this.gameObject.AddComponent<AudioSource>();
+        playerEffectsSFX = this.gameObject.AddComponent<AudioSource>();
+        snakeEffectsSFX = this.gameObject.AddComponent<AudioSource>();
+        otherSFX = this.gameObject.AddComponent<AudioSource>();
+    }
     public void PlaySound(SoundName soundName, string soundType, bool loop)
     {
         switch (soundType)
@@ -274,7 +282,7 @@ public class GameManager : Singleton<GameManager>
 
     public void PauseSound()
     {
-        if (pause)
+        if (GameManager.Instance.pause)
         {
             playerEffectsSFX.Pause();
             snakeEffectsSFX.Pause();
@@ -298,9 +306,9 @@ public class GameManager : Singleton<GameManager>
     public SoundName actualPlayerSound;
     public SoundName actualSnakeSound;
     public SoundName actualOtherSound;
-
     public string GetSoundLoc(SoundName sl)
     {
         return "SoundFX/SFX_" + sl.ToString();
     }
+
 }

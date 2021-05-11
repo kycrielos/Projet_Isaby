@@ -44,9 +44,9 @@ public class Lever : MonoBehaviour
                 activeOffObj.SetActive(true);
             }
 
-            GameManager.Instance.StopSound("Other");
-            GameManager.Instance.PlaySound(GameManager.SoundName.Levier, "Other", false);
-            GameManager.Instance.PlaySound(GameManager.SoundName.Ouverture_Porte, "Other", false);
+            AudioManager.Instance.StopSound("Other");
+            AudioManager.Instance.PlaySound(AudioManager.SoundName.Levier, "Other", false);
+            AudioManager.Instance.PlaySound(AudioManager.SoundName.Ouverture_Porte, "Other", false);
             StartCoroutine(DelaySound());
         }
 

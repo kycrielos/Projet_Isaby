@@ -68,13 +68,13 @@ public class PlayerController : MonoBehaviour
             if (GameManager.Instance.pause)
             {
                 Time.timeScale = 0f;
-                GameManager.Instance.PauseSound();
+                AudioManager.Instance.PauseSound();
                 GameManager.Instance.RefreshUIActivation();
             }
             else
             {
                 Time.timeScale = 1f;
-                GameManager.Instance.PauseSound();
+                AudioManager.Instance.PauseSound();
                 GameManager.Instance.RefreshUIActivation();
             }
         }
