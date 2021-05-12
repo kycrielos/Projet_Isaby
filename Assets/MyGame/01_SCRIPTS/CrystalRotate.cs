@@ -30,9 +30,9 @@ public class CrystalRotate : MonoBehaviour
             {
                 GameManager.Instance.currentState = GameManager.PlayerState.Idle;
                 GameManager.Instance.player.SetActive(true);
+                GameManager.Instance.player.transform.position = new Vector3(camTransform.position.x, GameManager.Instance.player.transform.position.y, camTransform.position.z);
                 camscript.Priority = 0;
                 isReady = false;
-                GameManager.Instance.player.transform.position = new Vector3(camTransform.position.x, GameManager.Instance.player.transform.position.y, camTransform.position.z);
                 activated = false;
                 StartCoroutine(ActionDelay());
             }
@@ -43,6 +43,7 @@ public class CrystalRotate : MonoBehaviour
     {
         if (triggerObj.name == gameObject.name + "Trigger" && isReady)
         {
+            camscript.m_XAxis.Value = Camera.main.transform.rotation.eulerAngles.y;
             camscript.Priority = 11;
             isReady = false;
             GameManager.Instance.currentState = GameManager.PlayerState.None;

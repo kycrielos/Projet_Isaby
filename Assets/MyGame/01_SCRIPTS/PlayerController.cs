@@ -82,7 +82,6 @@ public class PlayerController : MonoBehaviour
         {
             Jump();
             Move();
-            Debug.Log(speed);
         }
     }
 
