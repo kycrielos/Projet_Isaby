@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Laser2.0
-  m_Shader: {fileID: -6465566751694194690, guid: d174c83a014838d4f9c891a237693629, type: 3}
+  m_Name: Teddy_Test
+  m_Shader: {fileID: -6465566751694194690, guid: 24fccd3ca4e81df4e87968fb3f590f59, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -18,11 +18,13 @@ Material:
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
+    m_TexEnvs:
+    - Texture2D_366D84C0:
+        m_Texture: {fileID: 2800000, guid: f6d08ed177527764497d5feba15130a7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_4E72DECD: 60
-    - Vector1_67FC724B: 10
+    - Vector1_15F0BC0B: 1
     m_Colors:
-    - Color_FBEE83B8: {r: 1, g: 1, b: 1, a: 0}
-    - Vector2_796A714C: {r: -2, g: 1, b: 0, a: 0}
+    - Color_54BCC3FC: {r: 0.9339623, g: 0.9031239, b: 0.9031239, a: 0}
   m_BuildTextureStacks: []
