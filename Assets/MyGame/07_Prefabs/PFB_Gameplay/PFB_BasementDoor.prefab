@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5494818216632088017}
   m_Layer: 0
-  m_Name: BasementDoor
+  m_Name: PFB_BasementDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5494818216632088017
 Transform:
@@ -49,7 +49,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8459283558485729961
 Transform:
@@ -195,6 +195,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7447108277173783826, guid: e5509e4ce7a851b40a6d5fb297a994b2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -6264665235865238822, guid: e5509e4ce7a851b40a6d5fb297a994b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.028
@@ -219,9 +223,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 13.389
       objectReference: {fileID: 0}
+    - target: {fileID: -2274405356109776525, guid: e5509e4ce7a851b40a6d5fb297a994b2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e5509e4ce7a851b40a6d5fb297a994b2, type: 3}
       propertyPath: m_Name
       value: SM_BasementDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e5509e4ce7a851b40a6d5fb297a994b2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2406992669623022019, guid: e5509e4ce7a851b40a6d5fb297a994b2, type: 3}
       propertyPath: m_Materials.Array.data[0]
