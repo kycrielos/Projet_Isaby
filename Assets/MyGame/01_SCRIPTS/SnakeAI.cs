@@ -64,7 +64,7 @@ public class SnakeAI : MonoBehaviour
             {
                 if (hitinfo.collider.tag == "Player")
                 {
-                    if (GameManager.Instance.currentState == GameManager.PlayerState.Jumping || GameManager.Instance.currentState == GameManager.PlayerState.Falling)
+                    /*if (GameManager.Instance.currentState == GameManager.PlayerState.Jumping || GameManager.Instance.currentState == GameManager.PlayerState.Falling)
                     {
                         GameManager.Instance.currentSnakeState = GameManager.SnakeState.PreAspiration;
                         StartCoroutine(DelayStateChange(GameManager.SnakeState.Aspiration, delayDuration));
@@ -87,7 +87,9 @@ public class SnakeAI : MonoBehaviour
                             GameManager.Instance.currentSnakeState = GameManager.SnakeState.PreShoot;
                             StartCoroutine(DelayStateChange(GameManager.SnakeState.Shoot, delayDuration));
                         }
-                    }
+                    }*/
+                    GameManager.Instance.currentSnakeState = GameManager.SnakeState.PreShoot;
+                    StartCoroutine(DelayStateChange(GameManager.SnakeState.Shoot, delayDuration));
                     cdTimer = 0;
                 }
             }
