@@ -14,6 +14,9 @@ public class LineRendererController : MonoBehaviour
 
     private DoorKeyScript doorScript;
 
+    public GameObject sparkExplosionVFX;
+    private GameObject sparkObject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,12 +39,17 @@ public class LineRendererController : MonoBehaviour
                 {
                     nextCrystalRayon = hit.collider.gameObject.GetComponentInChildren<LineRendererController>();
                     nextCrystalRayon.IsActive = true;
+                    if (sparkObject == null)
+                    {
+                        sparkObject = Instantiate(sparkExplosionVFX, hit.collider.transform);
+                    }
                 }
                 else if (nextCrystalRayon != null)
                 {
                     nextCrystalRayon.IsActive = false;
                     nextCrystalRayon.diagline.enabled = false;
                     nextCrystalRayon = null;
+                    Destroy(sparkObject);
                 }
 
                 if (hit.collider.tag == "DoorKey")
@@ -64,6 +72,7 @@ public class LineRendererController : MonoBehaviour
                 nextCrystalRayon.IsActive = false;
                 nextCrystalRayon.diagline.enabled = false;
                 nextCrystalRayon = null;
+                Destroy(sparkObject);
             }
             
             if (doorScript != null)
