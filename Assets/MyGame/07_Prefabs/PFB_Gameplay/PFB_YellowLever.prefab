@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3066019505155838378}
   - component: {fileID: 8219602988160291910}
   - component: {fileID: 2254281931471824379}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2007622782789574397}
   - component: {fileID: 7449800454308178915}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PFB_YellowLever
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,6 @@ Transform:
   - {fileID: 5379011440722943433}
   - {fileID: 4628234409342659519}
   - {fileID: 8330737867580212154}
-  - {fileID: 1393037572060662043}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -146,7 +145,7 @@ MonoBehaviour:
   platforms: []
   activeOnObj: {fileID: 7160510621347930324}
   activeOffObj: {fileID: 7656633970519461791}
-  LevierSFX: {fileID: 1510635646253505225}
+  LevierSFX: {fileID: 0}
 --- !u!1 &3928990526206659049
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,7 +158,7 @@ GameObject:
   - component: {fileID: 8853321540381207739}
   - component: {fileID: 5121617615461663177}
   - component: {fileID: 7258847466227690199}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,7 +251,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5379011440722943433}
   - component: {fileID: 206146651584101822}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LevierTrigger
   m_TagString: ActivableObject
   m_Icon: {fileID: 0}
@@ -295,7 +294,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4628234409342659519}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LeverON
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,7 +328,7 @@ GameObject:
   - component: {fileID: 6880443170843004918}
   - component: {fileID: 5494745305848474829}
   - component: {fileID: 8674410366978306304}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -410,7 +409,7 @@ GameObject:
   - component: {fileID: 2636680816506502191}
   - component: {fileID: 7564899786532381177}
   - component: {fileID: 7439954778633767472}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -489,7 +488,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8330737867580212154}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LeverOFF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -512,130 +511,3 @@ Transform:
   m_Father: {fileID: 2007622782789574397}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &9064631911328294231
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1393037572060662043}
-  - component: {fileID: 1510635646253505225}
-  m_Layer: 0
-  m_Name: LevierSFX
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
---- !u!4 &1393037572060662043
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9064631911328294231}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2007622782789574397}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &1510635646253505225
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9064631911328294231}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: cf1416cbe96683e42aaa13e6b7a3825b, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 0.2
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4

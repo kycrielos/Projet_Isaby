@@ -286,13 +286,11 @@ public class AudioManager : Singleton<AudioManager>
         {
             playerEffectsSFX.Pause();
             snakeEffectsSFX.Pause();
-            otherSFX.Pause();
         }
         else
         {
             playerEffectsSFX.Play();
             snakeEffectsSFX.Play();
-            otherSFX.Play();
         }
     }
 

@@ -57,11 +57,16 @@ public class LineRendererController : MonoBehaviour
                     doorScript = hit.collider.gameObject.GetComponentInParent<DoorKeyScript>();
                     doorScript.isActive = true;
                     doorScript.Activation(true);
+                    if (sparkObject == null)
+                    {
+                        sparkObject = Instantiate(sparkExplosionVFX, hit.collider.transform);
+                    }
                 }
                 else if (doorScript != null)
                 {
                     doorScript.isActive = false;
                     doorScript.Activation(true);
+                    Destroy(sparkObject);
                 }
             }
         }
@@ -79,6 +84,7 @@ public class LineRendererController : MonoBehaviour
             {
                 doorScript.isActive = false;
                 doorScript.Activation(true);
+                Destroy(sparkObject);
             }
         }
     }
