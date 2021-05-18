@@ -16,9 +16,41 @@ public class Lever : MonoBehaviour
 
     private bool canActive = true;
 
+    public bool autoLever;
+
+    private float timer;
+    public float delay;
+
     private void Start()
     {
         TriggerManager.Activation += ActivateDoor;
+    }
+
+    private void Update()
+    {
+        if (autoLever)
+        {
+            timer += Time.deltaTime;
+            if (timer >= delay)
+            {
+                isActive = !isActive;
+                foreach (GameObject door in doors)
+                {
+                    door.GetComponent<DoorKeyScript>().Activation(false);
+                }
+                if (isActive)
+                {
+                    activeOnObj.SetActive(true);
+                    activeOffObj.SetActive(false);
+                }
+                else
+                {
+                    activeOnObj.SetActive(false);
+                    activeOffObj.SetActive(true);
+                }
+                timer = 0;
+            }
+        }
     }
 
     void ActivateDoor(GameObject triggerObj)
