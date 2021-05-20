@@ -8,6 +8,10 @@ public class LoadScreen : MonoBehaviour
 {
     public Slider slider;
     public Text progressText;
+
+    public GameObject introductionText;
+    public GameObject LoadingScreen;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +20,10 @@ public class LoadScreen : MonoBehaviour
 
     public IEnumerator LoadMainScene()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(5);
+        introductionText.SetActive(false);
+        LoadingScreen.SetActive(true);
+        yield return new WaitForSeconds(5);
         AsyncOperation operation = SceneManager.LoadSceneAsync(1);
 
         while (!operation.isDone)
