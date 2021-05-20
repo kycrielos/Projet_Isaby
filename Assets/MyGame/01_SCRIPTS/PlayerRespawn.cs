@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class PlayerRespawn : MonoBehaviour
 {
-    private Vector3 spawnPoint;
+    private Transform spawnPoint;
     public float TimeBeforeRespawn;
     public float DelayAfterRespawn;
 
     private CharacterController controller;
     private PlayerPhysics physics;
 
+    public Transform followPlayer;
+
     // Start is called before the first frame update
     private void Start()
     {
-        spawnPoint = transform.position;
+        spawnPoint = transform;
         TriggerManager.Activation += UpdateSpawnPoint;
         PlayerDamage.PlayerDie += RespawnThePlayer;
         controller = GetComponent<CharacterController>();
@@ -25,7 +27,7 @@ public class PlayerRespawn : MonoBehaviour
     {
         if (triggerObj.name.Contains("SpawnPointTrigger") && GameManager.Instance.currentState != GameManager.PlayerState.Falling && GameManager.Instance.currentState != GameManager.PlayerState.Die)
         {
-            spawnPoint = triggerObj.transform.position;
+            spawnPoint = triggerObj.GetComponentInChildren<Transform>();
         }
     }
 
@@ -39,7 +41,9 @@ public class PlayerRespawn : MonoBehaviour
         controller.enabled = false;
         transform.position += new Vector3(0, -0.5f, 0);
         yield return new WaitForSeconds(TimeBeforeRespawn);
-        transform.position = spawnPoint;
+        transform.position = spawnPoint.position;
+        transform.rotation = spawnPoint.rotation;
+        followPlayer.GetComponent<CameraController>().Mousex = spawnPoint.rotation.eulerAngles.y;
         GameManager.Instance.playerHP = GameManager.Instance.maxPlayerHp;
         GameManager.Instance.RefreshUIActivation();
         yield return new WaitForSeconds(DelayAfterRespawn);

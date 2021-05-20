@@ -6,8 +6,8 @@ using Cinemachine;
 public class CameraController : MonoBehaviour
 {
     //Rotation
-    private float Mousex = 180;
-    private float Mousey = 10;
+    public float Mousex = 180;
+    public float Mousey = 10;
     public float AngularVelocity = 4f;
     public GameObject Player;
     public CinemachineVirtualCamera cmVCam;
