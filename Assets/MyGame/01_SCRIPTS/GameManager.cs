@@ -35,6 +35,10 @@ public class GameManager : Singleton<GameManager>
 
     public float playerSpeedScale;
 
+    public float timeSinceGrounded;
+
+    public GameObject followPlayer;
+
 
     public enum PlayerState
     {

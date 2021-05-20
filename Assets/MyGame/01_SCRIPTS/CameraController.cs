@@ -21,6 +21,7 @@ public class CameraController : MonoBehaviour
         //Retire le curseur
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        GameManager.Instance.followPlayer = this.gameObject;
     }
 
     private void LateUpdate()

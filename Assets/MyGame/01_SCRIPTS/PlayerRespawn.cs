@@ -25,7 +25,7 @@ public class PlayerRespawn : MonoBehaviour
 
     void UpdateSpawnPoint(GameObject triggerObj)
     {
-        if (triggerObj.name.Contains("SpawnPointTrigger") && GameManager.Instance.currentState != GameManager.PlayerState.Falling && GameManager.Instance.currentState != GameManager.PlayerState.Die)
+        if (triggerObj.name.Contains("SpawnPointTrigger") && GameManager.Instance.timeSinceGrounded <= 0.75f && GameManager.Instance.currentState != GameManager.PlayerState.Die)
         {
             spawnPoint = triggerObj.GetComponentInChildren<Transform>();
         }

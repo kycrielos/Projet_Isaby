@@ -52,6 +52,7 @@ public class PlayerPhysics : MonoBehaviour
             {
                 timeSinceGrounded += Time.deltaTime * 0.75f;
             }
+            GameManager.Instance.timeSinceGrounded = timeSinceGrounded;
             IsGroundedCheck();
             Gravity();
             IsIntriggerCheck();
