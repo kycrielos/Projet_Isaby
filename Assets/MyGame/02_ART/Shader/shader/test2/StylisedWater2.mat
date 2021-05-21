@@ -49,14 +49,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_13D2E2A2: 1
-    - Vector1_477E4EF5: 1
+    - Vector1_477E4EF5: 6.8
     - Vector1_67D1ACA8: 1
     - Vector1_70FC0357: 10
     - Vector1_7E9A3E72: 1
     - Vector1_7F62F683: 1.07
-    - Vector1_870BC866: 7
+    - Vector1_870BC866: 18.8
     - Vector1_A3058FEA: 0.04
-    - Vector1_A771C33A: 100
+    - Vector1_A771C33A: 108.3
     - Vector1_B3E50459: 5
     - Vector1_C69C28CF: 0.19
     - Vector1_DA23D4B3: 1
@@ -87,8 +87,8 @@ Material:
     - Color_1C0644C: {r: 1, g: 1, b: 1, a: 0.6}
     - Color_563701A5: {r: 0.40183342, g: 0.5020851, b: 0.6603774, a: 0}
     - Color_A2ACFDDF: {r: 0.48104307, g: 0.81990725, b: 0.8867924, a: 0.23529412}
-    - Color_EA9FF5DB: {r: 0.33397114, g: 0.78668624, b: 0.8962264, a: 0.14901961}
-    - Color_FABE169D: {r: 0, g: 0.055118084, b: 1, a: 0.19215687}
+    - Color_EA9FF5DB: {r: 0.14048593, g: 0.61248446, b: 0.7264151, a: 0.14901961}
+    - Color_FABE169D: {r: 0.094117135, g: 0.10003779, b: 0.4433962, a: 0.19215687}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
