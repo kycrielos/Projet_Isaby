@@ -78,7 +78,7 @@ public class Lever : MonoBehaviour
                 activeOffObj.SetActive(true);
             }
 
-            AudioManager.Instance.StopSound("Other");
+            AudioManager.Instance.actualOtherSound = AudioManager.SoundName.None;
             AudioManager.Instance.PlaySound(AudioManager.SoundName.Levier, "Other", false);
             canActive = false;
             StartCoroutine(Timer());

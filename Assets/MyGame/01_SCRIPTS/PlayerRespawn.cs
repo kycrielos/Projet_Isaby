@@ -16,7 +16,6 @@ public class PlayerRespawn : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        spawnPoint = transform;
         TriggerManager.Activation += UpdateSpawnPoint;
         PlayerDamage.PlayerDie += RespawnThePlayer;
         controller = GetComponent<CharacterController>();

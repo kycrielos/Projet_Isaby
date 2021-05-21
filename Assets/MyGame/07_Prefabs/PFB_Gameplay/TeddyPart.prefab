@@ -138,8 +138,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4168653878882599764}
-  - component: {fileID: 4168653878882599849}
   - component: {fileID: 4168653878882599848}
+  - component: {fileID: 3394734521990580639}
   m_Layer: 0
   m_Name: TeddyPart
   m_TagString: TriggerAuto
@@ -163,20 +163,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
---- !u!136 &4168653878882599849
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4168653878882599851}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4168653878882599848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +175,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4985f048450164cbd94e65b6ece59d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &3394734521990580639
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4168653878882599851}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 8, z: 4}
+  m_Center: {x: 0, y: 2.2, z: 0.5}
 --- !u!1 &4168653879460302750
 GameObject:
   m_ObjectHideFlags: 0

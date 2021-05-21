@@ -46,7 +46,6 @@ public class PlayerUI : MonoBehaviour
             switch (GameManager.Instance.playerHP)
             {
                 case 3:
-
                     foreach (GameObject heart in heartSprite)
                     {
                         heart.SetActive(true);
