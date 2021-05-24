@@ -78,6 +78,11 @@ public class PlayerUI : MonoBehaviour
             {
                 pressESprite.text = "";
             }
+
+            if (GameManager.Instance.teddyPartsNumbers == 5)
+            {
+                winnSprite.SetActive(true);
+            }
         }
         else
         {
@@ -125,7 +130,6 @@ public class PlayerUI : MonoBehaviour
                     teddyPartShadowSprite[3].SetActive(false);
                     teddyPartSprite[4].SetActive(true);
                     teddyPartShadowSprite[4].SetActive(false);
-                    winnSprite.SetActive(true);
                     break;
             }
 

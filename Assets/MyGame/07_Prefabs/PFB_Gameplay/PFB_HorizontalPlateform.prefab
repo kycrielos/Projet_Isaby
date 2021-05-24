@@ -285,6 +285,7 @@ GameObject:
   - component: {fileID: 5106385178555158484}
   - component: {fileID: 2095822708820251279}
   - component: {fileID: 7865795959058185953}
+  - component: {fileID: 7573215675873964921}
   m_Layer: 0
   m_Name: Cristal2_low
   m_TagString: Untagged
@@ -355,6 +356,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7573215675873964921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3714915751080325347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd73a3017666813429679efde54aac65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3864033765258323672
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,6 +379,7 @@ GameObject:
   - component: {fileID: 6543879586492726841}
   - component: {fileID: 6265067359342960945}
   - component: {fileID: 1240971594820555007}
+  - component: {fileID: 4996711935541702925}
   m_Layer: 0
   m_Name: Cristal8_low
   m_TagString: Untagged
@@ -436,6 +450,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4996711935541702925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3864033765258323672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd73a3017666813429679efde54aac65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3999428717242761566
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,6 +797,7 @@ GameObject:
   - component: {fileID: 699295776046903173}
   - component: {fileID: 8341670489102265819}
   - component: {fileID: 791575881703731215}
+  - component: {fileID: 5742857796869535764}
   m_Layer: 0
   m_Name: Cristal6_low
   m_TagString: Untagged
@@ -841,6 +868,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5742857796869535764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4644031812818857552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd73a3017666813429679efde54aac65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4652060438275266345
 GameObject:
   m_ObjectHideFlags: 0
@@ -1011,6 +1050,7 @@ GameObject:
   - component: {fileID: 5560805298455967494}
   - component: {fileID: 2873122879760625660}
   - component: {fileID: 8503655775894831070}
+  - component: {fileID: 7812303276333941576}
   m_Layer: 0
   m_Name: Cristal3_low
   m_TagString: Untagged
@@ -1081,6 +1121,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7812303276333941576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5487216439195900070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd73a3017666813429679efde54aac65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5489540034795149346
 GameObject:
   m_ObjectHideFlags: 0
@@ -1092,6 +1144,7 @@ GameObject:
   - component: {fileID: 7546867824390440857}
   - component: {fileID: 2708472770873647162}
   - component: {fileID: 4130394821508429384}
+  - component: {fileID: 5788089713198287761}
   m_Layer: 0
   m_Name: Cristal5_low
   m_TagString: Untagged
@@ -1162,6 +1215,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5788089713198287761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5489540034795149346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd73a3017666813429679efde54aac65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5583437707303672396
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,6 +1238,7 @@ GameObject:
   - component: {fileID: 7333550787743310308}
   - component: {fileID: 158192320965029923}
   - component: {fileID: 4381956457098884754}
+  - component: {fileID: 3790712611018411932}
   m_Layer: 0
   m_Name: Cristal_low
   m_TagString: Untagged
@@ -1243,6 +1309,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3790712611018411932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5583437707303672396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd73a3017666813429679efde54aac65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5635920852952967108
 GameObject:
   m_ObjectHideFlags: 0
@@ -1335,6 +1413,7 @@ GameObject:
   - component: {fileID: 3151908266089190496}
   - component: {fileID: 4636937210402219812}
   - component: {fileID: 159507402733180177}
+  - component: {fileID: 3566361882152155768}
   m_Layer: 0
   m_Name: Cristal1_low
   m_TagString: Untagged
@@ -1405,6 +1484,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3566361882152155768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5875125017669129320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd73a3017666813429679efde54aac65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6242352665072522302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1538,6 +1629,7 @@ GameObject:
   - component: {fileID: 1859495988024973576}
   - component: {fileID: 540161913141779235}
   - component: {fileID: 84086685887845137}
+  - component: {fileID: 1659257226746608461}
   m_Layer: 0
   m_Name: Cristal10_low
   m_TagString: Untagged
@@ -1608,6 +1700,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1659257226746608461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6463702081766097384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd73a3017666813429679efde54aac65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7164579853183609726
 GameObject:
   m_ObjectHideFlags: 0
@@ -1700,6 +1804,7 @@ GameObject:
   - component: {fileID: 186666967705839685}
   - component: {fileID: 7624458611331739818}
   - component: {fileID: 5102719440726228244}
+  - component: {fileID: 6794835751191993182}
   m_Layer: 0
   m_Name: Base_low
   m_TagString: Untagged
@@ -1770,6 +1875,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6794835751191993182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7351650628366863052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd73a3017666813429679efde54aac65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7391395849503561761
 GameObject:
   m_ObjectHideFlags: 0
@@ -1781,6 +1898,7 @@ GameObject:
   - component: {fileID: 5193634310800840742}
   - component: {fileID: 496369585202888879}
   - component: {fileID: 5828786294449107410}
+  - component: {fileID: 7747507636369943750}
   m_Layer: 0
   m_Name: Cristal7_low
   m_TagString: Untagged
@@ -1851,6 +1969,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7747507636369943750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7391395849503561761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd73a3017666813429679efde54aac65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7708768591258209436
 GameObject:
   m_ObjectHideFlags: 0
@@ -1862,6 +1992,7 @@ GameObject:
   - component: {fileID: 1090373049737695415}
   - component: {fileID: 5543466886464481902}
   - component: {fileID: 4521491773707566151}
+  - component: {fileID: 4938625050148834416}
   m_Layer: 0
   m_Name: Cristal4_low
   m_TagString: Untagged
@@ -1932,6 +2063,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4938625050148834416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7708768591258209436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd73a3017666813429679efde54aac65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8423276872848792491
 GameObject:
   m_ObjectHideFlags: 0
@@ -1943,6 +2086,7 @@ GameObject:
   - component: {fileID: 3246424116127745598}
   - component: {fileID: 6294161552367318230}
   - component: {fileID: 4532388669744732463}
+  - component: {fileID: 6220313133648825684}
   m_Layer: 0
   m_Name: Cristal9_low
   m_TagString: Untagged
@@ -2013,6 +2157,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6220313133648825684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8423276872848792491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd73a3017666813429679efde54aac65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8619739469805965761
 GameObject:
   m_ObjectHideFlags: 0
@@ -2180,7 +2336,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4144145849672470828}
-  - component: {fileID: 6065915779632301282}
   m_Layer: 0
   m_Name: Platform
   m_TagString: Untagged
@@ -2214,18 +2369,6 @@ Transform:
   m_Father: {fileID: 5799951147835394022}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6065915779632301282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8917673509871613592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd73a3017666813429679efde54aac65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &9215796503006606514
 GameObject:
   m_ObjectHideFlags: 0

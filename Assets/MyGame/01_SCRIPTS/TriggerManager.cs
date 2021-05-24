@@ -17,7 +17,7 @@ public class TriggerManager : MonoBehaviour
         {
             case string a when a.Contains("DeathZone"):
                 GameManager.Instance.playerHP = 0;
-                playerDamage.Damaged(0);
+                playerDamage.Damaged(100);
                 GameManager.Instance.RefreshUIActivation();
                 break;
             case string a when a.Contains("TeddyPart"):

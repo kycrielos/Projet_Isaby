@@ -49,6 +49,7 @@ public class GameManager : Singleton<GameManager>
         Falling,
         Die,
         Sliding,
+        Damaged,
         None,
     }
 
