@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TEST : MonoBehaviour
+public class TeddyPart : MonoBehaviour
 {
 	public ParticleSystem p;
 	public float speed;
@@ -59,10 +59,11 @@ public class TEST : MonoBehaviour
 		yield return new WaitForSeconds(1.5f);
 		move = false;
 		GameManager.Instance.currentState = GameManager.PlayerState.Idle;
+		TriggerManager.Activation -= ActivationParticle;
 		Destroy(gameObject);
 	}
 
-    ~TEST()
+    ~TeddyPart()
     {
 		TriggerManager.Activation -= ActivationParticle;
 	}
