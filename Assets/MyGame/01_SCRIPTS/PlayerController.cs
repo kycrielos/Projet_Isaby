@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
                 GameManager.Instance.RefreshUIActivation();
             }
         }
-        if (GameManager.Instance.currentState != GameManager.PlayerState.Die && !GameManager.Instance.pause && GameManager.Instance.currentState != GameManager.PlayerState.Damaged)
+        if (GameManager.Instance.currentState != GameManager.PlayerState.Die && !GameManager.Instance.pause && GameManager.Instance.currentState != GameManager.PlayerState.Damaged && GameManager.Instance.currentState != GameManager.PlayerState.Wait)
         {
             Jump();
             Move();

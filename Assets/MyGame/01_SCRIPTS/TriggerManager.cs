@@ -21,9 +21,9 @@ public class TriggerManager : MonoBehaviour
                 GameManager.Instance.RefreshUIActivation();
                 break;
             case string a when a.Contains("TeddyPart"):
-                Destroy(triggerObj);
                 GameManager.Instance.teddyPartsNumbers += 1;
                 GameManager.Instance.playerHP = 3;
+                ActivationEventHandler(triggerObj);
                 GameManager.Instance.RefreshUIActivation();
                 break;
             case string a when a.Contains("SnakeSpawner"):

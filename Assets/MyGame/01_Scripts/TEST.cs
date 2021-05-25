@@ -5,44 +5,65 @@ using UnityEngine;
 public class TEST : MonoBehaviour
 {
 	public ParticleSystem p;
+	public float speed;
 	public ParticleSystem.Particle[] particles;
-	public Transform Target;
-	public float affectDistance;
-	float sqrDist;
-	Transform thisTransform;
+
+	private bool move;
+
+	private bool isActived;
+
+	public GameObject Mesh;
 
 
 	void Start()
 	{
 		p = GetComponent<ParticleSystem>();
-		sqrDist = affectDistance * affectDistance;
+		TriggerManager.Activation += ActivationParticle;
 	}
 
 
 	void Update()
 	{
-		if (Input.GetButtonDown("Jump"))
-        {
-			p.Play();
-        }
-		particles = new ParticleSystem.Particle[p.particleCount];
-
-		p.GetParticles(particles);
-
-		for (int i = 0; i < particles.GetUpperBound(0); i++)
+		if (move)
 		{
+			particles = new ParticleSystem.Particle[p.particleCount];
 
-			float ForceToAdd = (particles[i].startLifetime - particles[i].lifetime) * (10 * Vector3.Distance(Target.position, particles[i].position));
+			p.GetParticles(particles);
 
-			//Debug.DrawRay (particles [i].position, (Target.position - particles [i].position).normalized * (ForceToAdd/10));
+			for (int i = 0; i <= particles.GetUpperBound(0); i++)
+			{
+				float step = speed *Time.deltaTime;
+				particles[i].position = Vector3.MoveTowards(particles[i].position, GameManager.Instance.player.transform.position - transform.position + new Vector3(0,1.25f,0), step);
+			}
 
-			particles[i].velocity = (Target.position - particles[i].position).normalized * ForceToAdd;
-
-			//particles [i].position = Vector3.Lerp (particles [i].position, Target.position, Time.deltaTime / 2.0f);
-
+			p.SetParticles(particles, particles.Length);
 		}
+	}
 
-		p.SetParticles(particles, particles.Length);
+	void ActivationParticle(GameObject triggerObj)
+    {
+		if (triggerObj.name == gameObject.name && !isActived)
+		{
+			Mesh.SetActive(false);
+			GameManager.Instance.currentState = GameManager.PlayerState.Wait;
+			isActived = true;
+			p.Play();
+			StartCoroutine(ParticleDelay());
+		}
+    }
 
+	IEnumerator ParticleDelay()
+    {
+		yield return new WaitForSeconds(1);
+		move = true;
+		yield return new WaitForSeconds(1.5f);
+		move = false;
+		GameManager.Instance.currentState = GameManager.PlayerState.Idle;
+		Destroy(gameObject);
+	}
+
+    ~TEST()
+    {
+		TriggerManager.Activation -= ActivationParticle;
 	}
 }
