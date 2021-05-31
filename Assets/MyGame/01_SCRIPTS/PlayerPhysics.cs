@@ -136,6 +136,11 @@ public class PlayerPhysics : MonoBehaviour
             triggerObj = other.gameObject;
             triggerManager.SetActive(triggerObj);
         }
+        else if (other.CompareTag("WallPlatform"))
+        {
+            transform.parent = null;
+            playerIsOnMovablePlatform = false;
+        }
         else if (other.CompareTag("PlatformTrigger"))
         {
             transform.parent = other.transform;

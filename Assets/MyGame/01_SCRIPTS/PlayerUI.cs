@@ -12,10 +12,16 @@ public class PlayerUI : MonoBehaviour
     public GameObject[] pauseMenuselectedTextUI;
     public GameObject pauseMenu;
     public GameObject inGameInterface;
+    public GameObject optionMenu;
+
+    public Slider soundSlider;
+    public Text soundValue;
 
     public GameObject winnSprite;
 
     public Text pressESprite;
+
+    private bool optionMenuIsActive;
 
     private void Start()
     {
@@ -29,9 +35,29 @@ public class PlayerUI : MonoBehaviour
         GameManager.Instance.RefreshUIActivation();
     }
 
+    public void OpenOptions()
+    {
+        optionMenu.SetActive(true);
+        optionMenuIsActive = true;
+    }
+
+    private void Update()
+    {
+        if (optionMenuIsActive)
+        {
+            soundValue.text = Mathf.Round(soundSlider.value*100) + "%";
+            AudioManager.Instance.soundVolume = soundSlider.value;
+        }
+    }
+
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void ChangeButton(string input)
+    {
+        
     }
     public void UpdateInterface()
     {

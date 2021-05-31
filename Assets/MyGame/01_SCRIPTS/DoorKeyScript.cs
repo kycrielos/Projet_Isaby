@@ -6,6 +6,7 @@ public class DoorKeyScript : MonoBehaviour
 {
     public Transform door;
     public bool isActive;
+    public bool muteSound;
 
     public float distanceTo;
     public float speed;
@@ -35,7 +36,13 @@ public class DoorKeyScript : MonoBehaviour
         {
             isActive = !isActive;
         }
-        AudioManager.Instance.PlaySound(AudioManager.SoundName.Ouverture_Porte, "Other", false);
+
+        if (!muteSound)
+        {
+            AudioManager.Instance.actualOtherSound = AudioManager.SoundName.None;
+            AudioManager.Instance.PlaySound(AudioManager.SoundName.Ouverture_Porte, "Other", false);
+        }
+
         if (isActive)
         {
             distanceTo = Vector3.Distance(position2.position, door.position);

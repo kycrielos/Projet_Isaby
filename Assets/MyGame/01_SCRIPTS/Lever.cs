@@ -12,8 +12,6 @@ public class Lever : MonoBehaviour
     public GameObject activeOnObj;
     public GameObject activeOffObj;
 
-    public AudioSource LevierSFX;
-
     private bool canActive = true;
 
     public bool autoLever;
@@ -77,9 +75,6 @@ public class Lever : MonoBehaviour
                 activeOnObj.SetActive(false);
                 activeOffObj.SetActive(true);
             }
-
-            AudioManager.Instance.actualOtherSound = AudioManager.SoundName.None;
-            AudioManager.Instance.PlaySound(AudioManager.SoundName.Levier, "Other", false);
             canActive = false;
             StartCoroutine(Timer());
         }

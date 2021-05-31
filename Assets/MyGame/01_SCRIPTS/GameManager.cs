@@ -39,7 +39,6 @@ public class GameManager : Singleton<GameManager>
 
     public GameObject followPlayer;
 
-
     public enum PlayerState
     {
         Idle,
@@ -214,6 +213,10 @@ public class AudioManager : Singleton<AudioManager>
     private AudioSource snakeEffectsSFX;
     private AudioSource otherSFX;
 
+    private float timer;
+
+    public float soundVolume;
+
     private void Awake()
     {
         InitializeAudioSources();
@@ -226,6 +229,10 @@ public class AudioManager : Singleton<AudioManager>
         snakeEffectsSFX = this.gameObject.AddComponent<AudioSource>();
         otherSFX = this.gameObject.AddComponent<AudioSource>();
     }
+    private void Update()
+    {
+        timer += Time.deltaTime;
+    }
     public void PlaySound(SoundName soundName, string soundType, bool loop)
     {
         switch (soundType)
@@ -236,7 +243,7 @@ public class AudioManager : Singleton<AudioManager>
                     actualPlayerSound = soundName;
                     playerEffectsSFX.clip = (AudioClip)Resources.Load(GetSoundLoc(soundName));
                     playerEffectsSFX.loop = loop;
-                    playerEffectsSFX.volume = 1;
+                    playerEffectsSFX.volume = soundVolume;
                     playerEffectsSFX.Play();
                 }
                 break;
@@ -246,7 +253,7 @@ public class AudioManager : Singleton<AudioManager>
                     actualSnakeSound = soundName;
                     snakeEffectsSFX.clip = (AudioClip)Resources.Load(GetSoundLoc(soundName));
                     snakeEffectsSFX.loop = loop;
-                    snakeEffectsSFX.volume = 1;
+                    snakeEffectsSFX.volume = soundVolume;
                     snakeEffectsSFX.Play();
                 }
                 break;
@@ -258,7 +265,7 @@ public class AudioManager : Singleton<AudioManager>
                     actualOtherSound = soundName;
                     otherSFX.clip = (AudioClip)Resources.Load(GetSoundLoc(soundName));
                     otherSFX.loop = loop;
-                    otherSFX.volume = 1;
+                    otherSFX.volume = soundVolume;
                     otherSFX.Play();
                 }
                 break;
@@ -316,3 +323,52 @@ public class AudioManager : Singleton<AudioManager>
     }
 
 }
+
+/*public class MyInputManager : Singleton<MyInputManager>
+{
+    public Dictionary<string, KeyCode> keyMapping; static string[] keyMaps = new string[6]
+     {
+        "Horizontal",
+        "Vertical",
+        "Forward",
+        "Backward",
+        "Left",
+        "Right"
+     };
+
+    public KeyCode[] defaults = new KeyCode[6]
+    {
+        KeyCode.Q,
+        KeyCode.E,
+        KeyCode.W,
+        KeyCode.S,
+        KeyCode.A,
+        KeyCode.D
+    };
+
+    public MyInputManager()
+    {
+        InitializeDictionary();
+    }
+
+    private void InitializeDictionary()
+    {
+        keyMapping = new Dictionary<string, KeyCode>();
+        for (int i = 0; i < keyMaps.Length; ++i)
+        {
+            keyMapping.Add(keyMaps[i], defaults[i]);
+        }
+    }
+
+    public void SetKeyMap(string keyMap, KeyCode key)
+    {
+        if (!keyMapping.ContainsKey(keyMap))
+            throw new ArgumentException("Invalid KeyMap in SetKeyMap: " + keyMap);
+        keyMapping[keyMap] = key;
+    }
+
+    public bool GetKeyDown(string keyMap)
+    {
+        return Input.GetKeyDown(keyMapping[keyMap]);
+    }
+}*/

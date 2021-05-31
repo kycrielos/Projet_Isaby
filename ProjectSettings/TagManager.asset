@@ -12,6 +12,7 @@ TagManager:
   - Snake
   - NotTargetable
   - ActivableObject
+  - WallPlatform
   layers:
   - Default
   - TransparentFX
