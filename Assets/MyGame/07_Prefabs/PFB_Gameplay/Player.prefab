@@ -262,6 +262,8 @@ MonoBehaviour:
   inetie: 0.1
   slideDirection: {x: 0, y: 0, z: 0}
   slideSpeed: 0.1
+  acceleration: 0
+  deceleration: 0
   jumpForce: 8
   jumpAcceleration: 2
   jumpSmoothAcceleration: 5
@@ -283,12 +285,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeSinceGrounded: 0
-  isGrounded: 0
   contactWithGround: 0
   gravityScale: 40
   gravityForce: 0
   FallingDamage: 0.01
   triggerManager: {fileID: 0}
+  fallingDuration: 0
   dust: {fileID: 0}
   sliding: 0
   hitNormal: {x: 0, y: 0, z: 0}
@@ -306,6 +308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeBeforeRespawn: 0.3
   DelayAfterRespawn: 0.4
+  followPlayer: {fileID: 0}
 --- !u!1 &1214784569875667870
 GameObject:
   m_ObjectHideFlags: 0
