@@ -5,6 +5,9 @@ TextureImporter:
   - first:
       213: -6297626684602424428
     second: Barre de Vie_0
+  - first:
+      213: 4362822023702594414
+    second: Barre de Vie_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -131,10 +134,10 @@ TextureImporter:
       name: Barre de Vie_0
       rect:
         serializedVersion: 2
-        x: 126
-        y: 137
-        width: 859
-        height: 758
+        x: 23
+        y: 608
+        width: 500
+        height: 442
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,6 +147,27 @@ TextureImporter:
       bones: []
       spriteID: 493604885e55a98a0800000000000000
       internalID: -6297626684602424428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Barre de Vie_1
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 605
+        width: 500
+        height: 442
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e634b0de38bdb8c30800000000000000
+      internalID: 4362822023702594414
       vertices: []
       indices: 
       edges: []
