@@ -178,18 +178,18 @@ public class PlayerController : MonoBehaviour
         {
             if (inputx != 0)
             {
-                if (Input.GetAxisRaw("Horizontal") == 0)
+                if (MyInputManager.Instance.GetAxis("Horizontal") == 0)
                 {
                     inputx -= (Time.deltaTime * inetie) * (inputx / Mathf.Abs(inputx));
                 }
                 else
                 {
-                    inputx = Input.GetAxis("Horizontal");
+                    inputx = MyInputManager.Instance.GetAxis("Horizontal");
                 }
             }
             else
             {
-                if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1)
+                if (Mathf.Abs(MyInputManager.Instance.GetAxis("Horizontal")) == 1)
                 {
                     inputx += (Time.deltaTime * inetie) * (inputx / Mathf.Abs(inputx));
                 }
@@ -201,18 +201,18 @@ public class PlayerController : MonoBehaviour
 
             if (inputy != 0)
             {
-                if (Input.GetAxisRaw("Vertical") == 0)
+                if (MyInputManager.Instance.GetAxis("Vertical") == 0)
                 {
                     inputy -= (Time.deltaTime * inetie) * (inputy / Mathf.Abs(inputy));
                 }
                 else
                 {
-                    inputy = Input.GetAxis("Vertical");
+                    inputy = MyInputManager.Instance.GetAxis("Vertical");
                 }
             }
             else
             {
-                if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1)
+                if (Mathf.Abs(MyInputManager.Instance.GetAxis("Vertical")) == 1)
                 {
                     inputy += (Time.deltaTime * inetie) * (inputy / Mathf.Abs(inputy));
                 }
@@ -226,20 +226,20 @@ public class PlayerController : MonoBehaviour
         {
             if (inputYLock)
             {
-                inputy = Input.GetAxisRaw("Vertical");
+                inputy = MyInputManager.Instance.GetAxis("Vertical");
             }
             else
             {
-                inputy = Input.GetAxis("Vertical");
+                inputy = MyInputManager.Instance.GetAxis("Vertical");
             }
 
             if (inputXLock)
             {
-                inputx = Input.GetAxisRaw("Horizontal");
+                inputx = MyInputManager.Instance.GetAxis("Horizontal");
             }
             else
             {
-                inputx = Input.GetAxis("Horizontal");
+                inputx = MyInputManager.Instance.GetAxis("Horizontal");
             }
         }
 
