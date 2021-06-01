@@ -10,9 +10,18 @@ public class PlayerUI : MonoBehaviour
     public GameObject[] teddyPartShadowSprite;
     public GameObject[] pauseMenuTextUI;
     public GameObject[] pauseMenuselectedTextUI;
+
     public GameObject pauseMenu;
     public GameObject inGameInterface;
+
+    public GameObject book;
     public GameObject optionMenu;
+    public GameObject baseOption;
+    public GameObject buttonChangeMenu;
+
+    public GameObject validationButton;
+
+    public Button[] baseButton;
 
     public Slider soundSlider;
     public Text soundValue;
@@ -21,44 +30,96 @@ public class PlayerUI : MonoBehaviour
 
     public Text pressESprite;
 
-    private bool optionMenuIsActive;
+    public int actualPageIndex;
+
+    public bool validation;
 
     private void Start()
     {
         GameManager.RefreshUI += UpdateInterface;
     }
 
-    public void ResumeGame()
-    {
-        Time.timeScale = 1f;
-        GameManager.Instance.pause = false;
-        GameManager.Instance.RefreshUIActivation();
-    }
-
-    public void OpenOptions()
-    {
-        optionMenu.SetActive(true);
-        optionMenuIsActive = true;
-    }
-
     private void Update()
     {
-        if (optionMenuIsActive)
+        if (actualPageIndex == 1)
         {
             soundValue.text = Mathf.Round(soundSlider.value*100) + "%";
             AudioManager.Instance.soundVolume = soundSlider.value;
         }
     }
 
-    public void QuitGame()
+    public void ChangePage(bool forward)
     {
-        Application.Quit();
+        if (forward)
+        {
+            switch (actualPageIndex)
+            {
+                case 0:
+                    optionMenu.SetActive(true);
+                    book.SetActive(false);
+                    actualPageIndex = 1;
+                    break;
+                case 1:
+                    buttonChangeMenu.SetActive(true);
+                    baseOption.SetActive(false);
+                    actualPageIndex = 2;
+                    break;
+            }
+        }
+        else
+        {
+
+            switch (actualPageIndex)
+            {
+                case 0:
+                    Time.timeScale = 1f;
+                    GameManager.Instance.pause = false;
+                    GameManager.Instance.RefreshUIActivation();
+                    break;
+                case 1:
+                    optionMenu.SetActive(false);
+                    book.SetActive(true);
+                    actualPageIndex = 0;
+                    break;
+                case 2:
+                    buttonChangeMenu.SetActive(false);
+                    baseOption.SetActive(true);
+                    actualPageIndex = 1;
+                    break;
+            }
+        }
     }
 
-    public void ChangeButton(string input)
+    public void QuitGame(bool leave)
     {
-        
+        if (leave)
+        {
+            if (!validation)
+            {
+                validation = true;
+                validationButton.SetActive(true);
+                foreach (Button button in baseButton)
+                {
+                    button.interactable = false;
+                }
+            }
+            else
+            {
+                Application.Quit();
+                Debug.Log("Quit");
+            }
+        }
+        else
+        {
+            validation = false;
+            foreach (Button button in baseButton)
+            {
+                button.interactable = true;
+            }
+            validationButton.SetActive(false);
+        }
     }
+
     public void UpdateInterface()
     {
         if (!GameManager.Instance.pause)
