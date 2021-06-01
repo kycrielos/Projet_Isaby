@@ -324,26 +324,28 @@ public class AudioManager : Singleton<AudioManager>
 
 }
 
-/*public class MyInputManager : Singleton<MyInputManager>
+public class MyInputManager : Singleton<MyInputManager>
 {
-    public Dictionary<string, KeyCode> keyMapping; static string[] keyMaps = new string[6]
+    public Dictionary<string, KeyCode> keyMapping; static string[] keyMaps = new string[7]
      {
-        "Horizontal",
-        "Vertical",
         "Forward",
         "Backward",
         "Left",
-        "Right"
+        "Right",
+        "Jump",
+        "Interaction",
+        "Sprint"
      };
 
-    public KeyCode[] defaults = new KeyCode[6]
+    public KeyCode[] defaults = new KeyCode[7]
     {
-        KeyCode.Q,
-        KeyCode.E,
-        KeyCode.W,
+        KeyCode.Z,
         KeyCode.S,
-        KeyCode.A,
-        KeyCode.D
+        KeyCode.Q,
+        KeyCode.D,
+        KeyCode.Space,
+        KeyCode.E,
+        KeyCode.LeftShift
     };
 
     public MyInputManager()
@@ -363,7 +365,9 @@ public class AudioManager : Singleton<AudioManager>
     public void SetKeyMap(string keyMap, KeyCode key)
     {
         if (!keyMapping.ContainsKey(keyMap))
+        {
             throw new ArgumentException("Invalid KeyMap in SetKeyMap: " + keyMap);
+        }
         keyMapping[keyMap] = key;
     }
 
@@ -371,4 +375,47 @@ public class AudioManager : Singleton<AudioManager>
     {
         return Input.GetKeyDown(keyMapping[keyMap]);
     }
-}*/
+
+    public bool GetKey(string keyMap)
+    {
+        return Input.GetKey(keyMapping[keyMap]);
+    }
+
+    public float GetAxis(string axis)
+    {
+        if (axis == "Horizontal")
+        {
+            if (GetKey("Right"))
+            {
+                return 1;
+            }
+            else if (GetKey("Left"))
+            {
+                return -1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        else if (axis == "Vertical")
+        {
+            if (GetKey("Forward"))
+            {
+                return 1;
+            }
+            else if (GetKey("Backward"))
+            {
+                return -1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        else
+        {
+            return 0;
+        }
+    }
+}
