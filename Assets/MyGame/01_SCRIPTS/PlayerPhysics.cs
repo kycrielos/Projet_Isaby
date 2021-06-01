@@ -20,7 +20,7 @@ public class PlayerPhysics : MonoBehaviour
 
     public ParticleSystem dust;
 
-    private int layerMask = 1 << 9;
+    public LayerMask layerMask;
 
     public bool sliding;
 
