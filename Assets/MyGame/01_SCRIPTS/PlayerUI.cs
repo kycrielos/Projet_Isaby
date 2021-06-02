@@ -34,6 +34,12 @@ public class PlayerUI : MonoBehaviour
 
     public bool validation;
 
+    public Text Test;
+
+    private bool keychange;
+
+    private string keyName;
+
     private void Start()
     {
         GameManager.RefreshUI += UpdateInterface;
@@ -46,6 +52,28 @@ public class PlayerUI : MonoBehaviour
             soundValue.text = Mathf.Round(soundSlider.value*100) + "%";
             AudioManager.Instance.soundVolume = soundSlider.value;
         }
+
+        if (keychange)
+        {
+            if (Input.anyKey)
+            {
+                foreach (KeyCode kcode in System.Enum.GetValues(typeof(KeyCode)))
+                {
+                    if (Input.GetKey(kcode))
+                    {
+                        MyInputManager.Instance.SetKeyMap(keyName, kcode);
+                        Test.text = kcode.ToString();
+                        keychange = false;
+                    }
+                }
+            }
+        }
+    }
+
+    public void RemapKey(string enterKeyName)
+    {
+        keyName = enterKeyName;
+        keychange = true;
     }
 
     public void ChangePage(bool forward)

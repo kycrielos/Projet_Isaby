@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
         {
             if (GameManager.Instance.isGrounded && GameManager.Instance.currentState != GameManager.PlayerState.Jumping)
             {
-                if (Input.GetButton("Sprint"))
+                if (MyInputManager.Instance.GetKey("Sprint"))
                 {
                     GameManager.Instance.currentState = GameManager.PlayerState.Running;
                 }
@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetButtonDown("Jump") && GameManager.Instance.currentState != GameManager.PlayerState.Jumping && physics.timeSinceGrounded <= jumpDelay)
+        if (MyInputManager.Instance.GetKeyDown("Jump") && GameManager.Instance.currentState != GameManager.PlayerState.Jumping && physics.timeSinceGrounded <= jumpDelay)
         {
             GameManager.Instance.currentState = GameManager.PlayerState.Jumping;
             jumpInput = 1;
@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour
 
         if (GameManager.Instance.currentState == GameManager.PlayerState.Jumping)
         {
-            if (Input.GetButton("Jump") && physics.timeSinceGrounded <= jumpDuration)
+            if (MyInputManager.Instance.GetKey("Jump") && physics.timeSinceGrounded <= jumpDuration)
             {
                 if (jumpInput > 0)
                 {
@@ -178,7 +178,7 @@ public class PlayerController : MonoBehaviour
         {
             if (inputx != 0)
             {
-                if (MyInputManager.Instance.GetAxis("Horizontal") == 0)
+                if (MyInputManager.Instance.GetAxisRaw("Horizontal") == 0)
                 {
                     inputx -= (Time.deltaTime * inetie) * (inputx / Mathf.Abs(inputx));
                 }
@@ -189,7 +189,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                if (Mathf.Abs(MyInputManager.Instance.GetAxis("Horizontal")) == 1)
+                if (Mathf.Abs(MyInputManager.Instance.GetAxisRaw("Horizontal")) == 1)
                 {
                     inputx += (Time.deltaTime * inetie) * (inputx / Mathf.Abs(inputx));
                 }
@@ -201,7 +201,7 @@ public class PlayerController : MonoBehaviour
 
             if (inputy != 0)
             {
-                if (MyInputManager.Instance.GetAxis("Vertical") == 0)
+                if (MyInputManager.Instance.GetAxisRaw("Vertical") == 0)
                 {
                     inputy -= (Time.deltaTime * inetie) * (inputy / Mathf.Abs(inputy));
                 }
@@ -212,7 +212,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                if (Mathf.Abs(MyInputManager.Instance.GetAxis("Vertical")) == 1)
+                if (Mathf.Abs(MyInputManager.Instance.GetAxisRaw("Vertical")) == 1)
                 {
                     inputy += (Time.deltaTime * inetie) * (inputy / Mathf.Abs(inputy));
                 }
@@ -226,7 +226,7 @@ public class PlayerController : MonoBehaviour
         {
             if (inputYLock)
             {
-                inputy = MyInputManager.Instance.GetAxis("Vertical");
+                inputy = MyInputManager.Instance.GetAxisRaw("Vertical");
             }
             else
             {
@@ -235,7 +235,7 @@ public class PlayerController : MonoBehaviour
 
             if (inputXLock)
             {
-                inputx = MyInputManager.Instance.GetAxis("Horizontal");
+                inputx = MyInputManager.Instance.GetAxisRaw("Horizontal");
             }
             else
             {
@@ -243,7 +243,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetButton("Sprint"))
+        if (MyInputManager.Instance.GetKey("Sprint"))
         {
             if (speed < sprintSpeed)
             {

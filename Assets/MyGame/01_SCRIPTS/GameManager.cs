@@ -326,6 +326,9 @@ public class AudioManager : Singleton<AudioManager>
 
 public class MyInputManager : Singleton<MyInputManager>
 {
+    private float rawX;
+    private float rawY;
+
     public Dictionary<string, KeyCode> keyMapping; static string[] keyMaps = new string[7]
      {
         "Forward",
@@ -379,6 +382,90 @@ public class MyInputManager : Singleton<MyInputManager>
     public bool GetKey(string keyMap)
     {
         return Input.GetKey(keyMapping[keyMap]);
+    }
+
+    public float GetAxisRaw(string axis)
+    {
+        if (axis == "Horizontal")
+        {
+            if (GetKey("Right"))
+            {
+                if (rawX < 0)
+                {
+                    rawX = 0;
+                }
+                else if (rawX < 1)
+                {
+                    rawX += Time.deltaTime * 25;
+                }
+                else
+                {
+                    rawX = 1;
+                }
+            }
+            else if (GetKey("Left"))
+            {
+                if (rawX > 0)
+                {
+                    rawX = 0;
+                }
+                else if (rawX > -1)
+                {
+                    rawX -= Time.deltaTime * 25;
+                }
+                else
+                {
+                    rawX = -1;
+                }
+            }
+            else
+            {
+                rawX = 0;
+            }
+            return rawX;
+        }
+        else if (axis == "Vertical")
+        {
+            if (GetKey("Forward"))
+            {
+                if (rawY < 0)
+                {
+                    rawY = 0;
+                }
+                else if (rawY < 1)
+                {
+                    rawY += Time.deltaTime * 25;
+                }
+                else
+                {
+                    rawY = 1;
+                }
+            }
+            else if (GetKey("Backward"))
+            {
+                if (rawY > 0)
+                {
+                    rawY = 0;
+                }
+                else if (rawY > -1)
+                {
+                    rawY -= Time.deltaTime * 25;
+                }
+                else
+                {
+                    rawY = -1;
+                }
+            }
+            else
+            {
+                rawY = 0;
+            }
+            return rawY;
+        }
+        else
+        {
+            return 0;
+        }
     }
 
     public float GetAxis(string axis)
