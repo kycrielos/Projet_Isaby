@@ -34,11 +34,19 @@ public class PlayerUI : MonoBehaviour
 
     public bool validation;
 
-    public Text Test;
+    public Text[] keyText;
+    private int textIndex;
+
+    private string[] keyNames = new string[]{
+        "Forward",
+        "Backward",
+        "Right",
+        "Left",
+        "Jump",
+        "Interaction",
+        "Sprint" } ;
 
     private bool keychange;
-
-    private string keyName;
 
     private void Start()
     {
@@ -61,8 +69,8 @@ public class PlayerUI : MonoBehaviour
                 {
                     if (Input.GetKey(kcode))
                     {
-                        MyInputManager.Instance.SetKeyMap(keyName, kcode);
-                        Test.text = kcode.ToString();
+                        MyInputManager.Instance.SetKeyMap(keyNames[textIndex], kcode);
+                        keyText[textIndex].text = kcode.ToString();
                         keychange = false;
                     }
                 }
@@ -70,9 +78,9 @@ public class PlayerUI : MonoBehaviour
         }
     }
 
-    public void RemapKey(string enterKeyName)
+    public void RemapKey(int indexNumber)
     {
-        keyName = enterKeyName;
+        textIndex = indexNumber;
         keychange = true;
     }
 
