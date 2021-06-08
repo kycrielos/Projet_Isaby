@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class PlayerUI : MonoBehaviour
 {
@@ -35,6 +36,10 @@ public class PlayerUI : MonoBehaviour
     public Text[] keyText;
     private int textIndex;
 
+    public GameObject[] controllerTuto;
+    private int controllerTutoIndex;
+    private bool controllerTutoSecurity;
+
     private string[] keyNames = new string[]{
         "Forward",
         "Backward",
@@ -49,8 +54,55 @@ public class PlayerUI : MonoBehaviour
     private void Start()
     {
         GameManager.RefreshUI += UpdateInterface;
+        GameManager.RefreshUITuto += ControllerTutoDisplay;
+        ControllerTutoDisplay();
     }
 
+    public void ControllerTutoDisplay()
+    {
+        if (!controllerTutoSecurity)
+        {
+            controllerTutoSecurity = true;
+            controllerTuto[controllerTutoIndex].SetActive(true);
+            StartCoroutine(ControllerTutoDelay());
+        }
+    }
+
+    private IEnumerator ControllerTutoDelay()
+    {
+        yield return new WaitUntil(() => controllerTutoAction());
+        yield return new WaitForSeconds(1);
+        controllerTuto[controllerTutoIndex].SetActive(false);
+        controllerTutoIndex += 1;
+        controllerTutoSecurity = false;
+    }
+
+    public bool controllerTutoAction()
+    {
+        switch (controllerTutoIndex)
+        {
+            case 0:
+                if (MyInputManager.Instance.GetAxis("Horizontal") != 0 || MyInputManager.Instance.GetAxis("Vertical") != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case 1:
+                if (MyInputManager.Instance.GetKeyDown("Jump"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            default:
+                return false;
+        }
+    }
     private void Update()
     {
         if (Input.GetButtonDown("PauseButton") /*&& GameManager.Instance.pauseSecurity*/)
@@ -284,5 +336,6 @@ public class PlayerUI : MonoBehaviour
     ~PlayerUI()
     {
         GameManager.RefreshUI -= UpdateInterface;
+        GameManager.RefreshUITuto -= ControllerTutoDisplay;
     }
 }

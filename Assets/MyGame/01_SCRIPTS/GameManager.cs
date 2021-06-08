@@ -56,6 +56,7 @@ public class GameManager : Singleton<GameManager>
 
     public delegate void RefreshUIEvent();
     public static event RefreshUIEvent RefreshUI;
+    public static event RefreshUIEvent RefreshUITuto;
 
     public GameObject player;
     public PlayerState currentState = PlayerState.Idle;
@@ -77,6 +78,15 @@ public class GameManager : Singleton<GameManager>
     protected virtual void RefreshUIEventHandler()
     {
         RefreshUI?.Invoke();
+    }
+
+    public void RefreshUITutoActivation()
+    {
+        RefreshUITutoEventHandler();
+    }
+    protected virtual void RefreshUITutoEventHandler()
+    {
+        RefreshUITuto?.Invoke();
     }
 
     private void Update()
@@ -123,7 +133,6 @@ public class GameManager : Singleton<GameManager>
             case PlayerState.Jumping:
                 anim.SetBool("isJumping", true);
                 anim.SetBool("isWalking", false);
-                anim.SetBool("isRunning", false);
                 anim.SetBool("isFalling", false);
                 anim.SetBool("isDying", false);
                 anim.SetBool("isSliding", false);
@@ -132,7 +141,6 @@ public class GameManager : Singleton<GameManager>
                 break;
             case PlayerState.Falling:
                 anim.SetBool("isWalking", false);
-                anim.SetBool("isRunning", false);
                 anim.SetBool("isFalling", true);
                 anim.SetBool("isDying", false);
                 anim.SetBool("isSliding", false);
@@ -142,7 +150,6 @@ public class GameManager : Singleton<GameManager>
                 break;
             case PlayerState.Die:
                 anim.SetBool("isWalking", false);
-                anim.SetBool("isRunning", false);
                 anim.SetBool("isFalling", false);
                 anim.SetBool("isDying", true);
                 anim.SetBool("isSliding", false);
@@ -152,7 +159,6 @@ public class GameManager : Singleton<GameManager>
                 break;
             case PlayerState.Sliding:
                 anim.SetBool("isWalking", false);
-                anim.SetBool("isRunning", false);
                 anim.SetBool("isFalling", false);
                 anim.SetBool("isDying", false);
                 anim.SetBool("isSliding", true);
@@ -198,15 +204,6 @@ public class GameManager : Singleton<GameManager>
     public void ActualiseAnimation()
     {
         anim.SetFloat("Speed", playerSpeedScale);
-
-        if (isGrounded)
-        {
-            anim.SetBool("isGrounded", true);
-        }
-        else
-        {
-            anim.SetBool("isGrounded", false);
-        }
     }
 
 }

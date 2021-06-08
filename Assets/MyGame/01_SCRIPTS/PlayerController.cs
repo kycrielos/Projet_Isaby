@@ -46,8 +46,6 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     public GameObject cam;
     private PlayerPhysics physics;
-    private List<KeyCode> KeyCodepresses;
-    private List<KeyCode> konamicode;
 
 
     // Start is called before the first frame update
@@ -57,8 +55,8 @@ public class PlayerController : MonoBehaviour
         physics = GetComponent<PlayerPhysics>();
         GameManager.Instance.player = gameObject;
         GameManager.Instance.anim = GetComponent<Animator>();
-
     }
+
     // Update is called once per frame
     void Update()
     {

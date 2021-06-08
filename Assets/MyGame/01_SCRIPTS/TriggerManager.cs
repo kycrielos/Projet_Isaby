@@ -31,7 +31,8 @@ public class TriggerManager : MonoBehaviour
                 cam.ShakeCamera();
                 Snake.SetActive(true);
                 break;
-            case string a when a.Contains("AreaChange"):
+            case string a when a.Contains("ControllerTuto"):
+                GameManager.Instance.RefreshUITutoActivation();
                 break;
             default:
                 ActivationEventHandler(triggerObj);
