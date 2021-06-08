@@ -99,6 +99,24 @@ public class PlayerUI : MonoBehaviour
                 {
                     return false;
                 }
+            case 2:
+                if (Input.GetAxis("Mouse X") != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case 3:
+                if (MyInputManager.Instance.GetKeyDown("Sprint"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             default:
                 return false;
         }
