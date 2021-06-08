@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour
@@ -55,6 +53,28 @@ public class PlayerUI : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetButtonDown("PauseButton") /*&& GameManager.Instance.pauseSecurity*/)
+        {
+            if (!GameManager.Instance.pause)
+            {
+                GameManager.Instance.pause = true;
+                Time.timeScale = 0f;
+                AudioManager.Instance.PauseSound();
+                GameManager.Instance.RefreshUIActivation();
+            }
+            else
+            {
+                while (actualPageIndex > 0)
+                {
+                    ChangePage(false);
+                }
+                ChangePage(false);
+                Time.timeScale = 1f;
+                AudioManager.Instance.PauseSound();
+                GameManager.Instance.RefreshUIActivation();
+            }
+        }
+
         if (actualPageIndex == 1)
         {
             soundValue.text = Mathf.Round(soundSlider.value*100) + "%";

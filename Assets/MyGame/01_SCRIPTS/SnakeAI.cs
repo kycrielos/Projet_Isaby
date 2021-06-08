@@ -22,7 +22,14 @@ public class SnakeAI : MonoBehaviour
 
     public float speed;
 
-    
+    public GameObject Snake;
+
+    private void Start()
+    {
+        GameManager.Instance.snakeAnim = GetComponent<Animator>();
+        Snake.SetActive(false);
+    }
+
     // Update is called once per frame
     void Update()
     {

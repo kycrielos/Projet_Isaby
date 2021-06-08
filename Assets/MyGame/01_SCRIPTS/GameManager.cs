@@ -22,6 +22,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 public class GameManager : Singleton<GameManager>
 {
     public Animator anim;
+    public Animator snakeAnim;
     public int maxPlayerHp = 3;
     public int playerHP = 3;
 
@@ -171,12 +172,16 @@ public class GameManager : Singleton<GameManager>
         {
             case SnakeState.Idle:
                 AudioManager.Instance.StopSound("Snake");
+                snakeAnim.SetBool("Idle", true);
+                snakeAnim.SetBool("Attack", false);
                 break;
             case SnakeState.PreAspiration:
                 AudioManager.Instance.PlaySound(AudioManager.SoundName.Serpent_PreAspiration, "Snake", false);
                 break;
             case SnakeState.PreShoot:
                 AudioManager.Instance.PlaySound(AudioManager.SoundName.Serpent_PreCrachat, "Snake", false);
+                snakeAnim.SetBool("Idle", false);
+                snakeAnim.SetBool("Attack", true);
                 break;
             case SnakeState.Aspiration:
                 AudioManager.Instance.PlaySound(AudioManager.SoundName.Serpent_Aspiration, "Snake", false);
