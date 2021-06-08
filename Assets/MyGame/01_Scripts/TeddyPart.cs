@@ -33,7 +33,7 @@ public class TeddyPart : MonoBehaviour
 			for (int i = 0; i <= particles.GetUpperBound(0); i++)
 			{
 				float step = speed *Time.deltaTime;
-				particles[i].position = Vector3.MoveTowards(particles[i].position, GameManager.Instance.player.transform.position - transform.position + new Vector3(0, 0.1f, 0), step);
+				particles[i].position = Vector3.MoveTowards(particles[i].position, GameManager.Instance.player.transform.position - transform.position + new Vector3(0, 1.25f, 0), step);
 			}
 
 			p.SetParticles(particles, particles.Length);
