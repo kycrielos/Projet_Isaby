@@ -24,6 +24,8 @@ public class SnakeAI : MonoBehaviour
 
     public GameObject Snake;
 
+    private bool bulletSecurity;
+
     private void Start()
     {
         GameManager.Instance.snakeAnim = GetComponent<Animator>();
@@ -46,9 +48,10 @@ public class SnakeAI : MonoBehaviour
 
         if (GameManager.Instance.currentSnakeState == GameManager.SnakeState.Shoot)
         {
-            if (bullet == null)
+            if (bullet == null && !bulletSecurity)
             {
                 bullet = Instantiate(bulletPrefab, head.position + transform.forward * spawnDistance, transform.rotation);
+                bulletSecurity = true;
                 StartCoroutine(DelayStateChange(GameManager.SnakeState.Idle, 0.8f));
                 cdTimer = 0;
             }
@@ -107,6 +110,7 @@ public class SnakeAI : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         GameManager.Instance.currentSnakeState = state;
+        bulletSecurity = false;
     }
 
     IEnumerator Aspiration()
