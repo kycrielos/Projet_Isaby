@@ -62,9 +62,10 @@ public class PlayerUI : MonoBehaviour
     {
         if (!controllerTutoSecurity)
         {
+            /*
             controllerTutoSecurity = true;
             controllerTuto[controllerTutoIndex].SetActive(true);
-            StartCoroutine(ControllerTutoDelay());
+            StartCoroutine(ControllerTutoDelay());*/
         }
     }
 

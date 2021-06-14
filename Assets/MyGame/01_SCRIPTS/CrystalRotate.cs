@@ -22,6 +22,7 @@ public class CrystalRotate : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(Camera.main.transform.rotation.eulerAngles.y);
         if (activated)
         {
             float step = angularVelocity * Time.deltaTime;

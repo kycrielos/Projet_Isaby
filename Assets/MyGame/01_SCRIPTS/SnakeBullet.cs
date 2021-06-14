@@ -7,9 +7,11 @@ public class SnakeBullet : MonoBehaviour
     public float speed;
     public int damage;
 
-    bool security;
     private Vector3 targetPositionFocus;
-   
+    private Vector3 movementVector = Vector3.zero;
+
+    private bool stopMovement;
+
     private Vector3 predictedPosition(Vector3 targetPosition, Vector3 shooterPosition, Vector3 targetVelocity, float projectileSpeed)
     {
         Vector3 displacement = targetPosition - shooterPosition;
@@ -30,7 +32,7 @@ public class SnakeBullet : MonoBehaviour
     {
         float x = Random.Range(1f, 1.5f);
         targetPositionFocus = predictedPosition(GameManager.Instance.player.transform.position + new Vector3(0,0.6f,0), transform.position, GameManager.Instance.player.GetComponent<CharacterController>().velocity, speed * x);
-        Destroy(this.gameObject, 4);
+        movementVector = (targetPositionFocus - transform.position).normalized * speed;
     }
 
     // Update is called once per frame
@@ -41,22 +43,25 @@ public class SnakeBullet : MonoBehaviour
 
     void Move()
     {
-        float step = speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, targetPositionFocus, step);
+        if (!stopMovement)
+        {
+            transform.position += movementVector * Time.deltaTime;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !security)
+        if (other.CompareTag("Player") && !stopMovement)
         {
             GameManager.Instance.player.GetComponent<PlayerDamage>().Damaged(damage);
-            security = true;
-            Destroy(this.gameObject);
+            stopMovement = true;
+            Destroy(this.gameObject, 0.5f);
         }
 
-        if (other.GetComponent<Collider>().isTrigger == false)
+        if (other.GetComponent<Collider>().isTrigger == false && !stopMovement)
         {
-            Destroy(this.gameObject);
+            stopMovement = true;
+            Destroy(this.gameObject, 0.5f);
         }
     }
 }
