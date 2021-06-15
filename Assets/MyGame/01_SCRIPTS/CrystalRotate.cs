@@ -53,6 +53,7 @@ public class CrystalRotate : MonoBehaviour
             camscript.Priority = 11;
             isReady = false;
             GameManager.Instance.currentState = GameManager.PlayerState.None;
+            GameManager.Instance.player.GetComponent<PlayerController>().Jump();
             GameManager.Instance.player.SetActive(false);
             activated = true;
             StartCoroutine(ActionDelay());

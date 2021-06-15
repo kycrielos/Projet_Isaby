@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Jump()
+    public void Jump()
     {
         if (MyInputManager.Instance.GetKeyDown("Jump") && GameManager.Instance.currentState != GameManager.PlayerState.Jumping && physics.timeSinceGrounded <= jumpDelay)
         {
@@ -148,6 +148,10 @@ public class PlayerController : MonoBehaviour
                 GameManager.Instance.currentState = GameManager.PlayerState.Falling;
                 jumpInput = 0;
             }
+        }
+        else if (GameManager.Instance.currentState == GameManager.PlayerState.None)
+        {
+            jumpInput = 0;
         }
         jumpMovement = jumpInput * jumpInput * jumpForce + physics.gravityForce;
         jumpDirection = new Vector3(0, jumpMovement, 0);
