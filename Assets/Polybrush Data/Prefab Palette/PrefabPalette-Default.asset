@@ -13,22 +13,6 @@ MonoBehaviour:
   m_Name: PrefabPalette-Default
   m_EditorClassIdentifier: 
   prefabs:
-  - gameObject: {fileID: 1386564677086386093, guid: 73234f3ad94a03446ac327fdc70fe413, type: 3}
-    settings:
-      m_Strength: 50
-      m_RotationRangeMin: {x: 0, y: 0, z: 0}
-      m_RotationRangeMax: {x: 0, y: 0, z: 0}
-      m_ScaleRangeMin: {x: 1, y: 1, z: 1}
-      m_ScaleRangeMax: {x: 1, y: 1, z: 1}
-      m_UniformScale: {x: 1, y: 1}
-      m_UniformBool: 0
-      m_XRotationBool: 0
-      m_YRotationBool: 0
-      m_ZRotationBool: 0
-      m_XScaleBool: 0
-      m_YScaleBool: 0
-      m_ZScaleBool: 0
-    name: PFB_Grass
   - gameObject: {fileID: 5856401060470523178, guid: 0dc9cf0b16c5bc44f828112849ba3a82, type: 3}
     settings:
       m_Strength: 50
