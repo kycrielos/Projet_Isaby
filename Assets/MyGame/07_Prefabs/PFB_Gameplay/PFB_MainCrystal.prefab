@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 7390519165085389380}
   m_Layer: 10
   m_Name: CrystalTrigger
-  m_TagString: Untagged
+  m_TagString: ActivableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1004,7 +1004,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7390519166425194324}
-  m_LocalRotation: {x: 0.16018222, y: -0.000000025469571, z: 0.000000004133142, w: 0.9870875}
+  m_LocalRotation: {x: 0.16018224, y: -0.000000004252742, z: 6.9012535e-10, w: 0.9870875}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1166,4 +1166,4 @@ MonoBehaviour:
   camTransform: {fileID: 7390519166359816800}
   camscript: {fileID: 7390519166359816801}
   angularVelocity: 1000
-  delay: 1
+  delay: 0.55

@@ -123,7 +123,7 @@ public class PlayerPhysics : MonoBehaviour
 
     void IsIntriggerCheck()
     {
-        if (Input.GetButtonDown("Interaction") && isInTrigger)
+        if (Input.GetButtonDown("Interaction") && GameManager.Instance.playerIsInActivableObject)
         {
             triggerManager.SetActive(triggerObj);
         }
