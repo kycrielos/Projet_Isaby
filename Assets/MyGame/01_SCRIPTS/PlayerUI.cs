@@ -27,7 +27,7 @@ public class PlayerUI : MonoBehaviour
 
     public GameObject winnSprite;
 
-    public Text pressESprite;
+    public GameObject pressESprite;
 
     public int actualPageIndex;
 
@@ -286,11 +286,11 @@ public class PlayerUI : MonoBehaviour
 
             if (GameManager.Instance.playerIsInActivableObject)
             {
-                pressESprite.text = "Press E";
+                pressESprite.SetActive(true);
             }
             else
             {
-                pressESprite.text = "";
+                pressESprite.SetActive(false);
             }
 
             if (GameManager.Instance.teddyPartsNumbers == 5)

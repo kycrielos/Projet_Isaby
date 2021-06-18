@@ -3299,7 +3299,7 @@ RectTransform:
   m_GameObject: {fileID: 3757605653811880517}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 1717585434178611573}
   m_RootOrder: 2
@@ -6940,7 +6940,7 @@ MonoBehaviour:
   soundSlider: {fileID: 469886387204119928}
   soundValue: {fileID: 839561162800234034}
   winnSprite: {fileID: 4528652043056677375}
-  pressESprite: {fileID: 0}
+  pressESprite: {fileID: 3757605653811880517}
   actualPageIndex: 0
   validation: 0
   keyText:
