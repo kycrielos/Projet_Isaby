@@ -45,6 +45,9 @@ public class PlayerUI : MonoBehaviour
 
     private RectTransform displayToMove;
 
+    private bool displayMovementPositive;
+    private bool moveTheDisplay;
+
     private string[] keyNames = new string[]{
         "Forward",
         "Backward",
@@ -65,20 +68,22 @@ public class PlayerUI : MonoBehaviour
 
     public void ControllerTutoDisplay()
     {
-        if (!controllerTutoSecurity)
+        /*if (!controllerTutoSecurity)
         {
-            /*
             controllerTutoSecurity = true;
-            controllerTuto[controllerTutoIndex].SetActive(true);
-            StartCoroutine(ControllerTutoDelay());*/
-        }
+            displayToMove = controllerTuto[controllerTutoIndex].GetComponent<RectTransform>();
+            moveTheDisplay = true;
+            displayMovementPositive = true;
+            StartCoroutine(ControllerTutoDelay());
+        }*/
     }
 
     private IEnumerator ControllerTutoDelay()
     {
         yield return new WaitUntil(() => controllerTutoAction());
         yield return new WaitForSeconds(1);
-        controllerTuto[controllerTutoIndex].SetActive(false);
+        moveTheDisplay = false;
+        displayMovementPositive = false;
         controllerTutoIndex += 1;
         controllerTutoSecurity = false;
     }
@@ -173,29 +178,33 @@ public class PlayerUI : MonoBehaviour
             }
         }
 
-        if (MyInputManager.Instance.GetKey("Interaction"))
+        if (displayToMove != null && moveTheDisplay)
         {
-            if (displayMovementAdvancement < 1)
+            if (displayMovementPositive)
             {
-                displayMovementAdvancement += Time.deltaTime * 2;
-                displayMovementValue = TutoDisplayCalcul(displayMovementAdvancement);
+                if (displayMovementAdvancement < 1)
+                {
+                    displayMovementAdvancement += Time.deltaTime * 4;
+                    displayMovementValue = TutoDisplayCalcul(displayMovementAdvancement);
+                }
+                else
+                {
+                    displayMovementAdvancement = 1;
+                    moveTheDisplay = false;
+                }
             }
             else
             {
-                displayMovementAdvancement = 1;
-            }
-            displayToMove.localScale = new Vector3(displayMovementValue, displayMovementValue, 0);
-        }
-        else
-        {
-            if (displayMovementAdvancement >0)
-            {
-                displayMovementAdvancement -= Time.deltaTime * 2;
-                displayMovementValue = TutoDisplayCalcul(displayMovementAdvancement);
-            }
-            else
-            {
-                displayMovementAdvancement = 0;
+                if (displayMovementAdvancement > 0)
+                {
+                    displayMovementAdvancement -= Time.deltaTime * 4;
+                    displayMovementValue = TutoDisplayCalcul(displayMovementAdvancement);
+                }
+                else
+                {
+                    displayMovementAdvancement = 0;
+                    moveTheDisplay = false;
+                }
             }
             displayToMove.localScale = new Vector3(displayMovementValue, displayMovementValue, 0);
         }
@@ -323,11 +332,14 @@ public class PlayerUI : MonoBehaviour
 
             if (GameManager.Instance.playerIsInActivableObject)
             {
-                pressESprite.SetActive(true);
+                displayToMove = pressESprite.GetComponent<RectTransform>();
+                displayMovementPositive = true;
+                moveTheDisplay = true;
             }
             else
             {
-                //pressESprite.SetActive(false);
+                displayMovementPositive = false;
+                moveTheDisplay = true;
             }
 
             if (GameManager.Instance.teddyPartsNumbers == 5)

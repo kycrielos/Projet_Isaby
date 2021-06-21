@@ -50,7 +50,7 @@ public class PlayerPhysics : MonoBehaviour
             }
             else
             {
-                timeSinceGrounded += Time.deltaTime * 0.75f;
+                timeSinceGrounded += Time.deltaTime * 0.85f;
             }
             GameManager.Instance.timeSinceGrounded = timeSinceGrounded;
             IsGroundedCheck();
