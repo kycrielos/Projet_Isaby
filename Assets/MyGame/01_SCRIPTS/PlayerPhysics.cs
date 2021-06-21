@@ -131,7 +131,35 @@ public class PlayerPhysics : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("TriggerAuto"))
+        switch (other.tag)
+        {
+            case string a when a.Contains("TriggerAuto"):
+                triggerObj = other.gameObject;
+                triggerManager.SetActive(triggerObj);
+                break;
+            case string a when a.Contains("WallPlatform"):
+                transform.parent = null;
+                playerIsOnMovablePlatform = false;
+                break;
+            case string a when a.Contains("PlatformTrigger"):
+                transform.parent = other.transform;
+                playerIsOnMovablePlatform = true;
+                break;
+            case string a when a.Contains("Stair"):
+                controller.slopeLimit = 60;
+                break;
+            case string a when a.Contains("ActivableObject"):
+                GameManager.Instance.playerIsInActivableObject = true;
+                GameManager.Instance.RefreshUIActivation();
+                isInTrigger = true;
+                triggerObj = other.gameObject;
+                break;
+            default:
+                isInTrigger = true;
+                triggerObj = other.gameObject;
+                break;
+        }
+        /*if (other.CompareTag("TriggerAuto"))
         {
             triggerObj = other.gameObject;
             triggerManager.SetActive(triggerObj);
@@ -152,27 +180,60 @@ public class PlayerPhysics : MonoBehaviour
             triggerObj = other.gameObject;
         }
 
+        if (other.CompareTag("Stair"))
+        {
+            controller.slopeLimit = 60;
+        }
         if (other.CompareTag("ActivableObject"))
         {
             GameManager.Instance.playerIsInActivableObject = true;
             GameManager.Instance.RefreshUIActivation();
-        }
+        }*/
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("PlatformTrigger"))
+        switch (other.tag)
+        {
+            case string a when a.Contains("TriggerAuto"):
+                break;
+            case string a when a.Contains("WallPlatform"):
+                break;
+            case string a when a.Contains("PlatformTrigger"):
+                transform.parent = null;
+                playerIsOnMovablePlatform = false;
+                break;
+            case string a when a.Contains("Stair"):
+                controller.slopeLimit = 1;
+                break;
+            case string a when a.Contains("ActivableObject"):
+                GameManager.Instance.playerIsInActivableObject = false;
+                GameManager.Instance.RefreshUIActivation();
+                isInTrigger = false;
+                break;
+            default:
+                isInTrigger = false;
+                break;
+        }
+        /*if (other.CompareTag("PlatformTrigger"))
         {
             transform.parent = null;
             playerIsOnMovablePlatform = false;
         }
 
-        if (other.CompareTag("ActivableObject"))
+
+        else if (other.CompareTag("Stair"))
+        {
+            controller.slopeLimit = 1;
+        }
+
+        else if (other.CompareTag("ActivableObject"))
         { 
             GameManager.Instance.playerIsInActivableObject = false;
             GameManager.Instance.RefreshUIActivation();
         }
-        isInTrigger = false;
+
+            isInTrigger = false;*/
     }
 
     void OnControllerColliderHit(ControllerColliderHit hit)
