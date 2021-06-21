@@ -26,7 +26,7 @@ public class CrystalRotate : MonoBehaviour
         {
             float step = angularVelocity * Time.deltaTime;
             transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, camTransform.position - transform.position, step, 0));
-            if (Input.GetButtonDown("Interaction") && isReady)
+            if (MyInputManager.Instance.GetKeyDown("Interaction") && isReady)
             {
                 camscript.m_XAxis.m_MaxSpeed = 0;
                 camscript.m_YAxis.m_MaxSpeed = 0;

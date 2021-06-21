@@ -40,6 +40,11 @@ public class PlayerUI : MonoBehaviour
     private int controllerTutoIndex;
     private bool controllerTutoSecurity;
 
+    private float displayMovementAdvancement;
+    private float displayMovementValue;
+
+    private RectTransform displayToMove;
+
     private string[] keyNames = new string[]{
         "Forward",
         "Backward",
@@ -167,6 +172,38 @@ public class PlayerUI : MonoBehaviour
                 }
             }
         }
+
+        if (MyInputManager.Instance.GetKey("Interaction"))
+        {
+            if (displayMovementAdvancement < 1)
+            {
+                displayMovementAdvancement += Time.deltaTime * 2;
+                displayMovementValue = TutoDisplayCalcul(displayMovementAdvancement);
+            }
+            else
+            {
+                displayMovementAdvancement = 1;
+            }
+            displayToMove.localScale = new Vector3(displayMovementValue, displayMovementValue, 0);
+        }
+        else
+        {
+            if (displayMovementAdvancement >0)
+            {
+                displayMovementAdvancement -= Time.deltaTime * 2;
+                displayMovementValue = TutoDisplayCalcul(displayMovementAdvancement);
+            }
+            else
+            {
+                displayMovementAdvancement = 0;
+            }
+            displayToMove.localScale = new Vector3(displayMovementValue, displayMovementValue, 0);
+        }
+    }
+
+    public float TutoDisplayCalcul(float value)
+    {
+        return (1 - Mathf.Cos((value * Mathf.PI) / 2)) * 4;
     }
 
     public void RemapKey(int indexNumber)
@@ -290,7 +327,7 @@ public class PlayerUI : MonoBehaviour
             }
             else
             {
-                pressESprite.SetActive(false);
+                //pressESprite.SetActive(false);
             }
 
             if (GameManager.Instance.teddyPartsNumbers == 5)
@@ -352,6 +389,7 @@ public class PlayerUI : MonoBehaviour
 
         }
     }
+
     ~PlayerUI()
     {
         GameManager.RefreshUI -= UpdateInterface;
