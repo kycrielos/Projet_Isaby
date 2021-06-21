@@ -2244,6 +2244,7 @@ MonoBehaviour:
   goPosition1: 1
   speed: 1
   distanceTo: 0
+  delay: 0.25
   activated: 1
   autoMovement: 1
 --- !u!1 &8744494274321995741
