@@ -33,7 +33,7 @@ public class LineRendererController : MonoBehaviour
         {
             diagline.enabled = true;
             RaycastHit hit;
-            if (Physics.Raycast(crystalSpike.position, crystalSpike.forward + new Vector3(0, 0.24f, 0), out hit, Mathf.Infinity))
+            if (Physics.Raycast(crystalSpike.position, crystalSpike.forward + new Vector3(0, 0.25f, 0), out hit, Mathf.Infinity))
             {
                 diagline.SetPosition(0, GetComponentInParent<Transform>().position + new Vector3(0, 0.1f, 0));
                 diagline.SetPosition(1, hit.point);
