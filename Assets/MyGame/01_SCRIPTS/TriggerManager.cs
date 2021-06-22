@@ -33,6 +33,7 @@ public class TriggerManager : MonoBehaviour
                 break;
             case string a when a.Contains("ControllerTuto"):
                 GameManager.Instance.RefreshUITutoActivation();
+                Destroy(triggerObj);
                 break;
             default:
                 ActivationEventHandler(triggerObj);

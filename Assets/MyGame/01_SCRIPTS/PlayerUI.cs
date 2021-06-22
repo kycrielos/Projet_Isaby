@@ -48,6 +48,9 @@ public class PlayerUI : MonoBehaviour
     private bool displayMovementPositive;
     private bool moveTheDisplay;
 
+    private float tutoDelay = 3;
+    private float tutoTimer;
+
     private string[] keyNames = new string[]{
         "Forward",
         "Backward",
@@ -68,21 +71,21 @@ public class PlayerUI : MonoBehaviour
 
     public void ControllerTutoDisplay()
     {
-        /*if (!controllerTutoSecurity)
+        if (!controllerTutoSecurity && controllerTutoIndex < 5)
         {
             controllerTutoSecurity = true;
             displayToMove = controllerTuto[controllerTutoIndex].GetComponent<RectTransform>();
             moveTheDisplay = true;
             displayMovementPositive = true;
             StartCoroutine(ControllerTutoDelay());
-        }*/
+        }
     }
 
     private IEnumerator ControllerTutoDelay()
     {
         yield return new WaitUntil(() => controllerTutoAction());
-        yield return new WaitForSeconds(1);
-        moveTheDisplay = false;
+        yield return new WaitForSeconds(0.75f);
+        moveTheDisplay = true;
         displayMovementPositive = false;
         controllerTutoIndex += 1;
         controllerTutoSecurity = false;
@@ -102,7 +105,7 @@ public class PlayerUI : MonoBehaviour
                     return false;
                 }
             case 1:
-                if (MyInputManager.Instance.GetKeyDown("Jump"))
+                if (MyInputManager.Instance.GetKey("Jump"))
                 {
                     return true;
                 }
@@ -120,13 +123,30 @@ public class PlayerUI : MonoBehaviour
                     return false;
                 }
             case 3:
-                if (MyInputManager.Instance.GetKeyDown("Sprint"))
+                if (MyInputManager.Instance.GetKey("Sprint"))
                 {
                     return true;
                 }
                 else
                 {
                     return false;
+                }
+            case 4: 
+                if (Input.GetButton("PauseButton")) 
+                {
+                    return true;
+                }
+                else
+                {
+                    if (tutoTimer < tutoDelay)
+                    {
+                        tutoTimer += Time.deltaTime;
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
                 }
             default:
                 return false;
@@ -190,6 +210,7 @@ public class PlayerUI : MonoBehaviour
                 else
                 {
                     displayMovementAdvancement = 1;
+                    displayMovementValue = 4;
                     moveTheDisplay = false;
                 }
             }
@@ -203,6 +224,7 @@ public class PlayerUI : MonoBehaviour
                 else
                 {
                     displayMovementAdvancement = 0;
+                    displayMovementValue = 0;
                     moveTheDisplay = false;
                 }
             }

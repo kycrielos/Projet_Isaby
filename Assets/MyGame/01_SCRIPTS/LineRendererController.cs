@@ -17,6 +17,8 @@ public class LineRendererController : MonoBehaviour
     public GameObject sparkExplosionVFX;
     private GameObject sparkObject;
 
+    public Transform crystalSpike;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +33,7 @@ public class LineRendererController : MonoBehaviour
         {
             diagline.enabled = true;
             RaycastHit hit;
-            if (Physics.Raycast(GetComponentInParent<Transform>().position + new Vector3(0, 0.1f, 0), GetComponentInParent<Transform>().forward * -1 + new Vector3(0, 0.1f, 0), out hit, Mathf.Infinity))
+            if (Physics.Raycast(crystalSpike.position, crystalSpike.forward + new Vector3(0, 0.24f, 0), out hit, Mathf.Infinity))
             {
                 diagline.SetPosition(0, GetComponentInParent<Transform>().position + new Vector3(0, 0.1f, 0));
                 diagline.SetPosition(1, hit.point);
