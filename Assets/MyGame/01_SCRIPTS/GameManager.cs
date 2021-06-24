@@ -68,6 +68,7 @@ public class GameManager : Singleton<GameManager>
         PreShoot,
         Aspiration,
         Shoot,
+        Death,
     }
     public SnakeState currentSnakeState = SnakeState.Idle;
 
@@ -94,8 +95,11 @@ public class GameManager : Singleton<GameManager>
         if (anim != null)
         {
             ActualisePlayerState();
-            ActualiseSnakeState();
             ActualiseAnimation();
+        }
+        if (snakeAnim != null)
+        {
+            ActualiseSnakeState();
         }
     }
 
@@ -194,6 +198,11 @@ public class GameManager : Singleton<GameManager>
                 break;
             case SnakeState.Shoot:
                 AudioManager.Instance.PlaySound(AudioManager.SoundName.Serpent_Crachat, "Snake", false);
+                break;
+            case SnakeState.Death:
+                snakeAnim.SetBool("Idle", false);
+                snakeAnim.SetBool("Attack", false);
+                snakeAnim.SetBool("Death", true);
                 break;
             default:
                 AudioManager.Instance.StopSound("Snake");

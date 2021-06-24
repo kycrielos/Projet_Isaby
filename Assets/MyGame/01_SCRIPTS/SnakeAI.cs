@@ -35,26 +35,33 @@ public class SnakeAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AI(); 
-
-        if (GameManager.Instance.currentSnakeState == GameManager.SnakeState.Aspiration)
+        if (GameManager.Instance.teddyPartsNumbers < 5)
         {
-            StartCoroutine(Aspiration());
+            AI();
+
+            if (GameManager.Instance.currentSnakeState == GameManager.SnakeState.Aspiration)
+            {
+                StartCoroutine(Aspiration());
+            }
+            else
+            {
+                FollowPlayer();
+            }
+
+            if (GameManager.Instance.currentSnakeState == GameManager.SnakeState.Shoot)
+            {
+                if (bullet == null && !bulletSecurity)
+                {
+                    bullet = Instantiate(bulletPrefab, head.position + transform.forward * spawnDistance, transform.rotation);
+                    bulletSecurity = true;
+                    StartCoroutine(DelayStateChange(GameManager.SnakeState.Idle, 0.8f));
+                    cdTimer = 0;
+                }
+            }
         }
         else
         {
-            FollowPlayer();
-        }
-
-        if (GameManager.Instance.currentSnakeState == GameManager.SnakeState.Shoot)
-        {
-            if (bullet == null && !bulletSecurity)
-            {
-                bullet = Instantiate(bulletPrefab, head.position + transform.forward * spawnDistance, transform.rotation);
-                bulletSecurity = true;
-                StartCoroutine(DelayStateChange(GameManager.SnakeState.Idle, 0.8f));
-                cdTimer = 0;
-            }
+            GameManager.Instance.currentSnakeState = GameManager.SnakeState.Death;
         }
     }
 
