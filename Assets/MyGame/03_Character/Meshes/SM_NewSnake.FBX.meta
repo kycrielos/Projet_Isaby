@@ -77,7 +77,7 @@ ModelImporter:
       takeName: Take 001
       internalID: 0
       firstFrame: 0
-      lastFrame: 86
+      lastFrame: 125
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -106,7 +106,7 @@ ModelImporter:
       takeName: Take 001
       internalID: 0
       firstFrame: 130
-      lastFrame: 388
+      lastFrame: 490
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -134,8 +134,8 @@ ModelImporter:
       name: Death
       takeName: Take 001
       internalID: 0
-      firstFrame: 400
-      lastFrame: 496
+      firstFrame: 490
+      lastFrame: 700
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
