@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MyGame/00_Scene/Dev/SC_DB2.unity
     guid: ba94110cf5c2c984c89f15625b0f3cb2
+  - enabled: 0
+    path: Assets/MyGame/__WorkSpaceLocal/SC_Cum.unity
+    guid: fb92b59dda979874f9c3cb4675288893
   m_configObjects: {}
