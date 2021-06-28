@@ -98,7 +98,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_3F2B2185: {r: 0.39999998, g: 0.9058824, b: 0.35294116, a: 1}
+    - Color_3F2B2185: {r: 0.7243337, g: 0.9622642, b: 0.66723037, a: 1}
     - Vector2_E75F2A2E: {r: 1, g: 1, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
