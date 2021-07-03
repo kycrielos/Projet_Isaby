@@ -16,8 +16,8 @@ MonoBehaviour:
   - gameObject: {fileID: 5856401060470523178, guid: 0dc9cf0b16c5bc44f828112849ba3a82, type: 3}
     settings:
       m_Strength: 50
-      m_RotationRangeMin: {x: 0, y: 90, z: 0}
-      m_RotationRangeMax: {x: 0, y: 90, z: 0}
+      m_RotationRangeMin: {x: 0, y: 280, z: 0}
+      m_RotationRangeMax: {x: 0, y: 280, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}
       m_ScaleRangeMax: {x: 1, y: 1, z: 1}
       m_UniformScale: {x: 0.5, y: 0.5}
