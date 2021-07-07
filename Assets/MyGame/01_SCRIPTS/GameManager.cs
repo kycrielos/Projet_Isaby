@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
@@ -123,7 +124,7 @@ public class GameManager : Singleton<GameManager>
                 anim.SetBool("isSliding", false);
                 anim.SetBool("isJumping", false);
                 anim.SetBool("idle", false);
-                AudioManager.Instance.StopSound("Player");
+                AudioManager.Instance.PlaySound(AudioManager.SoundName.Sprint, "Player", true);
                 break;
             case PlayerState.Running:
                 anim.SetBool("isWalking", true);
@@ -141,7 +142,7 @@ public class GameManager : Singleton<GameManager>
                 anim.SetBool("isDying", false);
                 anim.SetBool("isSliding", false);
                 anim.SetBool("idle", false);
-                AudioManager.Instance.StopSound("Player");
+                AudioManager.Instance.PlaySound(AudioManager.SoundName.Jump, "Player", false);
                 break;
             case PlayerState.Falling:
                 anim.SetBool("isWalking", false);
@@ -159,7 +160,7 @@ public class GameManager : Singleton<GameManager>
                 anim.SetBool("isSliding", false);
                 anim.SetBool("isJumping", false);
                 anim.SetBool("idle", false);
-                AudioManager.Instance.StopSound("Player");
+                AudioManager.Instance.PlaySound(AudioManager.SoundName.Death, "Player", false);
                 break;
             case PlayerState.Sliding:
                 anim.SetBool("isWalking", false);
@@ -169,6 +170,9 @@ public class GameManager : Singleton<GameManager>
                 anim.SetBool("isJumping", false);
                 anim.SetBool("idle", false);
                 AudioManager.Instance.StopSound("Player");
+                break;
+            case PlayerState.Damaged:
+                AudioManager.Instance.PlaySound(AudioManager.SoundName.Damage, "Player", false);
                 break;
             default:
                 AudioManager.Instance.StopSound("Player");
@@ -226,11 +230,18 @@ public class AudioManager : Singleton<AudioManager>
 
     private float timer;
 
-    public float soundVolume;
+    public float soundVolume = 0.5f;
+
+    private AudioMixer audioMixer;
+    private AudioMixerGroup audioMixerGroup;
+
+    private int randomNumber;
 
     private void Awake()
     {
-        InitializeAudioSources();
+        InitializeAudioSources(); 
+        audioMixer = (AudioMixer)Resources.Load("SoundFX/AudioMixer");
+        playerEffectsSFX.outputAudioMixerGroup = audioMixer.FindMatchingGroups("Master")[0];
     }
 
     private void InitializeAudioSources()
@@ -246,13 +257,43 @@ public class AudioManager : Singleton<AudioManager>
     }
     public void PlaySound(SoundName soundName, string soundType, bool loop)
     {
+        if (GameManager.Instance.currentState == GameManager.PlayerState.Walking || GameManager.Instance.currentState == GameManager.PlayerState.Running)
+        {
+            audioMixer.SetFloat("MasterPitch", GameManager.Instance.playerSpeedScale * 0.3f + 0.9f);
+        }
+        else
+        {
+            audioMixer.SetFloat("MasterPitch", 1);
+        }
         switch (soundType)
         {
             case "Player":
                 if (actualPlayerSound != soundName)
                 {
                     actualPlayerSound = soundName;
-                    playerEffectsSFX.clip = (AudioClip)Resources.Load(GetSoundLoc(soundName));
+                    if (soundName == SoundName.Jump)
+                    {
+                        randomNumber = UnityEngine.Random.Range(0, 4);
+                        switch (randomNumber)
+                        {
+                            case 0:
+                                playerEffectsSFX.clip = (AudioClip)Resources.Load(GetSoundLoc(SoundName.Jump));
+                                break;
+                            case 1:
+                                playerEffectsSFX.clip = (AudioClip)Resources.Load(GetSoundLoc(SoundName.Jump1));
+                                break;
+                            case 2:
+                                playerEffectsSFX.clip = (AudioClip)Resources.Load(GetSoundLoc(SoundName.Jump2));
+                                break;
+                            case 3:
+                                playerEffectsSFX.clip = (AudioClip)Resources.Load(GetSoundLoc(SoundName.Jump3));
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        playerEffectsSFX.clip = (AudioClip)Resources.Load(GetSoundLoc(soundName));
+                    }
                     playerEffectsSFX.loop = loop;
                     playerEffectsSFX.volume = soundVolume;
                     playerEffectsSFX.Play();
@@ -322,7 +363,8 @@ public class AudioManager : Singleton<AudioManager>
     {
         None, Ambiant, Levier, Serpent_Aspiration,
         Serpent_Crachat, Serpent_PreAspiration, Serpent_PreCrachat,
-        Sprint, Ouverture_Porte, Cristal_Rotation,
+        Sprint, Ouverture_Porte, Cristal_Rotation, Jump, Jump1, Jump2,
+        Jump3, Landing, Damage, Death, 
     }
 
     public SoundName actualPlayerSound;

@@ -17,9 +17,8 @@ public class SnakeBullet : MonoBehaviour
         Vector3 displacement = targetPosition - shooterPosition;
         float targetMoveAngle = Vector3.Angle(-displacement, targetVelocity) * Mathf.Deg2Rad;
         //if the target is stopping or if it is impossible for the projectile to catch up with the target (Sine Formula)
-        if (targetVelocity.magnitude == 0 || targetVelocity.magnitude > projectileSpeed && Mathf.Sin(targetMoveAngle) / projectileSpeed > Mathf.Cos(targetMoveAngle) / targetVelocity.magnitude)
+        if (targetVelocity.magnitude <= 0.1f || targetVelocity.magnitude > projectileSpeed && Mathf.Sin(targetMoveAngle) / projectileSpeed > Mathf.Cos(targetMoveAngle) / targetVelocity.magnitude)
         {
-            Debug.Log("Position prediction is not feasible.");
             return targetPosition;
         }
         //also Sine Formula
@@ -30,7 +29,7 @@ public class SnakeBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float x = Random.Range(1f, 1.5f);
+        float x = Random.Range(0.9f, 1.1f);
         targetPositionFocus = predictedPosition(GameManager.Instance.player.transform.position + new Vector3(0,0.6f,0), transform.position, GameManager.Instance.player.GetComponent<CharacterController>().velocity, speed * x);
         movementVector = (targetPositionFocus - transform.position).normalized * speed;
     }
@@ -55,13 +54,13 @@ public class SnakeBullet : MonoBehaviour
         {
             GameManager.Instance.player.GetComponent<PlayerDamage>().Damaged(damage);
             stopMovement = true;
-            Destroy(this.gameObject, 0.5f);
+            Destroy(this.gameObject, 0.25f);
         }
 
         if (other.GetComponent<Collider>().isTrigger == false && !stopMovement)
         {
             stopMovement = true;
-            Destroy(this.gameObject, 0.5f);
+            Destroy(this.gameObject, 0.25f);
         }
     }
 }
