@@ -256,6 +256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   door: {fileID: 6293779538732231989}
   isActive: 0
+  muteSound: 0
   distanceTo: 0
   speed: 5
   position1: {fileID: 3753760138312009935}
@@ -350,7 +351,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 52588eb98e49c5d40adc80d8082c1ff8, type: 2}
+  - {fileID: 2100000, guid: cf26838779974e642a8591a409443525, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -107,7 +107,10 @@ public class PlayerController : MonoBehaviour
         else if (GameManager.Instance.isGrounded && GameManager.Instance.currentState != GameManager.PlayerState.Jumping)
         {
             GameManager.Instance.currentState = GameManager.PlayerState.Idle;
-            controller.Move(new Vector3(0,0,0));
+            if (controller.velocity.x != 0 || controller.velocity.z !=0)
+            {
+                controller.Move(new Vector3(0,0,0));
+            }
             speed = walkSpeed;
         }
         else
