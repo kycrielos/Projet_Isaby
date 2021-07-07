@@ -42,7 +42,7 @@ public class PlayerPhysics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.currentState != GameManager.PlayerState.Die && GameManager.Instance.currentState != GameManager.PlayerState.Wait)
+        if (GameManager.Instance.currentState != GameManager.PlayerState.Die && GameManager.Instance.currentState != GameManager.PlayerState.Wait && GameManager.Instance.currentState != GameManager.PlayerState.Damaged)
         {
             if (!sliding)
             {

@@ -32,7 +32,7 @@ public class LoadScreen : MonoBehaviour
         introductionText.SetActive(false);
         LoadingScreen.SetActive(true);
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(0.25f);
 
         fadeCompleted = false;
         AsyncOperation operation = SceneManager.LoadSceneAsync(1);

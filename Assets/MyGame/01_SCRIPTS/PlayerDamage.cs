@@ -31,11 +31,14 @@ public class PlayerDamage : MonoBehaviour
     {
         GameManager.Instance.currentState = GameManager.PlayerState.Damaged;
         yield return new WaitForSeconds(0.4f);
-        GameManager.Instance.currentState = GameManager.PlayerState.Idle;
         if (GameManager.Instance.playerHP == 0)
         {
             GameManager.Instance.currentState = GameManager.PlayerState.Die;
             PlayerDieEventHandler();
+        }
+        else
+        {
+            GameManager.Instance.currentState = GameManager.PlayerState.Idle;
         }
 
     }
