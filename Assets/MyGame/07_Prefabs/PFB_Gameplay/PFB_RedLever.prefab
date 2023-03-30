@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7796919634810175980}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LeverOFF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 7303713642121275466}
   - component: {fileID: 2981343605448268701}
   - component: {fileID: 1873482214020684584}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 8686781755153233562}
   - component: {fileID: 4753224044841320330}
   - component: {fileID: 6857708308939141190}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2007622782789574397}
   - component: {fileID: 7449800454308178915}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PFB_RedLever
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,6 +244,7 @@ MonoBehaviour:
   platforms: []
   activeOnObj: {fileID: 7929648747870657394}
   activeOffObj: {fileID: 1503869143026015409}
+  LevierSFX: {fileID: 0}
 --- !u!1 &6797477921863407395
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,9 +255,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5379011440722943433}
   - component: {fileID: 206146651584101822}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LevierTrigger
-  m_TagString: Untagged
+  m_TagString: ActivableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -300,7 +301,7 @@ GameObject:
   - component: {fileID: 2163111734413212489}
   - component: {fileID: 5718038164369456695}
   - component: {fileID: 447768237749817003}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -392,7 +393,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2699195518187471149}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LeverON
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -427,7 +428,7 @@ GameObject:
   - component: {fileID: 1245346093908747208}
   - component: {fileID: 6109257534618950664}
   - component: {fileID: 6598322750501461132}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

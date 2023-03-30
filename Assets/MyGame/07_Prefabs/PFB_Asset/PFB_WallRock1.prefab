@@ -11,16 +11,13 @@ GameObject:
   - component: {fileID: 8239262767018587025}
   - component: {fileID: 5041892207925247028}
   - component: {fileID: 7069684986850396414}
-  - component: {fileID: 1566253469372625089}
-  - component: {fileID: 6630842411775049045}
-  - component: {fileID: 8219740840010237111}
-  - component: {fileID: 4408687540799838429}
+  - component: {fileID: 1355461304066631986}
   m_Layer: 0
   m_Name: PFB_WallRock1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8239262767018587025
 Transform:
@@ -85,8 +82,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1566253469372625089
-BoxCollider:
+--- !u!64 &1355461304066631986
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -95,45 +92,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.705843, y: 7.3045516, z: 8.2281275}
-  m_Center: {x: 0.4496832, y: 0, z: -0.11033869}
---- !u!65 &6630842411775049045
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8726970548112779563}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.6935797, y: 3.0991888, z: 0.84190655}
-  m_Center: {x: -0.14899302, y: -1.101588, z: 4.431764}
---- !u!65 &8219740840010237111
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8726970548112779563}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.6357346, y: 3.347064, z: 0.62108326}
-  m_Center: {x: 0.07826042, y: -1.9787438, z: -4.5421767}
---- !u!65 &4408687540799838429
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8726970548112779563}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.82023716, y: 6.6521173, z: 5.016487}
-  m_Center: {x: -1.3035579, y: -0.29275942, z: -0.15789413}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2786410410114450269, guid: 8978fc36caf30bc4c8d0ecddf4e56c01, type: 3}

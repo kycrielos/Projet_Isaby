@@ -4,10 +4,53 @@ using UnityEngine;
 
 public class DoorKeyScript : MonoBehaviour
 {
-    public GameObject door;
-    public void Activation()
+    public Transform door;
+    public bool isActive;
+    public bool muteSound;
+
+    public float distanceTo;
+    public float speed;
+    public Transform position1;
+    public Transform position2;
+    private void Update()
     {
-        door.SetActive(false);
-        gameObject.SetActive(false);
+        if (distanceTo > 0.05f)
+        {
+            if (isActive)
+            {
+                distanceTo = Vector3.Distance(position2.position, door.position);
+                float step = speed * Time.deltaTime;
+                door.position = Vector3.MoveTowards(door.position, position2.position, step);
+            }
+            else
+            {
+                distanceTo = Vector3.Distance(position1.position, door.position);
+                float step = speed * Time.deltaTime;
+                door.position = Vector3.MoveTowards(door.position, position1.position, step);
+            }
+        }
     }
+    public void Activation(bool activationContinue)
+    {
+        if (!activationContinue)
+        {
+            isActive = !isActive;
+        }
+
+        if (!muteSound)
+        {
+            AudioManager.Instance.actualOtherSound = AudioManager.SoundName.None;
+            AudioManager.Instance.PlaySound(AudioManager.SoundName.Ouverture_Porte, "Other", false);
+        }
+
+        if (isActive)
+        {
+            distanceTo = Vector3.Distance(position2.position, door.position);
+        }
+        else
+        {
+            distanceTo = Vector3.Distance(position1.position, door.position);
+        }
+    }
+
 }

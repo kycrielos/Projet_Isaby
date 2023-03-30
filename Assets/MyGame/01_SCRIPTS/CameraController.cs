@@ -1,14 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class CameraController : MonoBehaviour
 {
     //Rotation
-    private float Mousex;
-    private float Mousey;
+    public float Mousex = 180;
+    public float Mousey = 10;
     public float AngularVelocity = 4f;
     public GameObject Player;
+    public CinemachineVirtualCamera cmVCam;
+
+    public float shakeIntensity;
+    public float shakeDuration;
 
     // Start is called before the first frame update
     void Start()
@@ -16,12 +21,16 @@ public class CameraController : MonoBehaviour
         //Retire le curseur
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        GameManager.Instance.followPlayer = this.gameObject;
     }
 
     private void LateUpdate()
     {
-        transform.position = Player.transform.position;
-        Rotate();
+        if (!GameManager.Instance.pause)
+        {
+            transform.position = Player.transform.position;
+            Rotate();
+        }
     }
 
     void GetInput()
@@ -45,5 +54,16 @@ public class CameraController : MonoBehaviour
 
         //Gere la rotation
         transform.eulerAngles = new Vector3(Mousey, Mousex, 0);
+    }
+    public void ShakeCamera()
+    {
+        StartCoroutine(CameraShakeCoroutine());
+    }
+
+    IEnumerator CameraShakeCoroutine()
+    {
+        cmVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = shakeIntensity;
+        yield return new WaitForSeconds(shakeDuration);
+        cmVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0;
     }
 }

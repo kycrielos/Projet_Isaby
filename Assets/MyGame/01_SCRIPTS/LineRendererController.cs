@@ -10,6 +10,16 @@ public class LineRendererController : MonoBehaviour
     private Vector3 spawnPosition;
 
     public bool IsActive;
+    public bool isFirst;
+
+    private DoorKeyScript doorScript;
+
+    public GameObject sparkExplosionVFX;
+    private GameObject sparkObject;
+
+    public Transform crystalSpike;
+    public Transform spawnPoint;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,37 +30,71 @@ public class LineRendererController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (IsActive)
+        if (IsActive || isFirst)
         {
             diagline.enabled = true;
             RaycastHit hit;
-            if (Physics.Raycast(GetComponentInParent<Transform>().position + new Vector3(0, 0.1f, 0), GetComponentInParent<Transform>().forward * -1 + new Vector3(0, 0.1f, 0), out hit, Mathf.Infinity))
+            if (Physics.Raycast(crystalSpike.position, crystalSpike.forward + new Vector3(0, 0.25f, 0), out hit, Mathf.Infinity))
             {
-                diagline.SetPosition(0, GetComponentInParent<Transform>().position + new Vector3(0, 0.1f, 0));
+                diagline.SetPosition(0, spawnPoint.position);
                 diagline.SetPosition(1, hit.point);
                 if (hit.collider.tag == "Crystal")
                 {
                     nextCrystalRayon = hit.collider.gameObject.GetComponentInChildren<LineRendererController>();
                     nextCrystalRayon.IsActive = true;
+                    if (sparkObject == null)
+                    {
+                        sparkObject = Instantiate(sparkExplosionVFX, hit.collider.transform);
+                    }
                 }
                 else if (nextCrystalRayon != null)
                 {
                     nextCrystalRayon.IsActive = false;
                     nextCrystalRayon.diagline.enabled = false;
                     nextCrystalRayon = null;
+                    Destroy(sparkObject);
                 }
 
                 if (hit.collider.tag == "DoorKey")
                 {
-                    hit.collider.gameObject.GetComponent<DoorKeyScript>().Activation();
+                    doorScript = hit.collider.gameObject.GetComponentInParent<DoorKeyScript>();
+                    if (!doorScript.isActive)
+                    {
+                        doorScript.isActive = true;
+                        doorScript.Activation(true);
+                    }
+                    if (sparkObject == null)
+                    {
+                        sparkObject = Instantiate(sparkExplosionVFX, hit.collider.transform);
+                    }
+                }
+                else if (doorScript != null)
+                {
+                    if (doorScript.isActive)
+                    {
+                        doorScript.isActive = false;
+                        doorScript.Activation(true);
+                    }
+                    Destroy(sparkObject);
                 }
             }
         }
-        else if (nextCrystalRayon != null)
+        else
         {
-            nextCrystalRayon.IsActive = false;
-            nextCrystalRayon.diagline.enabled = false;
-            nextCrystalRayon = null;
+            if (nextCrystalRayon != null)
+            {
+                nextCrystalRayon.IsActive = false;
+                nextCrystalRayon.diagline.enabled = false;
+                nextCrystalRayon = null;
+                Destroy(sparkObject);
+            }
+            
+            if (doorScript != null)
+            {
+                doorScript.isActive = false;
+                doorScript.Activation(true);
+                Destroy(sparkObject);
+            }
         }
     }
 }

@@ -8,6 +8,12 @@ TagManager:
   - PlatformTrigger
   - Crystal
   - DoorKey
+  - Ground
+  - Snake
+  - NotTargetable
+  - ActivableObject
+  - WallPlatform
+  - Stair
   layers:
   - Default
   - TransparentFX
@@ -17,10 +23,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Ground
+  - Crystal
+  - Lever
   - 
   - 
   - 

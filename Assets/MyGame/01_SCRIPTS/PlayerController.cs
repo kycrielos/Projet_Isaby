@@ -8,6 +8,12 @@ public class PlayerController : MonoBehaviour
     private float inputx;
     private float inputy;
 
+    private bool maxYSpeed;
+    private bool inputYLock;
+
+    private bool maxXSpeed;
+    private bool inputXLock;
+
     //Movement
     private float movementx;
     private float movementy;
@@ -16,6 +22,10 @@ public class PlayerController : MonoBehaviour
     public float walkSpeed;
     public float inetie;
     Vector3 moveDirection;
+    public Vector3 slideDirection;
+    public float slideSpeed;
+    public float acceleration;
+    public float deceleration;
 
     //Jump
     Vector3 jumpDirection;
@@ -37,18 +47,20 @@ public class PlayerController : MonoBehaviour
     public GameObject cam;
     private PlayerPhysics physics;
 
+
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
         physics = GetComponent<PlayerPhysics>();
         GameManager.Instance.player = gameObject;
+        GameManager.Instance.anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.currentState != GameManager.PlayerState.Die)
+        if (GameManager.Instance.currentState != GameManager.PlayerState.Die && !GameManager.Instance.pause && GameManager.Instance.currentState != GameManager.PlayerState.Damaged && GameManager.Instance.currentState != GameManager.PlayerState.Wait)
         {
             Jump();
             Move();
@@ -63,20 +75,25 @@ public class PlayerController : MonoBehaviour
 
         moveDirection = new Vector3(movementx, 0, movementy);
         Vector3.Normalize(moveDirection);
+        //Debug.Log(GameManager.Instance.currentState);
 
         //Deplace Le Joueur
-        if (moveDirection.magnitude >= 0.1f)
+        if (GameManager.Instance.currentState == GameManager.PlayerState.Sliding)
         {
-            if (physics.isGrounded && GameManager.Instance.currentState != GameManager.PlayerState.Jumping)
+            slideDirection.x = ((1f - physics.hitNormal.y) * physics.hitNormal.x) * slideSpeed;
+            slideDirection.z = ((1f - physics.hitNormal.y) * physics.hitNormal.z) * slideSpeed;
+            controller.Move(new Vector3(slideDirection.x, 0, slideDirection.z));
+        }
+        else if (moveDirection.magnitude >= 0.1f)
+        {
+            if (GameManager.Instance.isGrounded && GameManager.Instance.currentState != GameManager.PlayerState.Jumping)
             {
-                if (Input.GetButton("Sprint"))
+                if (MyInputManager.Instance.GetKey("Sprint"))
                 {
-                    speed = sprintSpeed;
                     GameManager.Instance.currentState = GameManager.PlayerState.Running;
                 }
                 else
                 {
-                    speed = walkSpeed;
                     GameManager.Instance.currentState = GameManager.PlayerState.Walking;
                 }
             }
@@ -87,9 +104,14 @@ public class PlayerController : MonoBehaviour
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             controller.Move((moveDir * speed  + jumpDirection) * Time.deltaTime);
         }
-        else if (physics.isGrounded && GameManager.Instance.currentState != GameManager.PlayerState.Jumping)
+        else if (GameManager.Instance.isGrounded && GameManager.Instance.currentState != GameManager.PlayerState.Jumping)
         {
             GameManager.Instance.currentState = GameManager.PlayerState.Idle;
+            if (controller.velocity.x != 0 || controller.velocity.z !=0)
+            {
+                controller.Move(new Vector3(0,0,0));
+            }
+            speed = walkSpeed;
         }
         else
         {
@@ -97,9 +119,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Jump()
+    public void Jump()
     {
-        if (Input.GetButtonDown("Jump") && GameManager.Instance.currentState != GameManager.PlayerState.Jumping && physics.timeSinceGrounded <= jumpDelay)
+        if (MyInputManager.Instance.GetKeyDown("Jump") && GameManager.Instance.currentState != GameManager.PlayerState.Jumping && physics.timeSinceGrounded <= jumpDelay)
         {
             GameManager.Instance.currentState = GameManager.PlayerState.Jumping;
             jumpInput = 1;
@@ -108,7 +130,7 @@ public class PlayerController : MonoBehaviour
 
         if (GameManager.Instance.currentState == GameManager.PlayerState.Jumping)
         {
-            if (Input.GetButton("Jump") && physics.timeSinceGrounded <= jumpDuration)
+            if (MyInputManager.Instance.GetKey("Jump") && physics.timeSinceGrounded <= jumpDuration)
             {
                 if (jumpInput > 0)
                 {
@@ -125,11 +147,15 @@ public class PlayerController : MonoBehaviour
             {
                 jumpInput -= Time.deltaTime * jumpAcceleration * jumpSmoothAcceleration;
             }
-            else
+            else if (!physics.sliding)
             {
                 GameManager.Instance.currentState = GameManager.PlayerState.Falling;
                 jumpInput = 0;
             }
+        }
+        else if (GameManager.Instance.currentState == GameManager.PlayerState.None)
+        {
+            jumpInput = 0;
         }
         jumpMovement = jumpInput * jumpInput * jumpForce + physics.gravityForce;
         jumpDirection = new Vector3(0, jumpMovement, 0);
@@ -142,18 +168,18 @@ public class PlayerController : MonoBehaviour
         {
             if (inputx != 0)
             {
-                if (Input.GetAxisRaw("Horizontal") == 0)
+                if (MyInputManager.Instance.GetAxisRaw("Horizontal") == 0)
                 {
                     inputx -= (Time.deltaTime * inetie) * (inputx / Mathf.Abs(inputx));
                 }
                 else
                 {
-                    inputx = Input.GetAxis("Horizontal");
+                    inputx = MyInputManager.Instance.GetAxis("Horizontal");
                 }
             }
             else
             {
-                if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1)
+                if (Mathf.Abs(MyInputManager.Instance.GetAxisRaw("Horizontal")) == 1)
                 {
                     inputx += (Time.deltaTime * inetie) * (inputx / Mathf.Abs(inputx));
                 }
@@ -165,18 +191,18 @@ public class PlayerController : MonoBehaviour
 
             if (inputy != 0)
             {
-                if (Input.GetAxisRaw("Vertical") == 0)
+                if (MyInputManager.Instance.GetAxisRaw("Vertical") == 0)
                 {
                     inputy -= (Time.deltaTime * inetie) * (inputy / Mathf.Abs(inputy));
                 }
                 else
                 {
-                    inputy = Input.GetAxis("Vertical");
+                    inputy = MyInputManager.Instance.GetAxis("Vertical");
                 }
             }
             else
             {
-                if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1)
+                if (Mathf.Abs(MyInputManager.Instance.GetAxisRaw("Vertical")) == 1)
                 {
                     inputy += (Time.deltaTime * inetie) * (inputy / Mathf.Abs(inputy));
                 }
@@ -188,8 +214,48 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            inputx = Input.GetAxis("Horizontal");
-            inputy = Input.GetAxis("Vertical");
+            if (inputYLock)
+            {
+                inputy = MyInputManager.Instance.GetAxisRaw("Vertical");
+            }
+            else
+            {
+                inputy = MyInputManager.Instance.GetAxis("Vertical");
+            }
+
+            if (inputXLock)
+            {
+                inputx = MyInputManager.Instance.GetAxisRaw("Horizontal");
+            }
+            else
+            {
+                inputx = MyInputManager.Instance.GetAxis("Horizontal");
+            }
+        }
+
+        if (MyInputManager.Instance.GetKey("Sprint"))
+        {
+            if (speed < sprintSpeed)
+            {
+                speed += acceleration * Time.deltaTime;
+            }
+            else
+            {
+                speed = sprintSpeed;
+            }
+            GameManager.Instance.playerSpeedScale = (speed - walkSpeed) / (sprintSpeed - walkSpeed);
+        }
+        else
+        {
+            if (speed > walkSpeed)
+            {
+                speed -= deceleration * Time.deltaTime;
+            }
+            else
+            {
+                speed = walkSpeed;
+            }
+            GameManager.Instance.playerSpeedScale = (speed - walkSpeed) / (sprintSpeed - walkSpeed);
         }
     }
 
@@ -198,7 +264,7 @@ public class PlayerController : MonoBehaviour
     {
         if (inputx != 0)
         {
-            movementx = (1 - Mathf.Pow(1 - Mathf.Abs(inputx), 5)) * inputx / Mathf.Abs(inputx);
+            movementx = (1 - Mathf.Pow(1 - Mathf.Abs(inputx), 40)) * inputx / Mathf.Abs(inputx);
         }
         else
         {
@@ -206,11 +272,33 @@ public class PlayerController : MonoBehaviour
         }
         if (inputy != 0)
         {
-            movementy = (1 - Mathf.Pow(1 - Mathf.Abs(inputy), 5)) * inputy / Mathf.Abs(inputy);
+            movementy = (1 - Mathf.Pow(1 - Mathf.Abs(inputy), 40)) * inputy / Mathf.Abs(inputy);
         }
         else
         {
             movementy = 0;
+        }
+
+        if (inputy == 1)
+        {
+            maxYSpeed = true;
+        }
+        else if (maxYSpeed)
+        {
+            maxYSpeed = false;
+            movementy = 0;
+            inputYLock = true;
+        }
+
+        if (inputx == 1)
+        {
+            maxXSpeed = true;
+        }
+        else if (maxXSpeed)
+        {
+            maxXSpeed = false;
+            movementx = 0;
+            inputXLock = true;
         }
     }
 }

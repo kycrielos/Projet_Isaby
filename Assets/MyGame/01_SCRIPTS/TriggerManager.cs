@@ -9,35 +9,35 @@ public class TriggerManager : MonoBehaviour
     public static event ActivateEvent Activation;
     public PlayerDamage playerDamage;
     public GameObject Snake;
+    public CameraController cam;
 
     public void SetActive(GameObject triggerObj)
     {
-        if (triggerObj.name.Contains("DeathZone"))
+        switch (triggerObj.name)
         {
-            GameManager.Instance.playerHP = 0;
-            playerDamage.Damaged(0);
-            GameManager.Instance.RefreshUIActivation();
-        }
-        else if(triggerObj.name.Contains("TeddyPart"))
-        {
-            Destroy(triggerObj);
-            GameManager.Instance.teddyPartsNumbers += 1;
-            GameManager.Instance.playerHP = 3;
-            GameManager.Instance.RefreshUIActivation();
-        }
-        else if (triggerObj.name.Contains("Coin"))
-        {
-            Destroy(triggerObj);
-            GameManager.Instance.coinNumbers += 1;
-        }
-        else if (triggerObj.name.Contains("SnakeSpawner"))
-        {
-            Destroy(triggerObj);
-            Snake.SetActive(true);
-        }
-        else
-        {
-            ActivationEventHandler(triggerObj);
+            case string a when a.Contains("DeathZone"):
+                GameManager.Instance.playerHP = 0;
+                playerDamage.Damaged(100);
+                GameManager.Instance.RefreshUIActivation();
+                break;
+            case string a when a.Contains("TeddyPart"):
+                GameManager.Instance.teddyPartsNumbers += 1;
+                GameManager.Instance.playerHP = 3;
+                ActivationEventHandler(triggerObj);
+                GameManager.Instance.RefreshUIActivation();
+                break;
+            case string a when a.Contains("SnakeSpawner"):
+                Destroy(triggerObj);
+                cam.ShakeCamera();
+                Snake.SetActive(true);
+                break;
+            case string a when a.Contains("ControllerTuto"):
+                GameManager.Instance.RefreshUITutoActivation();
+                Destroy(triggerObj);
+                break;
+            default:
+                ActivationEventHandler(triggerObj);
+                break;
         }
     }
 

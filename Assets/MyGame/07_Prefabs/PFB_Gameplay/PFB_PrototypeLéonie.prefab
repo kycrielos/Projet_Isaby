@@ -851,7 +851,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8801460532865239624, guid: 3ca56ad4ac4e92a46ba2b7f2fcd39419, type: 3}
+  - {fileID: 2100000, guid: 55bfb8d862ed16c45ae4d5bf79650a3c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1145,7 +1145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5168233552521054868}
   m_Layer: 0
-  m_Name: character
+  m_Name: "PFB_PrototypeL\xE9onie"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,72 +1,432 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 
 public class PlayerUI : MonoBehaviour
 {
     public GameObject[] heartSprite;
     public GameObject[] teddyPartSprite;
     public GameObject[] teddyPartShadowSprite;
+    public GameObject[] pauseMenuTextUI;
+    public GameObject[] pauseMenuselectedTextUI;
+
+    public GameObject pauseMenu;
+    public GameObject inGameInterface;
+
+    public GameObject book;
+    public GameObject optionMenu;
+    public GameObject baseOption;
+    public GameObject buttonChangeMenu;
+
+    public GameObject validationButton;
+
+    public Button[] baseButton;
+
+    public Slider soundSlider;
+    public Text soundValue;
+
+    public GameObject winnSprite;
+
+    public GameObject pressESprite;
+
+    public int actualPageIndex;
+
+    public bool validation;
+
+    public Text[] keyText;
+    private int textIndex;
+
+    public GameObject[] controllerTuto;
+    private int controllerTutoIndex;
+    private bool controllerTutoSecurity;
+
+    private float displayMovementAdvancement;
+    private float displayMovementValue;
+
+    private RectTransform displayToMove;
+
+    private bool displayMovementPositive;
+    private bool moveTheDisplay;
+
+    private float tutoDelay = 3;
+    private float tutoTimer;
+
+    private string[] keyNames = new string[]{
+        "Forward",
+        "Backward",
+        "Right",
+        "Left",
+        "Jump",
+        "Interaction",
+        "Sprint" } ;
+
+    private bool keychange;
+
     private void Start()
     {
         GameManager.RefreshUI += UpdateInterface;
+        GameManager.RefreshUITuto += ControllerTutoDisplay;
+        ControllerTutoDisplay();
     }
-    public void UpdateInterface()
+
+    public void ControllerTutoDisplay()
     {
-        switch (GameManager.Instance.playerHP)
+        if (!controllerTutoSecurity && controllerTutoIndex < 5)
         {
-            case 3:
+            controllerTutoSecurity = true;
+            displayToMove = controllerTuto[controllerTutoIndex].GetComponent<RectTransform>();
+            moveTheDisplay = true;
+            displayMovementPositive = true;
+            StartCoroutine(ControllerTutoDelay());
+        }
+    }
 
-                foreach (GameObject heart in heartSprite)
-                {
-                    heart.SetActive(true);
-                }
-                break;
+    private IEnumerator ControllerTutoDelay()
+    {
+        yield return new WaitUntil(() => controllerTutoAction());
+        yield return new WaitForSeconds(0.75f);
+        moveTheDisplay = true;
+        displayMovementPositive = false;
+        controllerTutoIndex += 1;
+        controllerTutoSecurity = false;
+    }
 
-            case 2:
-                heartSprite[2].SetActive(false);
-                break;
-
-            case 1:
-                heartSprite[2].SetActive(false);
-                heartSprite[1].SetActive(false);
-                break;
-
+    public bool controllerTutoAction()
+    {
+        switch (controllerTutoIndex)
+        {
             case 0:
-                foreach (GameObject heart in heartSprite)
+                if (MyInputManager.Instance.GetAxis("Horizontal") != 0 || MyInputManager.Instance.GetAxis("Vertical") != 0)
                 {
-                    heart.SetActive(false);
+                    return true;
                 }
-                break;
+                else
+                {
+                    return false;
+                }
+            case 1:
+                if (MyInputManager.Instance.GetKey("Jump"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case 2:
+                if (Input.GetAxis("Mouse X") != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case 3:
+                if (MyInputManager.Instance.GetKey("Sprint"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case 4: 
+                if (Input.GetButton("PauseButton")) 
+                {
+                    return true;
+                }
+                else
+                {
+                    if (tutoTimer < tutoDelay)
+                    {
+                        tutoTimer += Time.deltaTime;
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+            default:
+                return false;
+        }
+    }
+    private void Update()
+    {
+        if (Input.GetButtonDown("PauseButton") /*&& GameManager.Instance.pauseSecurity*/)
+        {
+            if (!GameManager.Instance.pause)
+            {
+                GameManager.Instance.pause = true;
+                Time.timeScale = 0f;
+                AudioManager.Instance.PauseSound();
+                GameManager.Instance.RefreshUIActivation();
+            }
+            else
+            {
+                while (actualPageIndex > 0)
+                {
+                    ChangePage(false);
+                }
+                ChangePage(false);
+                Time.timeScale = 1f;
+                AudioManager.Instance.PauseSound();
+                GameManager.Instance.RefreshUIActivation();
+            }
         }
 
-        switch (GameManager.Instance.teddyPartsNumbers)
+        if (actualPageIndex == 1)
         {
-            case 1:
-                teddyPartSprite[0].SetActive(true);
-                teddyPartShadowSprite[0].SetActive(false);
-                break;
-            case 2:
-                teddyPartSprite[1].SetActive(true);
-                teddyPartShadowSprite[1].SetActive(false);
-                break;
-            case 3:
-                teddyPartSprite[2].SetActive(true);
-                teddyPartShadowSprite[2].SetActive(false);
-                break;
-            case 4:
-                teddyPartSprite[3].SetActive(true);
-                teddyPartShadowSprite[3].SetActive(false);
-                break;
-            case 5:
-                teddyPartSprite[4].SetActive(true);
-                teddyPartShadowSprite[4].SetActive(false);
-                break;
+            soundValue.text = Mathf.Round(soundSlider.value*100) + "%";
+            AudioManager.Instance.soundVolume = soundSlider.value;
+        }
+
+        if (keychange)
+        {
+            if (Input.anyKey)
+            {
+                foreach (KeyCode kcode in System.Enum.GetValues(typeof(KeyCode)))
+                {
+                    if (Input.GetKey(kcode))
+                    {
+                        MyInputManager.Instance.SetKeyMap(keyNames[textIndex], kcode);
+                        keyText[textIndex].text = kcode.ToString();
+                        keychange = false;
+                    }
+                }
+            }
+        }
+
+        if (displayToMove != null && moveTheDisplay)
+        {
+            if (displayMovementPositive)
+            {
+                if (displayMovementAdvancement < 1)
+                {
+                    displayMovementAdvancement += Time.deltaTime * 4;
+                    displayMovementValue = TutoDisplayCalcul(displayMovementAdvancement);
+                }
+                else
+                {
+                    displayMovementAdvancement = 1;
+                    displayMovementValue = 4;
+                    moveTheDisplay = false;
+                }
+            }
+            else
+            {
+                if (displayMovementAdvancement > 0)
+                {
+                    displayMovementAdvancement -= Time.deltaTime * 4;
+                    displayMovementValue = TutoDisplayCalcul(displayMovementAdvancement);
+                }
+                else
+                {
+                    displayMovementAdvancement = 0;
+                    displayMovementValue = 0;
+                    moveTheDisplay = false;
+                }
+            }
+            displayToMove.localScale = new Vector3(displayMovementValue, displayMovementValue, 0);
+        }
+    }
+
+    public float TutoDisplayCalcul(float value)
+    {
+        return (1 - Mathf.Cos((value * Mathf.PI) / 2)) * 4;
+    }
+
+    public void RemapKey(int indexNumber)
+    {
+        textIndex = indexNumber;
+        keychange = true;
+    }
+
+    public void ChangePage(bool forward)
+    {
+        if (forward)
+        {
+            switch (actualPageIndex)
+            {
+                case 0:
+                    optionMenu.SetActive(true);
+                    book.SetActive(false);
+                    actualPageIndex = 1;
+                    break;
+                case 1:
+                    buttonChangeMenu.SetActive(true);
+                    baseOption.SetActive(false);
+                    actualPageIndex = 2;
+                    break;
+            }
+        }
+        else
+        {
+
+            switch (actualPageIndex)
+            {
+                case 0:
+                    Time.timeScale = 1f;
+                    GameManager.Instance.pause = false;
+                    GameManager.Instance.RefreshUIActivation();
+                    break;
+                case 1:
+                    optionMenu.SetActive(false);
+                    book.SetActive(true);
+                    actualPageIndex = 0;
+                    break;
+                case 2:
+                    buttonChangeMenu.SetActive(false);
+                    baseOption.SetActive(true);
+                    actualPageIndex = 1;
+                    break;
+            }
+        }
+    }
+
+    public void QuitGame(bool leave)
+    {
+        if (leave)
+        {
+            if (!validation)
+            {
+                validation = true;
+                validationButton.SetActive(true);
+                foreach (Button button in baseButton)
+                {
+                    button.interactable = false;
+                }
+            }
+            else
+            {
+                Application.Quit();
+                Debug.Log("Quit");
+            }
+        }
+        else
+        {
+            validation = false;
+            foreach (Button button in baseButton)
+            {
+                button.interactable = true;
+            }
+            validationButton.SetActive(false);
+        }
+    }
+
+    public void UpdateInterface()
+    {
+        if (!GameManager.Instance.pause)
+        {
+            pauseMenu.SetActive(false);
+            inGameInterface.SetActive(true);
+
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
+            switch (GameManager.Instance.playerHP)
+            {
+                case 3:
+                    foreach (GameObject heart in heartSprite)
+                    {
+                        heart.SetActive(true);
+                    }
+                    break;
+
+                case 2:
+                    heartSprite[2].SetActive(false);
+                    break;
+
+                case 1:
+                    heartSprite[2].SetActive(false);
+                    heartSprite[1].SetActive(false);
+                    break;
+
+                case 0:
+                    foreach (GameObject heart in heartSprite)
+                    {
+                        heart.SetActive(false);
+                    }
+                    break;
+            }
+
+
+            if (GameManager.Instance.playerIsInActivableObject)
+            {
+                displayToMove = pressESprite.GetComponent<RectTransform>();
+                displayMovementPositive = true;
+                moveTheDisplay = true;
+            }
+            else
+            {
+                displayMovementPositive = false;
+                moveTheDisplay = true;
+            }
+
+            if (GameManager.Instance.teddyPartsNumbers == 5)
+            {
+                winnSprite.SetActive(true);
+            }
+        }
+        else
+        {
+            pauseMenu.SetActive(true);
+            inGameInterface.SetActive(false);
+
+            switch (GameManager.Instance.teddyPartsNumbers)
+            {
+                case 1:
+                    teddyPartSprite[0].SetActive(true);
+                    teddyPartShadowSprite[0].SetActive(false);
+                    break;
+                case 2:
+                    teddyPartSprite[0].SetActive(true);
+                    teddyPartShadowSprite[0].SetActive(false);
+                    teddyPartSprite[1].SetActive(true);
+                    teddyPartShadowSprite[1].SetActive(false);
+                    break;
+                case 3:
+                    teddyPartSprite[0].SetActive(true);
+                    teddyPartShadowSprite[0].SetActive(false);
+                    teddyPartSprite[1].SetActive(true);
+                    teddyPartShadowSprite[1].SetActive(false);
+                    teddyPartSprite[2].SetActive(true);
+                    teddyPartShadowSprite[2].SetActive(false);
+                    break;
+                case 4:
+                    teddyPartSprite[0].SetActive(true);
+                    teddyPartShadowSprite[0].SetActive(false);
+                    teddyPartSprite[1].SetActive(true);
+                    teddyPartShadowSprite[1].SetActive(false);
+                    teddyPartSprite[2].SetActive(true);
+                    teddyPartShadowSprite[2].SetActive(false);
+                    teddyPartSprite[3].SetActive(true);
+                    teddyPartShadowSprite[3].SetActive(false);
+                    break;
+                case 5:
+                    teddyPartSprite[0].SetActive(true);
+                    teddyPartShadowSprite[0].SetActive(false);
+                    teddyPartSprite[1].SetActive(true);
+                    teddyPartShadowSprite[1].SetActive(false);
+                    teddyPartSprite[2].SetActive(true);
+                    teddyPartShadowSprite[2].SetActive(false);
+                    teddyPartSprite[3].SetActive(true);
+                    teddyPartShadowSprite[3].SetActive(false);
+                    teddyPartSprite[4].SetActive(true);
+                    teddyPartShadowSprite[4].SetActive(false);
+                    break;
+            }
+
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+
         }
     }
 
     ~PlayerUI()
     {
         GameManager.RefreshUI -= UpdateInterface;
+        GameManager.RefreshUITuto -= ControllerTutoDisplay;
     }
 }
